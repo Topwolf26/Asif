@@ -251,11 +251,12 @@ Now you have `/brainstorm`, `/write-plan`, and `/execute-plan` commands.
 
 ### 4.2 — Karpathy Guidelines (anti-over-engineering)
 
-Encodes Andrej Karpathy's four rules: no silent assumptions, no over-engineering, surgical changes only, concrete success criteria. It installs as a `CLAUDE.md` adapter. In a **regular terminal**, from inside your project folder:
-```bash
-npx @swarmclawai/andrej-karpathy-skills --agent claude --dest .
+Encodes Andrej Karpathy's four rules: no silent assumptions, no over-engineering, surgical changes only, concrete success criteria. It installs the **same easy way as Superpowers** — two lines in the **Claude Code** prompt (no `npx` needed):
 ```
-(Run this *after* you create your first project in Block 6. For now, just know the command.)
+/plugin marketplace add forrestchang/andrej-karpathy-skills
+/plugin install andrej-karpathy-skills@karpathy-skills
+```
+Pick **User** scope so the rules apply to every project, then run `/reload-plugins` to switch it on.
 
 ### 4.3 — Claude Design / Frontend Design (beautiful UIs)
 
@@ -579,7 +580,7 @@ You can even run both: keep VS Code for the polished extensions and Antigravity 
 - Claude Code setup — https://www.explainx.ai/blog/claude-code-vscode-ide-extension-setup-guide-2026
 - Superpowers — https://github.com/obra/superpowers · https://github.com/obra/superpowers-marketplace
 - Codex IDE & CLI — https://developers.openai.com/codex/ide · https://developers.openai.com/codex/cli
-- Karpathy skills — https://github.com/swarmclawai/andrej-karpathy-skills
+- Karpathy skills — https://github.com/forrestchang/andrej-karpathy-skills
 - Frontend Design (Claude Design) — https://claude.com/plugins/frontend-design
 - Open Design — https://github.com/nexu-io/open-design
 
