@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mitly — Book a meeting</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <div class="brand">
+        <span class="brand__mark">M</span>
+        <span class="brand__name">Mitly</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="card">
+      <!-- LEFT: event / host details -->
+      <aside class="card__aside">
+        <div class="host">
+          <div class="host__avatar">AJ</div>
+          <p class="host__name">Asif Jahin</p>
+        </div>
+
+        <h1 class="event__title">30 Minute Meeting</h1>
+
+        <ul class="meta">
+          <li class="meta__row">
+            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            <span>30 min</span>
+          </li>
+          <li class="meta__row">
+            <svg viewBox="0 0 24 24" class="ic" aria-hidden="true"><rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/></svg>
+            <span>Web conferencing details provided upon confirmation.</span>
+          </li>
+        </ul>
+
+        <p class="event__desc">
+          A quick call to talk through your project and see if we're a good fit.
+          Pick a time that works for you below.
+        </p>
+      </aside>
+
+      <!-- MIDDLE: calendar -->
+      <section class="card__calendar" id="calendarPane">
+        <h2 class="pane__title">Select a Date &amp; Time</h2>
+
+        <div class="cal">
+          <div class="cal__head">
+            <span class="cal__month" id="calMonthLabel">Month</span>
+            <div class="cal__nav">
+              <button class="navbtn" id="prevMonth" aria-label="Previous month">
+                <svg viewBox="0 0 24 24" class="ic"><path d="M15 6l-6 6 6 6"/></svg>
+              </button>
+              <button class="navbtn" id="nextMonth" aria-label="Next month">
+                <svg viewBox="0 0 24 24" class="ic"><path d="M9 6l6 6-6 6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="cal__weekdays">
+            <span>SUN</span><span>MON</span><span>TUE</span><span>WED</span>
+            <span>THU</span><span>FRI</span><span>SAT</span>
+          </div>
+
+          <div class="cal__grid" id="calGrid"></div>
+        </div>
+
+        <p class="tz">
+          <svg viewBox="0 0 24 24" class="ic"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+          Eastern time (US &amp; Canada)
+        </p>
+      </section>
+
+      <!-- RIGHT: time slots (revealed after picking a date) -->
+      <section class="card__times" id="timesPane" hidden>
+        <p class="times__date" id="timesDateLabel"></p>
+        <div class="times__list" id="timesList"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Booking form (shown after a time is chosen) -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <button class="sheet__back" id="sheetBack">
+        <svg viewBox="0 0 24 24" class="ic"><path d="M15 6l-6 6 6 6"/></svg> Back
+      </button>
+
+      <div class="sheet__body" id="sheetBody">
+        <h2 class="sheet__title" id="sheetTitle">Enter Details</h2>
+        <p class="sheet__when" id="sheetWhen"></p>
+
+        <form id="bookingForm" class="form" novalidate>
+          <label class="field">
+            <span class="field__label">Name *</span>
+            <input class="field__input" id="name" type="text" required />
+          </label>
+          <label class="field">
+            <span class="field__label">Email *</span>
+            <input class="field__input" id="email" type="email" required />
+          </label>
+          <button class="btn btn--primary" type="submit">Schedule Event</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

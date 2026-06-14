@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#0f1115" />
+  <title>FastCal — snap your meal, done</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===================== ONBOARDING ===================== -->
+    <div class="overlay" id="onboarding" hidden>
+      <div class="sheet">
+        <h1 class="brand">Fast<span>Cal</span></h1>
+        <p class="muted">Calorie tracking that respects your time. Set this up once.</p>
+
+        <div class="field">
+          <label>You are</label>
+          <div class="seg" id="ob-sex">
+            <button type="button" data-val="male" class="active">Male</button>
+            <button type="button" data-val="female">Female</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Age</label>
+            <input type="number" id="ob-age" value="35" min="14" max="100" />
+          </div>
+          <div class="field">
+            <label>Activity</label>
+            <select id="ob-activity">
+              <option value="1.2">Mostly sitting</option>
+              <option value="1.375" selected>Lightly active</option>
+              <option value="1.55">Active</option>
+              <option value="1.725">Very active</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Height</label>
+            <div class="inline">
+              <input type="number" id="ob-ft" value="5" min="3" max="7" /><span class="unit">ft</span>
+              <input type="number" id="ob-in" value="10" min="0" max="11" /><span class="unit">in</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field">
+            <label>Current weight</label>
+            <div class="inline"><input type="number" id="ob-weight" value="190" min="60" max="600" /><span class="unit">lb</span></div>
+          </div>
+          <div class="field">
+            <label>Goal weight</label>
+            <div class="inline"><input type="number" id="ob-goal" value="175" min="60" max="600" /><span class="unit">lb</span></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Target date</label>
+          <input type="date" id="ob-target" />
+        </div>
+
+        <button class="btn-primary block" id="ob-submit">Calculate my plan →</button>
+        <p class="muted tiny center">Everything stays on your device. No account, no cloud.</p>
+      </div>
+    </div>
+
+    <!-- ===================== HOME ===================== -->
+    <section class="view" id="view-home">
+      <header class="topbar">
+        <div>
+          <div class="date" id="home-date">Today</div>
+          <h1 class="brand sm">Fast<span>Cal</span></h1>
+        </div>
+        <button class="icon-btn" id="go-setup" title="Settings">⚙</button>
+      </header>
+
+      <div class="summary" id="summary">Let's get started.</div>
+
+      <button class="snap-btn" id="snap-btn">
+        <span class="cam">📷</span>
+        <span class="snap-text">Snap a meal</span>
+        <span class="snap-sub">Photo → tracked in seconds</span>
+      </button>
+
+      <div class="favs-wrap">
+        <div class="label-row"><span class="label">One-tap re-log</span></div>
+        <div class="favs" id="favs"></div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat"><span class="stat-lbl">Calories left</span><b id="stat-left">—</b></div>
+        <div class="stat"><span class="stat-lbl">Protein</span><b id="stat-protein">—</b></div>
+        <div class="stat"><span class="stat-lbl">Weight</span><b id="stat-weight">—</b></div>
+      </div>
+
+      <div class="section-head"><span>Today's meals</span><span class="muted tiny" id="today-total"></span></div>
+      <div class="meal-list" id="today-meals"></div>
+    </section>
+
+    <!-- ===================== DIARY ===================== -->
+    <section class="view" id="view-diary" hidden>
+      <header class="topbar"><h1 class="view-title">Diary</h1></header>
+      <div id="diary-body"></div>
+    </section>
+
+    <!-- ===================== WEIGHT ===================== -->
+    <section class="view" id="view-weight" hidden>
+      <header class="topbar"><h1 class="view-title">Weight</h1></header>
+      <div class="weight-now">
+        <div><span class="stat-lbl">Current</span><b id="w-current">—</b></div>
+        <div><span class="stat-lbl">Goal</span><b id="w-goal">—</b></div>
+        <div><span class="stat-lbl">To go</span><b id="w-togo">—</b></div>
+      </div>
+      <div class="card chart-card"><svg id="weight-chart" viewBox="0 0 320 160" preserveAspectRatio="none"></svg></div>
+      <div class="log-weight">
+        <input type="number" id="w-input" placeholder="Log today's weight (lb)" />
+        <button class="btn-primary" id="w-log">Log</button>
+      </div>
+      <div class="meal-list" id="weight-list"></div>
+    </section>
+
+    <!-- ===================== SETUP ===================== -->
+    <section class="view" id="view-setup" hidden>
+      <header class="topbar"><h1 class="view-title">Setup</h1></header>
+      <div class="card" id="plan-card"></div>
+      <button class="btn-ghost block" id="edit-plan">Edit my plan</button>
+      <button class="btn-ghost block danger" id="reset-all">Reset all data</button>
+      <p class="muted tiny center">FastCal · a vibe-coded MyFitnessPal for founders.<br/>Photo recognition is simulated in this build.</p>
+    </section>
+
+    <!-- ===================== BOTTOM NAV ===================== -->
+    <nav class="tabbar">
+      <button class="tab active" data-view="home"><span>⌂</span>Home</button>
+      <button class="tab" data-view="diary"><span>☰</span>Diary</button>
+      <button class="tab" data-view="weight"><span>📈</span>Weight</button>
+      <button class="tab" data-view="setup"><span>⚙</span>Setup</button>
+    </nav>
+
+    <!-- ===================== SNAP / CONFIRM MODAL ===================== -->
+    <div class="overlay" id="snap-modal" hidden>
+      <div class="sheet">
+        <!-- Stage 1: analyzing -->
+        <div id="snap-analyzing" hidden>
+          <div class="photo-preview" id="photo-preview"></div>
+          <div class="analyzing">
+            <div class="spinner"></div>
+            <p>Analyzing your meal…</p>
+            <p class="muted tiny">Identifying food & estimating calories</p>
+          </div>
+        </div>
+
+        <!-- Stage 2: confirm -->
+        <div id="snap-confirm" hidden>
+          <div class="photo-preview" id="photo-preview-2"></div>
+          <h2 class="result-name" id="result-name">Meal</h2>
+          <p class="muted tiny center" id="result-conf">AI estimate — adjust if needed</p>
+
+          <div class="big-cal"><b id="result-cal">0</b><span>calories</span></div>
+          <div class="macro-row" id="result-macros"></div>
+
+          <div class="field">
+            <label>Portion <span id="portion-x">1.0×</span></label>
+            <input type="range" id="portion" min="0.5" max="2" step="0.25" value="1" />
+          </div>
+
+          <div class="field">
+            <label>Meal</label>
+            <div class="seg" id="meal-type">
+              <button type="button" data-val="Breakfast">Breakfast</button>
+              <button type="button" data-val="Lunch">Lunch</button>
+              <button type="button" data-val="Dinner">Dinner</button>
+              <button type="button" data-val="Snack">Snack</button>
+            </div>
+          </div>
+
+          <button class="btn-primary block" id="snap-save">Add to today</button>
+          <button class="btn-ghost block" id="snap-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <input type="file" id="file-input" accept="image/*" capture="environment" hidden />
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

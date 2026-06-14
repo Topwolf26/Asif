@@ -1,0 +1,329 @@
+/* ---------------------------------------------------------------
+   Mitly — simple Calendly-style booking page
+   Neutral system type, white background, one calm blue accent.
+   Deliberately plain: clean borders, generous whitespace.
+----------------------------------------------------------------- */
+
+:root {
+  --blue:        #0069ff;   /* Calendly-style accent */
+  --blue-dark:   #0050c7;
+  --blue-soft:   #e9f1ff;
+  --ink:         #1a1a1a;   /* primary text */
+  --ink-soft:    #4a4a4a;   /* secondary text */
+  --muted:       #818181;   /* hints, weekday labels */
+  --line:        #e4e4e7;   /* hairline borders */
+  --bg:          #f7f7f8;   /* page background */
+  --white:       #ffffff;
+  --radius:      8px;
+  --shadow:      0 2px 8px rgba(0, 0, 0, .06), 0 1px 2px rgba(0, 0, 0, .04);
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+/* ---------- top bar ---------- */
+.topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--line);
+}
+.topbar__inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+.brand { display: inline-flex; align-items: center; gap: 9px; }
+.brand__mark {
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 6px;
+  font-size: 16px;
+}
+.brand__name { font-weight: 600; font-size: 18px; letter-spacing: -.01em; }
+
+/* ---------- page + card ---------- */
+.page {
+  max-width: 1080px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 540px;
+  overflow: hidden;
+}
+.card.has-times {
+  grid-template-columns: 320px 1fr 280px;
+}
+
+/* ---------- left aside ---------- */
+.card__aside {
+  padding: 28px;
+  border-right: 1px solid var(--line);
+}
+.host { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+.host__avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--blue-soft);
+  color: var(--blue);
+  display: grid; place-items: center;
+  font-weight: 600; font-size: 15px;
+}
+.host__name { margin: 0; color: var(--ink-soft); font-weight: 600; font-size: 15px; }
+
+.event__title {
+  margin: 0 0 18px;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -.02em;
+  font-weight: 700;
+}
+
+.meta { list-style: none; margin: 0 0 20px; padding: 0; }
+.meta__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--ink-soft);
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.event__desc {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+}
+
+/* ---------- icons (stroked) ---------- */
+.ic {
+  width: 18px; height: 18px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- calendar pane ---------- */
+.card__calendar { padding: 28px 32px; }
+.pane__title { margin: 0 0 22px; font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+
+.cal { max-width: 380px; }
+.cal__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.cal__month { font-weight: 600; font-size: 16px; }
+.cal__nav { display: flex; gap: 4px; }
+.navbtn {
+  width: 34px; height: 34px;
+  border: none; background: transparent;
+  border-radius: 50%;
+  color: var(--blue);
+  cursor: pointer;
+  display: grid; place-items: center;
+}
+.navbtn:hover { background: var(--blue-soft); }
+.navbtn:disabled { color: var(--line); cursor: default; }
+.navbtn:disabled:hover { background: transparent; }
+
+.cal__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin-bottom: 6px;
+}
+
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.day {
+  aspect-ratio: 1 / 1;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--blue);
+  cursor: pointer;
+  font-family: inherit;
+}
+.day:hover { background: var(--blue-soft); }
+.day.is-empty { visibility: hidden; }
+.day.is-disabled {
+  color: var(--line);
+  font-weight: 400;
+  cursor: default;
+  pointer-events: none;
+}
+.day.is-selected { background: var(--blue); color: #fff; }
+.day.is-selected:hover { background: var(--blue-dark); }
+.day.is-today { box-shadow: inset 0 0 0 1px var(--blue); }
+
+.tz {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ---------- times pane ---------- */
+.card__times {
+  padding: 28px 24px;
+  border-left: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+}
+.times__date { margin: 4px 0 16px; font-weight: 600; font-size: 15px; }
+.times__list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.slot {
+  padding: 13px;
+  border: 1px solid var(--blue);
+  border-radius: var(--radius);
+  background: var(--white);
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+}
+.slot:hover { background: var(--blue-soft); }
+
+/* ---------- booking overlay ---------- */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, .4);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  z-index: 20;
+}
+.sheet {
+  background: var(--white);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .2);
+  width: 100%;
+  max-width: 440px;
+  padding: 24px 28px 28px;
+}
+.sheet__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  background: transparent;
+  color: var(--blue);
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 0;
+  margin-bottom: 8px;
+  font-family: inherit;
+}
+.sheet__title { margin: 0 0 6px; font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+.sheet__when {
+  margin: 0 0 22px;
+  color: var(--ink-soft);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ---------- form ---------- */
+.form { display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field__label { font-size: 14px; font-weight: 600; }
+.field__input {
+  padding: 11px 12px;
+  border: 1px solid #c5c5c5;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--ink);
+}
+.field__input:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 2px var(--blue-soft);
+}
+
+.btn {
+  border: none;
+  border-radius: 22px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn--primary {
+  background: var(--blue);
+  color: #fff;
+  padding: 12px 24px;
+  align-self: flex-start;
+}
+.btn--primary:hover { background: var(--blue-dark); }
+
+/* ---------- confirmation ---------- */
+.confirm { text-align: center; padding: 12px 0 4px; }
+.confirm__check {
+  width: 56px; height: 56px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: #e7f6ec;
+  color: #1e9e54;
+  display: grid; place-items: center;
+}
+.confirm__check .ic { width: 30px; height: 30px; stroke-width: 2.4; }
+.confirm__title { margin: 0 0 8px; font-size: 22px; font-weight: 700; }
+.confirm__detail { margin: 0; color: var(--ink-soft); font-size: 15px; }
+.confirm__detail strong { color: var(--ink); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 860px) {
+  .card,
+  .card.has-times {
+    grid-template-columns: 1fr;
+  }
+  .card__aside { border-right: none; border-bottom: 1px solid var(--line); }
+  .card__times { border-left: none; border-top: 1px solid var(--line); }
+}

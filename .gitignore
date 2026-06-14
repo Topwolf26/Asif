@@ -1,0 +1,13 @@
+# Ephemeral brainstorming/visual-companion files
+.superpowers/
+
+# macOS
+.DS_Store
+
+# Editor / OS cruft
+*.swp
+Thumbs.db
+
+# Secrets — never commit
+.env
+.env.*

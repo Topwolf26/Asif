@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#1875ff" />
+  <link rel="icon" type="image/svg+xml" href="logo.svg" />
+  <title>MyFattyPal — eat big, get big</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- ===================== ONBOARDING ===================== -->
+    <div class="overlay" id="onboarding" hidden>
+      <div class="sheet">
+        <img class="logo-lg" src="logo.svg" alt="" />
+        <h1 class="brand">MyFatty<span>Pal</span></h1>
+        <p class="muted center">Bulk smart. Set this up once and we'll calculate your surplus.</p>
+
+        <div class="field">
+          <label>You are</label>
+          <div class="seg" id="ob-sex">
+            <button type="button" data-val="male" class="active">Male</button>
+            <button type="button" data-val="female">Female</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field"><label>Age</label><input type="number" id="ob-age" value="28" min="14" max="100" /></div>
+          <div class="field"><label>Activity</label>
+            <select id="ob-activity">
+              <option value="1.2">Mostly sitting</option>
+              <option value="1.375" selected>Lightly active</option>
+              <option value="1.55">Active</option>
+              <option value="1.725">Very active</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field"><label>Height</label>
+          <div class="inline">
+            <input type="number" id="ob-ft" value="5" min="3" max="7" /><span class="unit">ft</span>
+            <input type="number" id="ob-in" value="10" min="0" max="11" /><span class="unit">in</span>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field"><label>Current weight</label>
+            <div class="inline"><input type="number" id="ob-weight" value="160" min="60" max="600" /><span class="unit">lb</span></div></div>
+          <div class="field"><label>Goal weight</label>
+            <div class="inline"><input type="number" id="ob-goal" value="180" min="60" max="600" /><span class="unit">lb</span></div></div>
+        </div>
+
+        <div class="field"><label>Target date</label><input type="date" id="ob-target" /></div>
+
+        <button class="btn-primary block" id="ob-submit">Calculate my bulk →</button>
+        <p class="muted tiny center">Everything stays on your device. No account, no cloud.</p>
+      </div>
+    </div>
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <section class="view" id="view-dashboard">
+      <header class="appbar brandbar"><img class="logo" src="logo.svg" alt="" /><h1 class="brand sm">MyFatty<span>Pal</span></h1></header>
+      <div class="datebar">
+        <button class="day-nav" id="dash-prev">‹</button>
+        <span id="dash-date">Today</span>
+        <button class="day-nav" id="dash-next">›</button>
+      </div>
+
+      <div class="card cal-card">
+        <div class="card-title">Calories</div>
+        <div class="card-sub">Remaining = Goal − Food + Exercise</div>
+        <div class="cal-body">
+          <div id="cal-ring"></div>
+          <div class="cal-stats">
+            <div class="cal-stat"><span class="ci flag">⚑</span><div><b id="s-goal">0</b><small>Base Goal</small></div></div>
+            <div class="cal-stat"><span class="ci food">🍴</span><div><b id="s-food">0</b><small>Food</small></div></div>
+            <div class="cal-stat"><span class="ci fire">🔥</span><div><b id="s-ex">0</b><small>Exercise</small></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="macro-card"></div>
+      <div class="nudge" id="dash-nudge"></div>
+    </section>
+
+    <!-- ===================== DIARY ===================== -->
+    <section class="view" id="view-diary" hidden>
+      <header class="appbar"><h1 class="view-title">Diary</h1></header>
+      <div class="datebar">
+        <button class="day-nav" id="diary-prev">‹</button>
+        <span id="diary-date">Today</span>
+        <button class="day-nav" id="diary-next">›</button>
+      </div>
+      <div id="diary-meals"></div>
+      <div class="card meal-sec" id="diary-exercise"></div>
+      <div class="card totals" id="diary-totals"></div>
+    </section>
+
+    <!-- ===================== PROGRESS ===================== -->
+    <section class="view" id="view-progress" hidden>
+      <header class="appbar"><h1 class="view-title">Progress</h1></header>
+      <div class="weight-now">
+        <div><small>Current</small><b id="w-current">—</b></div>
+        <div><small>Goal</small><b id="w-goal">—</b></div>
+        <div><small>To gain</small><b id="w-togo">—</b></div>
+      </div>
+      <div class="card"><svg id="weight-chart" viewBox="0 0 320 160" preserveAspectRatio="none"></svg></div>
+      <div class="log-weight">
+        <input type="number" id="w-input" placeholder="Log today's weight (lb)" />
+        <button class="btn-primary" id="w-log">Log</button>
+      </div>
+      <div id="weight-list"></div>
+    </section>
+
+    <!-- ===================== MORE / SETTINGS ===================== -->
+    <section class="view" id="view-more" hidden>
+      <header class="appbar"><h1 class="view-title">More</h1></header>
+      <div class="card" id="plan-card"></div>
+      <button class="btn-ghost block" id="edit-plan">Edit my bulk plan</button>
+      <button class="btn-ghost block danger" id="reset-all">Reset all data</button>
+      <p class="muted tiny center">MyFattyPal · a vibe-coded MyFitnessPal for bulking.<br/>Photo recognition is simulated in this build.</p>
+    </section>
+
+    <!-- ===================== BOTTOM NAV ===================== -->
+    <nav class="tabbar">
+      <button class="tab active" data-view="dashboard"><span>⌂</span>Home</button>
+      <button class="tab" data-view="diary"><span>☰</span>Diary</button>
+      <button class="tab plus" id="tab-add"><span class="plus-circle">＋</span></button>
+      <button class="tab" data-view="progress"><span>📈</span>Progress</button>
+      <button class="tab" data-view="more"><span>⋯</span>More</button>
+    </nav>
+
+    <!-- ===================== ADD FOOD MODAL ===================== -->
+    <div class="overlay" id="add-modal" hidden>
+      <div class="sheet">
+        <div class="sheet-head"><b>Add Food</b><button class="x" id="add-close">✕</button></div>
+        <div class="seg sm" id="add-meal">
+          <button type="button" data-val="Breakfast">Breakfast</button>
+          <button type="button" data-val="Lunch">Lunch</button>
+          <button type="button" data-val="Dinner">Dinner</button>
+          <button type="button" data-val="Snacks">Snacks</button>
+        </div>
+        <button class="snap-cta" id="snap-cta"><span>📷</span> Snap a meal <small>AI estimate</small></button>
+        <input type="search" id="food-search" placeholder="Search foods…" />
+        <div class="food-list" id="food-list"></div>
+      </div>
+    </div>
+
+    <!-- ===================== SNAP / CONFIRM MODAL ===================== -->
+    <div class="overlay" id="snap-modal" hidden>
+      <div class="sheet">
+        <div id="snap-analyzing" hidden>
+          <div class="photo-preview" id="photo-preview">📷</div>
+          <div class="analyzing"><div class="spinner"></div><p>Analyzing your meal…</p>
+            <p class="muted tiny">Identifying food &amp; estimating calories</p></div>
+        </div>
+        <div id="snap-confirm" hidden>
+          <div class="photo-preview" id="photo-preview-2"></div>
+          <h2 class="result-name" id="result-name">Meal</h2>
+          <p class="muted tiny center">AI estimate — adjust if needed</p>
+          <div class="big-cal"><b id="result-cal">0</b><span>calories</span></div>
+          <div class="macro-row" id="result-macros"></div>
+          <div class="field"><label>Portion <span id="portion-x">1.0×</span></label>
+            <input type="range" id="portion" min="0.5" max="3" step="0.25" value="1" /></div>
+          <button class="btn-primary block" id="snap-save">Add to diary</button>
+          <button class="btn-ghost block" id="snap-cancel">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== EXERCISE MODAL ===================== -->
+    <div class="overlay" id="ex-modal" hidden>
+      <div class="sheet">
+        <div class="sheet-head"><b>Add Exercise</b><button class="x" id="ex-close">✕</button></div>
+        <div class="food-list" id="ex-list"></div>
+        <div class="row">
+          <div class="field"><label>Custom</label><input type="text" id="ex-name" placeholder="e.g. Deadlifts" /></div>
+          <div class="field"><label>Calories</label><input type="number" id="ex-cal" placeholder="250" /></div>
+        </div>
+        <button class="btn-primary block" id="ex-add">Add exercise</button>
+      </div>
+    </div>
+
+    <input type="file" id="file-input" accept="image/*" capture="environment" hidden />
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
