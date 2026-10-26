@@ -1,0 +1,9 @@
+{
+  "name": "organic-content-modules",
+  "private": true,
+  "description": "Organic content training modules for Magnify Growth client firms, in the TAB workbook format",
+  "scripts": {
+    "build": "node src/build.js",
+    "preview": "node src/build.js --png"
+  }
+}
