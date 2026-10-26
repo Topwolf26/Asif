@@ -144,7 +144,7 @@ module.exports = {
           {
             h4: 'Paste this into Claude',
             mono:
-              'I run [firm] in [city]. We help [who] with [practice area].\nMy 3 content pillars: [pillar 1], [pillar 2], [pillar 3].\nMy clients usually ask: [3 real questions].\n\nWrite a 45-second Instagram Reel script on: [topic].\nUse the [structure] structure.\nGive me:\n- a written hook (on-screen text, under 7 words)\n- a verbal hook (first sentence)\n- a visual hook (what the viewer sees)\n- the body in short spoken sentences\n- a CTA for [TOFU / MOFU / BOFU]\n- 3 alternative hooks to test\n\nWrite it how I talk across the desk, not how I write a letter of advice. General information only, no promises of outcomes.',
+              'I run [firm] in [city]. We help [who] with [practice area].\nPillar for this post: [Connection / Value / Proof / Invitation].\nMy clients usually ask: [3 real questions].\n\nWrite a 45-second Instagram Reel script on: [topic].\nUse the [structure] structure.\nGive me:\n- a written hook (on-screen text, under 7 words)\n- a verbal hook (first sentence)\n- a visual hook (what the viewer sees)\n- the body in short spoken sentences\n- a CTA for [TOFU / MOFU / BOFU]\n- 3 alternative hooks to test\n\nWrite it how I talk across the desk, not how I write a letter of advice. General information only, no promises of outcomes.',
           },
         ],
         { x: 50, y: 74, w: 640, h: 590, cols: 1 }

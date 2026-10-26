@@ -28,7 +28,7 @@ const pad = (n) => String(n).padStart(2, '0');
 const slug = (m) => m.file || `Module-${pad(m.number)}-${m.title.replace(/[^A-Za-z0-9]+/g, '-').replace(/-+$/, '')}`;
 
 function presenterGuide(m) {
-  let md = `# Module ${m.number}: ${m.title}\n\n`;
+  let md = m.file ? `# ${m.title}\n\n` : `# Module ${m.number}: ${m.title}\n\n`;
   md += `**Run time:** ${m.runtime}  \n**Outcome:** ${m.outcome}\n\n`;
   md += `Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.\n\n---\n\n`;
   m.slides.forEach((sl, i) => {
@@ -39,6 +39,7 @@ function presenterGuide(m) {
       sl.type === 'next' ? 'Next... (takeaways + checklist)' :
       sl.type === 'statement' ? `Statement: "${sl.text.replace(/\n/g, ' ')}"` :
       sl.type === 'divider' ? `Section: ${sl.lead || 'The'} ${sl.word}` :
+      sl.type === 'shot' ? `Text page: "${sl.text.replace(/\n/g, ' ')}"` :
       sl.type === 'point' ? `${sl.tone === 'problem' ? 'Problem' : 'Opportunity'} ${sl.n}: ${sl.text.replace(/\n/g, ' ')}` :
       sl.title;
     md += `## Slide ${i + 1}: ${name}\n\n`;
@@ -63,6 +64,17 @@ function presenterGuide(m) {
     .map((r) => r.map(q).join(','))
     .join('\n');
   fs.writeFileSync(path.join(ROOT, '30-Day-Post-Plan.csv'), csv + '\n');
+
+  // the pillars module's 30-day calendar, one post a day
+  const { POSTS } = require('./pillars');
+  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const pcsv = [
+    ['Day', 'Weekday', 'Pillar', 'Type', 'Post', 'Say this first', 'Posted'],
+    ...POSTS.map((p) => [`Day ${p.day}`, DAYS[(p.day - 1) % 7], p.pillar, p.type, p.short, p.hook, '']),
+  ]
+    .map((r) => r.map(q).join(','))
+    .join('\n');
+  fs.writeFileSync(path.join(ROOT, '30-Day-Pillar-Calendar.csv'), pcsv + '\n');
 
   // bundled Chromium if it's installed, otherwise the machine's Chrome
   const browser = await chromium.launch().catch(() => chromium.launch({ channel: 'chrome' }));

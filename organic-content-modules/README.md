@@ -25,7 +25,7 @@ Eight training modules for our firms on organic content, plus a standalone 30-Da
 |---|---|---|
 | 1 | Why Organic Content Wins | The Trust Gap, why content compounds and referrals don't, and their starting point |
 | 2 | The Content Funnel | TOFU / MOFU / BOFU, the weekly mix, and topics mapped to each stage |
-| 3 | Content Pillars and Ideas | 3 pillars, the Idea Machine, 30 ideas in 30 minutes, and the Outlier Method |
+| 3 | The Organic Content Pillars | Cormac's four-pillar wheel (Connection, Value, Proof, Invitation) built out for law firms with post ideas and opening lines, collab / series / news / podcast ideas, the Outlier Method, the three rules (be different, one post a day, weekly review), and a 30-day calendar with one post a day (also in `30-Day-Pillar-Calendar.csv`) |
 | 4 | Hooks and Scripts | Anatomy of a video, the 3 hook layers, 8 structures for firms, and a Claude script prompt |
 | 5 | Filming Day | One day = one month, the set, start vs upgrade gear, the run sheet, and a shot list |
 | 6 | Editing with Claude | The Claude edit pipeline (transcribe, selects, cut, captions, resize, export), the 3 prompts, and the edit spec |
@@ -40,7 +40,7 @@ The plan is 13 posts (Tue / Thu / Sun): 6 TOFU, 3 MOFU, 4 BOFU, matching the mix
 Set it up like the TAB classroom: each lesson is the video plus a Resources list with the workbook PDF, named "[Lesson] Wrksht".
 
 - **1.0 Watch This First!** Why Organic Content Wins · The Content Funnel
-- **2.0 Plan Your Content:** Content Pillars and Ideas · Hooks and Scripts
+- **2.0 Plan Your Content:** The Organic Content Pillars · Hooks and Scripts
 - **3.0 Make Your Content:** Filming Day · Editing with Claude
 - **4.0 Post and Grow:** Posting with Claude · Your 30-Day Post Plan (add the standalone 30-Day Post Plan PDF and the CSV as extra resources)
 
