@@ -145,7 +145,9 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
       </div>
       <div class="pp-side">
         ${p.note ? `<div class="pp-card note"><div class="pp-h">Before you film</div><p>${esc(p.note)}</p></div>` : ''}
-        <div class="pp-card"><div class="pp-h">The pillar</div>${pillarChip(p.pillar)}<p style="margin-top:8px"><b>${esc(p.type)}.</b> They're asking: ${esc(pl.ask)}</p><p><b>Don't:</b> ${esc(pl.trap.split(':')[0])}.</p></div>
+        ${p.note && ex
+          ? `<div class="pp-card slim"><div class="pp-h">The pillar</div>${pillarChip(p.pillar)} <b>${esc(p.type)}.</b> Don't: ${esc(pl.trap.split(':')[0])}.</div>`
+          : `<div class="pp-card"><div class="pp-h">The pillar</div>${pillarChip(p.pillar)}<p style="margin-top:8px"><b>${esc(p.type)}.</b> They're asking: ${esc(pl.ask)}</p><p><b>Don't:</b> ${esc(pl.trap.split(':')[0])}.</p></div>`}
         ${ex ? `<div class="pp-card ex"><div class="pp-h">Seen it work</div><div class="ex-views">${esc(ex.views)}</div><div class="ex-who">${esc(ex.who)} · ${esc(ex.platform)}</div><p>${esc(ex.hook)}</p><a class="ex-url" href="https://www.${esc(ex.url)}">Watch it before you film yours: ${esc(ex.url)}</a></div>` : ''}
         <div class="pp-ticks">${['Scripted', 'Filmed', 'Edited', 'Scheduled'].map((t) => `<span><i></i>${t}</span>`).join('')}</div>
       </div>`,

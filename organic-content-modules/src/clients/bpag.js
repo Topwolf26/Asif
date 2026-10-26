@@ -110,8 +110,28 @@ const POSTS = [
     'Follow for month two.', '30 days of posting: what happened', 'I posted every day for 30 days. Here is what happened, and what is next.'],
 ];
 
+// Accountants' Shorts in the same format. Views read from each YouTube page on
+// 26 Oct 2026; re-check before quoting them.
+const EXAMPLES = {
+  1: ['Jasmine DiLucci, tax attorney + CPA (US)', '3.5M views', '"How Taxes Change when you Make More Money": one concept, in plain English.', 'youtube.com/shorts/UGKkWz44xN0'],
+  2: ['Devamsha, chartered accountant (UK)', '492K views', '"What I wish I knew before becoming an accountant": her story, straight to camera.', 'youtube.com/shorts/ChpQnQEHNvM'],
+  3: ['Jasmine DiLucci, tax attorney + CPA (US)', '3.2M views', '"Can Capital Losses Offset Capital Gains?": a tax rule explained in seconds.', 'youtube.com/shorts/ZiNbvHJ-FQg'],
+  4: ['Karlton Dennis, tax strategist (US)', '368K views', 'A 24-year-old client who saved $160,000 in tax: the result first, then how.', 'youtube.com/shorts/Wfed_Mj9w08'],
+  7: ['Karlton Dennis, tax strategist (US)', '1.8M views', '"Massive IRS rule change": a new rule and what it means for businesses.', 'youtube.com/shorts/AY0jpy1-59Y'],
+  8: ['Jasmine DiLucci, tax attorney + CPA (US)', '1.4M views', '"The TRUTH about Money Inside your 401(k)": retirement savings (their super), explained.', 'youtube.com/shorts/cZMVuGnAAtE'],
+  9: ['Sherman, My CPA Coach (US)', '4.2M views', '"Tax Plan in 60 Seconds! CPA Explains": the news, then what it means for you.', 'youtube.com/shorts/1qyYjXaezDc'],
+  13: ['The_Westy_Lifestyle, accountant (US)', '366K views', '"A Day In The Life As A 25 Year Old Accountant", working through tax returns.', 'youtube.com/shorts/XQCIuAnWQwM'],
+  16: ['Karlton Dennis, tax strategist (US)', '227K views', '"401k is a TRAP": a hot take on a product everyone uses.', 'youtube.com/shorts/RDYsJ4oP08U'],
+  17: ['Jasmine DiLucci, tax attorney + CPA (US)', '1.9M views', '"Do Cars Over 6,000 Pounds get a Full Write Off?": a write-off rule, explained.', 'youtube.com/shorts/Pgy5TOB2Oe0'],
+  19: ['Jasmine DiLucci, tax attorney + CPA (US)', '547K views', '"Reading Tax Law for Fun": a bit of accountant humour.', 'youtube.com/shorts/mwhYAFvE_lk'],
+  22: ['Karlton Dennis, tax strategist (US)', '2.2M views', '"LLC vs S Corp": business structures compared, simply.', 'youtube.com/shorts/n3DzW-CyWLk'],
+  25: ['Karlton Dennis, tax strategist (US)', '95K views', '"I Helped This Couple Save $1,000,000 On Their Taxes": a client result.', 'youtube.com/shorts/S0mWLsAHiBY'],
+  29: ['Jasmine DiLucci, tax attorney + CPA (US)', '2.7M views', '"Does Putting Something in a Video Make it Deductible?": a deduction myth, busted.', 'youtube.com/shorts/KsYbN_00XXQ'],
+};
+
 const plan = POSTS.map(([day, pillar, type, short, hook, format, length, shoot, beats, cta, onscreen, caption, note]) => ({
   day, pillar, type, short, hook, format, length, shoot, beats, cta, onscreen, caption, note,
+  example: EXAMPLES[day] && { who: EXAMPLES[day][0], views: EXAMPLES[day][1], hook: EXAMPLES[day][2], url: EXAMPLES[day][3], platform: 'YouTube Shorts' },
   dow: DOW[(day - 1) % 7],
   week: Math.min(4, Math.ceil(day / 7)),
   time: '7:30am',
@@ -190,12 +210,12 @@ module.exports = {
   csv: {
     file: 'Magnify-x-BPAG-30-Day-Post-Plan.csv',
     text: [
-      ['Day', 'Weekday', 'Pillar', 'Type', 'Post', 'Say this first', 'Script beats', 'CTA', 'On-screen text', 'Caption', 'Filmed', 'Before you film'],
-      ...plan.map((p) => [`Day ${p.day}`, p.dow, p.pillar, p.type, p.short, p.hook, p.beats.map((b, k) => `${k + 1}. ${b}`).join(' '), p.cta, p.onscreen, p.caption, p.shoot ? 'Batch' : 'On the day', p.note || '']),
+      ['Day', 'Weekday', 'Pillar', 'Type', 'Post', 'Say this first', 'Script beats', 'CTA', 'On-screen text', 'Caption', 'Filmed', 'Before you film', 'Seen it work'],
+      ...plan.map((p) => [`Day ${p.day}`, p.dow, p.pillar, p.type, p.short, p.hook, p.beats.map((b, k) => `${k + 1}. ${b}`).join(' '), p.cta, p.onscreen, p.caption, p.shoot ? 'Batch' : 'On the day', p.note || '', p.example ? `${p.example.who}, ${p.example.views}: ${p.example.url}` : '']),
     ].map((r) => r.map(q).join(',')).join('\n'),
   },
   slides: [
-    { type: 'cover', kicker: 'Exclusive · Prepared for Nicole', title: 'Your 30-Day\nPost Plan' },
+    { type: 'cover', kicker: 'Exclusive · Prepared for BPAG only', title: 'Your 30-Day\nPost Plan' },
     { type: 'shot', text: 'Nicole, your next 30 days are planned.\nYou just need to press record.' },
     pages.howItWorks,
     setup,

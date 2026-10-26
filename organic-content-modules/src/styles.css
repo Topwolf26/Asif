@@ -9,6 +9,7 @@
   /* Skool / TAB worksheet look */
   --heading: #0B0D3D;
   --square: #0A1BE6;
+  --serif: 'Fraunces', Georgia, serif;   /* Magnify Growth house fonts: Fraunces + Inter */
   --accent: #1B2ED0;      /* cover, text shots, tags */
   --cover-mark: #1B2ED0;  /* wordmark on the cover */
   --problem: #F2353B;
@@ -22,7 +23,7 @@
 @page { size: 11in 7.844in; margin: 0; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { background: #888; }
-body { font-family: 'Archivo', system-ui, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
 .slide {
   position: relative;
@@ -305,3 +306,33 @@ body { font-family: 'Archivo', system-ui, sans-serif; color: var(--ink); -webkit
 .pg-c p { font-size: 15px; line-height: 1.45; color: #222; font-weight: 500; margin-bottom: 8px; }
 .pg-trap b { color: var(--problem); }
 .pg-eg { margin-top: 10px; padding-top: 10px; border-top: 1.5px dashed #C9CBCA; font-size: 14px; line-height: 1.6; font-weight: 700; color: var(--heading); }
+
+/* ---------- typography: Magnify Growth house fonts, a classic tailored feel
+   (serif wordmark in spaced capitals, serif headings, Inter for everything else) */
+.cover .cover-wm, .wm, .shot-mark, .cover-x, .wm-x {
+  font-family: var(--serif); font-weight: 500; text-transform: uppercase; letter-spacing: 0.22em;
+}
+.cover .cover-wm { font-size: 30px; line-height: 1.2; letter-spacing: 0.32em; padding-bottom: 16px; border-bottom: 1.5px solid currentColor; display: inline-block; }
+.cover-x { display: inline; font-size: 30px; margin: 0 0 0 0.4em; letter-spacing: 0.32em; }
+.cover-title { font-family: var(--serif); font-weight: 500; font-size: 62px; line-height: 1.08; letter-spacing: -0.5px; }
+.cover-text { top: 340px; border-left-width: 4px; padding-left: 28px; }
+.cover-kicker { letter-spacing: 0.3em; font-weight: 600; font-size: 12px; margin-bottom: 18px; }
+.cover-band { height: 10px; }
+.wm { font-size: 12px; line-height: 1.35; bottom: 18px; right: 22px; }
+.wm.co { font-size: 12px; bottom: 16px; }
+.wm-x { font-size: 10px; display: block; text-align: right; }
+.shot-mark { font-size: 15px; bottom: 34px; }
+.bt { font-family: var(--serif); font-weight: 600; font-size: 34px; letter-spacing: -0.2px; gap: 18px; }
+.bt::before { width: 5px; height: 40px; margin-left: 74px; }
+.bt.sm { font-size: 27px; }
+.shot-text { font-family: var(--serif); font-weight: 500; font-size: 40px; line-height: 1.24; letter-spacing: 0.04em; }
+.shot-text.big { font-size: 58px; letter-spacing: 0.06em; }
+.shot-kicker { font-family: 'Inter', sans-serif; letter-spacing: 0.3em; font-size: 13px; font-weight: 600; }
+.step h4, .pl-col h4, .pg-c h4, .card h4, .pp-hook, .pl-hook, .ex-views, .pl-ex b, .mm-try b, .rv-q h4, .wk7-t {
+  font-family: var(--serif); font-weight: 600; letter-spacing: -0.2px;
+}
+.pp-hook { font-weight: 500; }
+.pp-card.slim { font-size: 13px; line-height: 1.5; padding: 10px 14px; color: #333; }
+.pp-card.slim .pchip { margin-right: 4px; }
+.pp-card.note p { font-size: 13px; line-height: 1.4; }
+.pp-card.note { padding: 10px 14px; }

@@ -179,7 +179,7 @@ const guide = {
     return lines
       .map(
         (ln, i) =>
-          `<text x="${x}" y="${y + i * size * 1.25}" fill="${o.color || GUIDE.text}" font-family="Archivo" font-weight="${o.weight || 700}" font-size="${size}" text-anchor="${o.anchor || 'start'}" ${o.ls ? `letter-spacing="${o.ls}"` : ''}>${esc(ln)}</text>`
+          `<text x="${x}" y="${y + i * size * 1.25}" fill="${o.color || GUIDE.text}" font-family="Inter" font-weight="${o.weight || 700}" font-size="${size}" text-anchor="${o.anchor || 'start'}" ${o.ls ? `letter-spacing="${o.ls}"` : ''}>${esc(ln)}</text>`
       )
       .join('');
   },
@@ -213,7 +213,7 @@ const guide = {
 const wordmark = (brand) =>
   brand.partner
     ? `<div class="wm co">${brand.wordmark.map(esc).join(' ')}<span class="wm-x">× ${esc(brand.partner)}</span></div>`
-    : `<div class="wm">${brand.wordmark.map(esc).join('<br>')}</div>`;
+    : `<div class="wm">${brand.wordmark.map(esc).join(' ')}</div>`;
 
 function svgLayer(guideSvg = '', inkSvg = '', filled) {
   return `<svg class="layer" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${guideSvg}${filled ? `<g class="ink">${inkSvg}</g>` : ''}</svg>`;
@@ -239,7 +239,7 @@ const lines = (t) => esc(t).replace(/\n/g, '<br>');
 const S = {
   cover(sl, ctx) {
     return `<section class="slide cover shot white">
-      <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}${ctx.brand.partner ? `<span class="cover-x">× ${esc(ctx.brand.partner)}</span>` : ''}</div>
+      <div class="cover-wm">${ctx.brand.wordmark.map(esc).join(' ')}${ctx.brand.partner ? `<span class="cover-x">× ${esc(ctx.brand.partner)}</span>` : ''}</div>
       <div class="cover-text">
         <div class="cover-kicker">${esc(sl.kicker || ctx.brand.program)}</div>
         <div class="cover-title">${lines(sl.title)}</div>
@@ -271,7 +271,7 @@ const S = {
         ${sl.kicker ? `<div class="shot-kicker">${esc(sl.kicker)}</div>` : ''}
         <div>${lines(sl.text)}</div>
       </div>
-      <div class="shot-mark">${ctx.brand.wordmark.map(esc).join(' ')}${ctx.brand.partner ? ` × ${esc(ctx.brand.partner)}` : '.'}</div>
+      <div class="shot-mark">${ctx.brand.wordmark.map(esc).join(' ')}${ctx.brand.partner ? ` × ${esc(ctx.brand.partner)}` : ''}</div>
     </section>`;
   },
 
