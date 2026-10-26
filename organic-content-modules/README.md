@@ -1,8 +1,8 @@
 # Organic Content Modules
 
-Eight training modules for our firms on organic content, plus a standalone 30-Day Post Plan. They match the worksheets in Cormac's TAB classroom on Skool. Every module runs in the same order:
+Eight training modules for our firms on organic content, plus a standalone 30-Day Post Plan. They match the worksheets in Cormac's TAB classroom on Skool, with our own cover. Every module runs in the same order:
 
-1. Navy cover with a mint glow.
+1. Cover: off-white linen, blue wordmark, title on a blue bar.
 2. **The BIG Problems**: three numbered problems on blue text pages.
 3. **The Opportunity**: three matching opportunities on white text pages. The text pages look like an Instagram text post: flat linen texture, uppercase text, "magnify growth." at the bottom.
 4. Boards: blue-square heading and a white framed diagram you draw over.
@@ -16,7 +16,7 @@ Eight training modules for our firms on organic content, plus a standalone 30-Da
 | `pdf/blank/` | **The workbooks you film over.** Import one into GoodNotes or Notability on the iPad and draw on the faint guides while you teach. |
 | `pdf/filled/` | The same decks with the annotations already drawn in, in marker colours. Use these as your cheat sheet for what each board should look like by the end. You can also send them to clients as the "filled" copy. |
 | `guides/` | One presenter guide per module: what to **say** and what to **draw** on every slide. |
-| `30-Day-Post-Plan.csv` | The 13-post plan in the same columns as our client content calendars (plus post time, script beats, caption and the real example), ready to import into Google Sheets. |
+| `30-Day-Post-Plan.csv` | The 30-post plan (one a day) in the same columns as our client content calendars, plus pillar, script beats, caption, shoot day or on the day, and the real example. Ready to import into Google Sheets. |
 | `src/` | Source. Edit content here and rebuild. |
 
 ## The modules
@@ -24,16 +24,16 @@ Eight training modules for our firms on organic content, plus a standalone 30-Da
 | # | Module | What the firm walks away with |
 |---|---|---|
 | 1 | Why Organic Content Wins | The Trust Gap, why content compounds and referrals don't, and their starting point |
-| 2 | The Content Funnel | TOFU / MOFU / BOFU, the weekly mix, and topics mapped to each stage |
-| 3 | The Organic Content Pillars | Cormac's four-pillar wheel (Connection, Value, Proof, Invitation) built out for law firms with post ideas and opening lines, collab / series / news / podcast ideas, the Outlier Method, the three rules (be different, one post a day, weekly review), and a 30-day calendar with one post a day (also in `30-Day-Pillar-Calendar.csv`) |
+| 2 | The Content Funnel | TOFU / MOFU / BOFU, the monthly mix (10 reach, 13 connect, 7 convert at one post a day, mapped to the Module 3 pillars), and topics mapped to each stage |
+| 3 | The Organic Content Pillars | Cormac's four-pillar wheel (Connection, Value, Proof, Invitation) built out for law firms with post ideas and opening lines, collab / series / news / podcast ideas, the Outlier Method, the three rules (be different, one post a day, weekly review), and a 30-day calendar with one post a day |
 | 4 | Hooks and Scripts | Anatomy of a video, the 3 hook layers, 8 structures for firms, and a Claude script prompt |
-| 5 | Filming Day | One day = one month, the set, start vs upgrade gear, the run sheet, and a shot list |
+| 5 | Filming Day | One shoot day = 23 of the month's 30 posts (the other 7 are filmed on the day), the set, start vs upgrade gear, the run sheet, and the printed shot list |
 | 6 | Editing with Claude | The Claude edit pipeline (transcribe, selects, cut, captions, resize, export), the 3 prompts, and the edit spec |
 | 7 | Posting with Claude | One video in six places, the caption formula, Claude as social media manager, weekly rhythm, and scorecard |
-| 8 | Your 30-Day Post Plan | Walks through the client hand-out: the weekly schedule, the 30-day calendar, a post page, and the Day 30 review |
-| - | 30-Day Post Plan (standalone) | The client hand-out: "your next 30 days are planned for you." A weekly time-blocked schedule, a 30-day calendar with one job per day, and a page per post (hook, beats, CTA, on-screen text, caption, law and finance versions, and a real lawyer Short in the same format with its views). Plus a tracker and the Day 30 review. |
+| 8 | Your 30-Day Post Plan | Walks through the client hand-out: the week of pillars, the weekly schedule, the 30-day calendar, a post page, the Day 30 review, and planning your first week |
+| - | 30-Day Post Plan (standalone) | The client hand-out: "your next 30 days are planned for you." One post a day at 7:30am, built on the Module 3 pillars: a weekly time-blocked schedule, a 30-day calendar, and a page per post (opening line, beats, CTA, on-screen text, caption, and where it fits a real lawyer Short with its views). Plus a tracker and the Day 30 review. |
 
-The plan is 13 posts (Tue / Thu / Sun): 6 TOFU, 3 MOFU, 4 BOFU, matching the mix taught in Module 2.
+The plan is 30 posts, one a day: 13 connection, 10 value, 5 proof, 2 invitation (the Module 3 pillars), which is 10 reach, 13 connect, 7 convert in Module 2's funnel. 23 are filmed on the monthly shoot day; 7 are filmed as they happen. The data lives in `src/pillars.js` (calendar) and `src/plan.js` (scripts and examples).
 
 ## On Skool
 

@@ -1,65 +1,26 @@
-// Pages shared by Module 8 and the standalone 30-Day Post Plan.
-const { ink: i, guide: g, esc } = require('./lib');
+// Pages built from the 30-day plan (src/plan.js), shared by Modules 3, 5, 8
+// and the standalone 30-Day Post Plan. Everything is printed: the only thing
+// left to fill in is the tick boxes.
+const { esc } = require('./lib');
 const plan = require('./plan');
+const { PILLARS } = require('./pillars');
 
-const FUNNEL_INK = { TOFU: 'orange', MOFU: 'blue', BOFU: 'dkgreen' };
 const DOW = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-
-const arc = {
-  type: 'board',
-  title: 'The 30-Day Arc',
-  guide:
-    g.path('M90,620 L320,620 L320,500 L550,500 L550,380 L780,380 L780,260 L990,260') +
-    g.line(60, 650, 60, 140) + g.arrowHead(60, 140, 'up'),
-  ink:
-    i.text(80, 120, 'TRUST', 'purple', 34) +
-    i.text(205, 600, 'Week 1', 'black', 30, { anchor: 'middle' }) + i.text(205, 560, 'INTRODUCE', 'blue', 34, { anchor: 'middle' }) + i.text(205, 690, 'who you are', 'blue', 26, { anchor: 'middle' }) +
-    i.text(435, 480, 'Week 2', 'black', 30, { anchor: 'middle' }) + i.text(435, 440, 'EDUCATE', 'orange', 34, { anchor: 'middle' }) + i.text(435, 570, 'myths, FAQs', 'orange', 26, { anchor: 'middle' }) +
-    i.text(665, 360, 'Week 3', 'black', 30, { anchor: 'middle' }) + i.text(665, 320, 'PROVE', 'dkgreen', 34, { anchor: 'middle' }) + i.text(665, 450, 'stories, BTS', 'dkgreen', 26, { anchor: 'middle' }) +
-    i.text(885, 240, 'Week 4', 'black', 30, { anchor: 'middle' }) + i.text(885, 200, 'CONVERT', 'red', 34, { anchor: 'middle' }) + i.text(885, 330, 'how to work', 'red', 26, { anchor: 'middle' }) + i.text(885, 358, 'with you', 'red', 26, { anchor: 'middle' }),
-  notes: {
-    say: [
-      'Your first 30 days have a shape. Week one, introduce yourself: who you are and who you help.',
-      'Week two, educate: myths, FAQs, rating advice. Week three, prove it: client stories and behind the scenes.',
-      'Week four, convert: how to work with you, what it costs, what the first call looks like. Each week earns the right to the next one.',
-    ],
-    draw: ['Label each step and the TRUST arrow up the side.'],
-  },
-};
-
-
-// ---------- the client-facing plan: everything printed, nothing to fill in but ticks
-
-const FUNNEL = {
-  TOFU: { name: 'Reach', color: '#F29A16' },
-  MOFU: { name: 'Connect', color: '#1E63F0' },
-  BOFU: { name: 'Convert', color: '#16A34A' },
-};
-const POST_TIME = { Tue: '7:30am', Thu: '7:30am', Sun: '7:00pm' };
-const JOB = { plan: '#1B2ED0', post: '#16A34A', engage: '#F29A16', stories: '#A51CC9', log: '#3B3B3B', shoot: '#E5352B' };
-
-// what to do on the days nobody posts
-function dayJob(day) {
-  if (day === 1) return { kind: 'plan', text: 'Kick-off: update your bio, schedule week 1 posts', mins: 30 };
-  if (day === 29) return { kind: 'log', text: 'Day-30 review + book next shoot day', mins: 45 };
-  const dow = DOW[(day - 1) % 7];
-  return {
-    MON: { kind: 'plan', text: "Review last week + schedule this week's 3 posts", mins: 30 },
-    WED: { kind: 'stories', text: '2 behind-the-scenes stories', mins: 10 },
-    FRI: { kind: 'log', text: 'Log numbers in the tracker', mins: 10 },
-    SAT: { kind: 'engage', text: 'Rest. Reply to comments only', mins: 10 },
-  }[dow];
-}
+const JOB = { plan: '#1B2ED0', engage: '#F29A16', stories: '#A51CC9', log: '#3B3B3B' };
+const GREY = '#555';
+const isReview = (day) => day % 7 === 0;
+const pillarChip = (name) => `<span class="pchip" style="background:${PILLARS[name].color}">${name}</span>`;
+const SHOOT = plan.filter((p) => p.shoot);
 
 const howItWorks = {
   type: 'page',
   title: 'How This Works',
   html: `<div class="steps">
     ${[
-      ['Before day 1', 'Shoot day', 'Film all 13 posts in one half-day using the scripts on the post pages (Module 5). One day of filming = one month of content.'],
-      ['Every Monday', 'Review + schedule', 'Claude reviews last week\'s numbers, then you schedule that week\'s 3 posts (Modules 6 and 7). Thirty minutes.'],
-      ['Every day', 'Do the one job', 'The calendar gives every day one job. Most take 15 minutes. Tick it off when it\'s done.'],
-      ['Day 29', 'Review + go again', 'Score your posts on the Day-30 grid, keep what worked, and book next month\'s shoot day.'],
+      ['Before day 1', 'Shoot day', `Film the ${SHOOT.length} talking-head posts in one half-day (Module 5). The other ${plan.length - SHOOT.length} you film as they happen: your day, the team, a client.`],
+      ['Every Monday', 'Review + schedule', 'Claude reviews last week\'s numbers, then you schedule the week\'s 7 posts (Modules 6 and 7). Thirty minutes.'],
+      ['Every day', 'One post, 7:30am', 'One post goes out every morning. Reply to comments for 15 minutes after it goes live. Tick it off.'],
+      ['Every Sunday', 'Improve one thing', 'Look back at the week, be honest, and improve one thing. On day 30, score every post and book next month\'s shoot.'],
     ]
       .map(([when, what, how], k) => `<div class="step"><div class="step-n">${k + 1}</div><div class="step-when">${when}</div><h4>${what}</h4><p>${how}</p></div>`)
       .join('')}
@@ -67,17 +28,18 @@ const howItWorks = {
   <div class="fine"><b>Client stories:</b> remove names and anything identifying, get the client's OK, and check your local conduct and advertising rules before posting results.</div>`,
 };
 
+// the week as calendar blocks, Google Calendar style
 const weeklySchedule = (() => {
-  const T0 = 7, T1 = 20, top = 128, hh = 41, left = 140, cw = 120;
+  const T0 = 7, T1 = 18, top = 128, hh = 49, left = 140, cw = 120;
   const y = (t) => top + (t - T0) * hh;
+  const firstWeek = plan.slice(0, 7);
   const blocks = [
-    [0, 8.5, 0.5, 'plan', 'REVIEW + PLAN', "Claude reviews last week. Schedule this week's 3 posts"],
-    [1, 7.5, 0.25, 'post', 'POST 7:30am', 'Goes live. Reply for 15 min'],
-    [3, 7.5, 0.25, 'post', 'POST 7:30am', 'Goes live. Reply for 15 min'],
-    [6, 19, 0.25, 'post', 'POST 7:00pm', 'Goes live. Reply for 15 min'],
-    ...[0, 1, 2, 3, 4].map((d) => [d, 12.5, 0.25, 'engage', 'ENGAGE', 'Replies + comment on 5 local accounts']),
-    [2, 15, 0.25, 'stories', 'STORIES', '2 behind-the-scenes stories'],
-    [4, 16, 0.17, 'log', 'LOG', 'Numbers into the tracker'],
+    ...firstWeek.map((p, d) => [d, 7.5, 0.25, d === 6 ? GREY : PILLARS[p.pillar].color, 'POST 7:30am', d === 6 ? 'Rotates. Reply for 15 min' : `${p.pillar}. Reply for 15 min`]),
+    [0, 8.5, 0.5, JOB.plan, 'REVIEW + PLAN', "Claude reviews last week. Schedule the week's 7 posts"],
+    ...[0, 1, 2, 3, 4].map((d) => [d, 12.5, 0.25, JOB.engage, 'ENGAGE', 'Replies + comment on 5 local accounts']),
+    [2, 15, 0.25, JOB.stories, 'STORIES', '2 behind-the-scenes stories'],
+    [4, 16, 0.17, JOB.log, 'LOG', 'Numbers into the tracker'],
+    [6, 16, 0.25, '#E5352B', 'REVIEW', 'Look back. Improve one thing'],
   ];
   const fmt = (t) => `${((Math.floor(t) + 11) % 12) + 1}${t >= 12 ? 'pm' : 'am'}`;
   const html =
@@ -86,47 +48,78 @@ const weeklySchedule = (() => {
     Array.from({ length: T1 - T0 + 1 }, (_, k) => `<div class="wk-hour" style="top:${y(T0 + k) - 7}px">${fmt(T0 + k)}</div><div class="wk-line" style="top:${y(T0 + k)}px;left:${left}px;width:${cw * 7}px"></div>`).join('') +
     DOW.map((_, c) => `<div class="wk-vline" style="left:${left + c * cw}px;top:${top - 30}px;height:${y(T1) - top + 30}px"></div>`).join('') +
     blocks
-      .map(([d, t, len, kind, label, sub]) => `<div class="wk-ev" style="left:${left + d * cw + 3}px;top:${y(t) + 1}px;width:${cw - 6}px;min-height:${Math.max(len * hh, 34)}px;background:${JOB[kind]}"><b>${label}</b><span>${esc(sub)}</span></div>`)
+      .map(([d, t, len, color, label, sub]) => `<div class="wk-ev" style="left:${left + d * cw + 3}px;top:${y(t) + 1}px;width:${cw - 6}px;min-height:${Math.max(len * hh, 34)}px;background:${color}"><b>${label}</b><span>${esc(sub)}</span></div>`)
       .join('') +
-    `<div class="wk-note"><b>About 3 hours a week.</b> Put these blocks in your calendar as recurring events now, the same way you'd block a client meeting. Once a month, add a half-day shoot.</div>`;
+    `<div class="wk-note"><b>About 4 hours a week.</b> Put these blocks in your calendar as recurring events now, the same way you'd block a client meeting. Once a month, add a half-day shoot.</div>`;
   return { type: 'page', title: 'Your Weekly Content Schedule', html };
 })();
 
+// one week of the pillars, with week 1's opening lines
+const pillarWeek = {
+  type: 'page',
+  title: 'Your Week of Pillars',
+  html: `<div class="wk7">${plan
+    .slice(0, 7)
+    .map((p, k) => {
+      const sun = k === 6;
+      const chip = sun ? `<span class="pchip" style="background:${GREY}">Rotates</span>` : pillarChip(p.pillar);
+      const type = sun ? 'Value, invitation or proof' : p.type;
+      const job = ['Answer a real client worry.', 'Your opinion, or your take on the news.', 'Your "Law in 30 Seconds" series.', 'A result, a review or a client message.', 'A collab post with someone on the team.', 'Document your day.', 'Week 1 value, week 2 invitation, week 3 proof, week 4 invitation.'][k];
+      return `<div class="wk7-day"><div class="wk7-d">${DOW[k]}</div>${chip}<div class="wk7-t">${esc(type)}</div><p>${esc(job)}</p>
+        <div class="wk7-ex"><div class="pp-h">Week 1</div>"${esc(p.hook)}"</div>${sun ? '<div class="wk7-rev">+ Weekly review: improve one thing</div>' : ''}</div>`;
+    })
+    .join('')}</div>
+    <div class="mix">${Object.keys(PILLARS)
+      .map((n) => {
+        const c = plan.filter((p) => p.pillar === n).length;
+        return `<div style="flex:${c};background:${PILLARS[n].color}">${c} ${n}</div>`;
+      })
+      .join('')}</div>
+    <div class="mix-note"><b>30 posts in 30 days.</b> Mostly connection and value. Invitation only twice a month: give publicly, sell privately.</div>`,
+};
+
 const monthCalendar = (() => {
   const left = 74, top = 112, cw = 130, ch = 116;
-  const byDay = Object.fromEntries(plan.map((p, k) => [p.day, { ...p, n: k + 1 }]));
-  const cells = Array.from({ length: 30 }, (_, k) => {
-    const day = k + 1;
-    const x = left + (k % 7) * cw;
-    const y = top + Math.floor(k / 7) * ch;
-    const p = byDay[day];
-    let body;
-    if (p) {
-      const f = FUNNEL[p.funnel];
-      body = `<div class="mc-chip" style="background:${f.color}">POST ${p.n} · ${POST_TIME[p.dow]}</div><div class="mc-title">${esc(p.short)}</div><div class="mc-sub" style="color:${f.color}">${p.funnel} · ${f.name}</div>`;
-    } else {
-      const j = dayJob(day);
-      body = `<div class="mc-job" style="border-color:${JOB[j.kind]}">${esc(j.text)}</div><div class="mc-sub">${j.mins} min</div>`;
-    }
-    return `<div class="mc-cell${p ? ' is-post' : ''}" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px"><div class="mc-day">${day}</div><span class="mc-box"></span>${body}</div>`;
-  }).join('');
+  const cells = plan
+    .map((p, k) => {
+      const x = left + (k % 7) * cw;
+      const y = top + Math.floor(k / 7) * ch;
+      const c = PILLARS[p.pillar].color;
+      return `<div class="mc-cell" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px"><div class="mc-day">${p.day}</div><span class="mc-box"></span>
+      <div class="mc-chip" style="background:${c}">${p.pillar.toUpperCase()}</div><div class="mc-title">${esc(p.short)}</div><div class="mc-sub" style="color:${c}">${esc(p.type)}</div>
+      ${p.shoot ? '' : '<div class="mc-film">Film on the day</div>'}${isReview(p.day) ? '<div class="mc-rev">+ weekly review</div>' : ''}</div>`;
+    })
+    .join('');
   const heads = DOW.map((d, c) => `<div class="mc-head" style="left:${left + c * cw}px;width:${cw}px">${d}</div>`).join('');
-  const legend = `<div class="mc-legend">${Object.entries(FUNNEL)
-    .map(([k, f]) => `<span><i style="background:${f.color}"></i>${k} · ${f.name}</span>`)
-    .join('')}<span class="mc-every"><b>Every day:</b> 15 min replying + comment on 5 local accounts</span></div>`;
-  return { type: 'page', title: 'Your 30 Days', tag: { label: '13 posts · Tue / Thu / Sun', color: '#1B2ED0' }, html: heads + cells + legend };
+  const legend = `<div class="mc-legend">${Object.keys(PILLARS)
+    .map((n) => `<span><i style="background:${PILLARS[n].color}"></i>${n}</span>`)
+    .join('')}<span class="mc-every"><b>Every day:</b> post at 7:30am. <b>Film on the day</b> = not on the shoot day.</span></div>`;
+  return { type: 'page', title: 'Your Next 30 Days', tag: { label: '1 post a day · 7:30am', color: '#1B2ED0' }, html: heads + cells + legend };
 })();
 
-const postPage = (p, n) => {
-  const f = FUNNEL[p.funnel];
+// the 30 opening lines, ten to a page
+const postList = (from, to) => ({
+  type: 'page',
+  title: `Your 30 Posts: Days ${from + 1}-${to}`,
+  html: `<table class="ptab"><thead><tr><th>Day</th><th>Pillar</th><th>Post</th><th>Say this first</th><th></th></tr></thead><tbody>${plan
+    .slice(from, to)
+    .map(
+      (p) => `<tr><td><b>${p.dow.toUpperCase()} ${p.day}</b></td><td>${pillarChip(p.pillar)}<div class="ptab-t">${esc(p.type)}</div></td><td><b>${esc(p.short)}</b></td><td>"${esc(p.hook)}"</td><td><i class="ptab-box"></i></td></tr>`
+    )
+    .join('')}</tbody></table>`,
+});
+
+// one page per post: exactly what to say and post
+const postPage = (p) => {
+  const pl = PILLARS[p.pillar];
   const ex = p.example;
   return {
     type: 'page',
-    title: `Post ${n}: ${p.topic}`,
+    title: `Day ${p.day}: ${p.short}`,
     small: true,
-    tag: { label: `${p.funnel} · ${f.name}`, color: f.color },
+    tag: { label: `${p.pillar} · ${p.type}`, color: pl.color },
     html: `<div class="pp-main">
-      <div class="pp-meta"><span>Day ${p.day} · ${p.dow} · ${POST_TIME[p.dow]}</span><span>${esc(p.format)} · ${esc(p.length)}</span><span>Structure: ${esc(p.structure)}</span></div>
+      <div class="pp-meta"><span>${p.dow} · ${p.time}</span><span>${esc(p.format)} · ${esc(p.length)}</span><span>${p.shoot ? 'Film on shoot day' : 'Film on the day'}</span></div>
       <div class="pp-sec"><div class="pp-h">1 · Say this first</div><div class="pp-hook">"${esc(p.hook)}"</div></div>
       <div class="pp-sec"><div class="pp-h">2 · Then cover</div><ol>${p.beats.map((b) => `<li>${esc(b)}</li>`).join('')}</ol></div>
       <div class="pp-sec"><div class="pp-h">3 · End with</div><div class="pp-cta">${esc(p.cta)}</div></div>
@@ -136,11 +129,30 @@ const postPage = (p, n) => {
       </div>
     </div>
     <div class="pp-side">
-      <div class="pp-card"><div class="pp-h">Make it yours</div><p><b>Law:</b> ${esc(p.law)}</p><p><b>Finance:</b> ${esc(p.finance)}</p></div>
+      <div class="pp-card"><div class="pp-h">The pillar</div>${pillarChip(p.pillar)}<p style="margin-top:8px"><b>${esc(p.type)}.</b> They're asking: ${esc(pl.ask)}</p><p><b>Don't:</b> ${esc(pl.trap.split(':')[0])}.</p></div>
       ${ex ? `<div class="pp-card ex"><div class="pp-h">Seen it work</div><div class="ex-views">${esc(ex.views)}</div><div class="ex-who">${esc(ex.who)} · ${esc(ex.platform)}</div><p>${esc(ex.hook)}</p><a class="ex-url" href="https://www.${esc(ex.url)}">Watch it before you film yours: ${esc(ex.url)}</a></div>` : ''}
       <div class="pp-ticks">${['Scripted', 'Filmed', 'Edited', 'Scheduled'].map((t) => `<span><i></i>${t}</span>`).join('')}</div>
     </div>`,
   };
+};
+
+// the tracker, fifteen days to a page
+const tracker = (from, to) => ({
+  type: 'page',
+  title: `Tracker: Days ${from + 1}-${to}`,
+  html: `<table class="ptab trk"><thead><tr><th>Day</th><th>Post</th><th>Pillar</th><th>Views</th><th>3s hold %</th><th>Follows</th><th>DMs</th><th>Enquiries</th></tr></thead><tbody>${plan
+    .slice(from, to)
+    .map((p) => `<tr><td><b>${p.dow} ${p.day}</b></td><td>${esc(p.short)}</td><td>${pillarChip(p.pillar)}</td><td></td><td></td><td></td><td></td><td></td></tr>`)
+    .join('')}</tbody></table>`,
+});
+
+// shoot-day shot list (Module 5): every talking-head post in the month
+const shotList = {
+  type: 'page',
+  title: 'Shot List',
+  html: `<table class="ptab shotlist"><thead><tr><th>#</th><th>Day</th><th>Video</th><th>Pillar</th><th>Format</th><th>Done</th></tr></thead><tbody>${SHOOT.map(
+    (p, k) => `<tr><td>${k + 1}</td><td>${p.dow} ${p.day}</td><td><b>${esc(p.short)}</b></td><td>${pillarChip(p.pillar)}</td><td>${esc(p.format)}</td><td><i class="ptab-box"></i></td></tr>`
+  ).join('')}</tbody></table>`,
 };
 
 const reviewPrinted = {
@@ -160,4 +172,4 @@ const reviewPrinted = {
   </div>`,
 };
 
-module.exports = { arc, FUNNEL_INK, FUNNEL, POST_TIME, howItWorks, weeklySchedule, monthCalendar, postPage, reviewPrinted };
+module.exports = { pillarChip, howItWorks, weeklySchedule, pillarWeek, monthCalendar, postList, postPage, tracker, shotList, reviewPrinted };

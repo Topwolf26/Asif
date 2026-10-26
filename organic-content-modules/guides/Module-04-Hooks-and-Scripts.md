@@ -98,7 +98,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 ## Slide 16: Script Builder
 
 **Say:**
-- Pause and build one script now using this sheet. Then do the rest of your 13 with Claude using the prompt from the last slide.
+- Pause and build one script now using this sheet. Then do the rest of your shoot-day scripts with Claude using the prompt from the last slide.
 
 **Draw:**
 - Fill it in with the 50/50 myth example.
@@ -113,7 +113,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 - [ ] Fill in one Script Builder by hand
 - [ ] Use the Claude prompt for the other 12
 - [ ] Read every script out loud and edit
-- [ ] Run the compliance check on all 13
+- [ ] Run the compliance check on every script
 
 ## Slide 18: Notes page
 

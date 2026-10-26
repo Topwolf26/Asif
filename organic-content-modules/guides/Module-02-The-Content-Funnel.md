@@ -36,7 +36,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 ## Slide 8: Opportunity 2: Run the Weekly Mix
 
 **Say:**
-- About half reach, a third connect, the rest convert.
+- About a third reach, the most connect, a quarter convert. One post a day.
 
 ## Slide 9: Opportunity 3: Win Your City, Not the Internet
 
@@ -62,15 +62,15 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 - Here is what each looks like in a law or finance firm. Same three jobs, different topics.
 - Notice the call to action changes with the job. Do not ask a stranger to book a consult in their first ten seconds of knowing you.
 
-## Slide 12: The Weekly Mix
+## Slide 12: The Monthly Mix
 
 **Say:**
-- Rough split: half your posts are for reach, about a third for connection, and the rest for conversion.
-- At three posts a week that is about thirteen posts a month. Six reach, three connect, four convert. That is exactly what the 30-day plan in Module 8 uses.
+- One post a day is the minimum, so that is thirty posts a month. About a third for reach, the biggest share for connection, and about a quarter to convert.
+- In the Module 3 pillars: value posts reach new people, connection posts make them like you, and proof and invitation posts convert. Ten, thirteen and seven. That is exactly what your 30-day calendar uses.
 - If you only post "book a consult" content it feels salesy and nobody watches. If you only chase views you get likes from people who will never hire you.
 
 **Draw:**
-- Split the bar: 50 / 30 / 20 and label each.
+- Split the bar: 10 / 13 / 7 and label each.
 - Write the monthly maths underneath.
 - Red: the two ways it goes wrong.
 

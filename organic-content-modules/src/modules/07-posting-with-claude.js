@@ -102,12 +102,12 @@ module.exports = {
           {
             h4: '1. Captions',
             mono:
-              'Here are this month\'s 13 final videos and their scripts.\n\nFor each one write captions for Instagram, LinkedIn, Facebook, YouTube Shorts and Google Business.\n\nFormat: hook line, 2-3 lines of value, CTA for its funnel stage, 3-5 local hashtags, and our disclaimer line.\n\nLinkedIn: a bit longer, first person, no hashtags spam.',
+              'Here are this month\'s 30 final videos and their scripts.\n\nFor each one write captions for Instagram, LinkedIn, Facebook, YouTube Shorts and Google Business.\n\nFormat: hook line, 2-3 lines of value, CTA for its pillar, 3-5 local hashtags, and our disclaimer line.\n\nLinkedIn: a bit longer, first person, no hashtags spam.',
           },
           {
             h4: '2. Calendar',
             mono:
-              'Build my content calendar for [month].\n\nPost on Tuesday, Thursday and Sunday. Don\'t put two TOFU posts back to back. Put BOFU posts mid-week.\n\nColumns: Date, Day, Video, File, Funnel, Platforms, Caption, Status.\n\nWrite it into my "[Firm] Content Calendar" sheet.',
+              'Build my content calendar for [month].\n\nOne post a day at 7:30am, in the order of my 30-Day Post Plan (CSV attached).\n\nColumns: Date, Day, Video, File, Pillar, Platforms, Caption, Status.\n\nWrite it into my "[Firm] Content Calendar" sheet.',
           },
           {
             h4: '3. Weekly review',
@@ -127,19 +127,20 @@ module.exports = {
       title: 'Your Weekly Rhythm',
       guide: week.map((d, k) => g.rect(60 + k * 136, 120, 124, 520, { r: 10 }) + g.text(122 + k * 136, 150, d, { size: 14, anchor: 'middle' })).join(''),
       ink:
-        i.text(122, 230, 'Review +', 'purple', 28, { anchor: 'middle' }) + i.text(122, 260, 'schedule', 'purple', 28, { anchor: 'middle' }) + i.text(122, 290, '8:30am', 'purple', 24, { anchor: 'middle' }) +
-        [1, 3, 6].map((k, n) => i.circle(122 + k * 136, 250, 50, 34, ['orange', 'blue', 'dkgreen'][n]) + i.text(122 + k * 136, 262, 'POST', ['orange', 'blue', 'dkgreen'][n], 32, { anchor: 'middle' }) + i.text(122 + k * 136, 320, ['7:30am', '7:30am', '7pm'][n], ['orange', 'blue', 'dkgreen'][n], 26, { anchor: 'middle' })).join('') +
-        i.text(394, 380, '2 stories', 'purple', 28, { anchor: 'middle' }) +
-        i.text(666, 380, 'Log the', 'purple', 28, { anchor: 'middle' }) + i.text(666, 410, 'numbers', 'purple', 28, { anchor: 'middle' }) +
+        [0, 1, 2, 3, 4, 5, 6].map((k) => i.circle(122 + k * 136, 220, 48, 30, 'dkgreen') + i.text(122 + k * 136, 231, 'POST', 'dkgreen', 30, { anchor: 'middle' }) + i.text(122 + k * 136, 284, '7:30am', 'dkgreen', 24, { anchor: 'middle' })).join('') +
+        i.text(122, 360, 'Review +', 'purple', 28, { anchor: 'middle' }) + i.text(122, 390, 'schedule', 'purple', 28, { anchor: 'middle' }) +
+        i.text(394, 360, '2 stories', 'purple', 28, { anchor: 'middle' }) +
+        i.text(666, 360, 'Log the', 'purple', 28, { anchor: 'middle' }) + i.text(666, 390, 'numbers', 'purple', 28, { anchor: 'middle' }) +
+        i.text(938, 360, 'Look back,', 'red', 28, { anchor: 'middle' }) + i.text(938, 390, 'fix 1 thing', 'red', 28, { anchor: 'middle' }) +
         i.line([[80, 560], [980, 560]], 'red', 5) +
         i.text(530, 610, '15 min a day: reply to every comment + DM', 'red', 32, { anchor: 'middle' }),
       notes: {
         say: [
-          'Your week, the same as the weekly schedule in your 30-Day Post Plan. Monday at 8:30, Claude reviews last week and you schedule this week\'s three posts.',
-          'Posts go out Tuesday and Thursday at 7:30 in the morning and Sunday at 7 at night. Wednesday, two behind-the-scenes stories. Friday, log the numbers in the tracker so Monday\'s review has something to work with.',
+          'Your week, the same as the weekly schedule in your 30-Day Post Plan. Monday at 8:30, Claude reviews last week and you schedule this week\'s seven posts.',
+          'One post goes out every day at 7:30 in the morning. Wednesday, two behind-the-scenes stories. Friday, log the numbers in the tracker. Sunday, look back at the week and improve one thing, so Monday\'s review has something to work with.',
           'And fifteen minutes every day replying to comments and DMs. Most of your leads come from that reply, not the post itself.',
         ],
-        draw: ['Mark the post days and times, Monday review + schedule, Wednesday stories, Friday numbers, and the red daily line across the bottom.'],
+        draw: ['POST every day at 7:30, Monday review + schedule, Wednesday stories, Friday numbers, Sunday look back, and the red daily line across the bottom.'],
       },
     },
 
@@ -188,7 +189,7 @@ module.exports = {
       ink:
         i.text(66, 150, 'Instagram, LinkedIn, Facebook, Google', 'blue', 28) +
         i.text(541, 150, 'Meta Business Suite (free)', 'blue', 30) +
-        i.text(66, 290, 'Tue · Thu · Sun', 'blue', 30) + i.text(66, 324, '7:30am (Sun 7pm)', 'blue', 28) +
+        i.text(66, 290, 'Every day', 'blue', 30) + i.text(66, 324, '7:30am', 'blue', 28) +
         i.text(382, 300, 'Principal, Mondays', 'blue', 28) +
         i.text(699, 300, 'Paralegal, daily', 'blue', 28) +
         i.text(66, 420, 'Follow for more · Follow if you\'re separating · DM "CALL" for a free 15 min chat', 'purple', 26) +

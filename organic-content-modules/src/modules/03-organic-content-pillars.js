@@ -1,13 +1,14 @@
 const { ink: i, guide: g, esc } = require('../lib');
-const { PILLARS, POSTS } = require('../pillars');
+const { PILLARS } = require('../pillars');
+const { pillarWeek, monthCalendar, postList } = require('../plan-slides');
+
+const withNotes = (slide, say) => ({ ...slide, notes: { say } });
 
 // Module 3, The Organic Content Pillars: Cormac's four-pillar wheel, built
 // out for law firms, the Outlier Method for borrowing proven structures, and
 // a 30-day calendar (one post a day) built in.
 
-const DOW = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
 const dash = { dash: '7 7', sw: 1.6 };
-const isReview = (day) => day % 7 === 0;
 
 // ---------- the wheel (board coordinates, centre 528,400)
 const wheel = {
@@ -133,75 +134,6 @@ const multiply = {
   },
 };
 
-// ---------- the week, the month, the 30 posts
-const pillarChip = (name) => `<span class="pchip" style="background:${PILLARS[name].color}">${name}</span>`;
-
-const week = {
-  type: 'page',
-  title: 'Your Week of Pillars',
-  html: `<div class="wk7">${POSTS.slice(0, 7)
-    .map((p, k) => {
-      const sun = k === 6;
-      const chip = sun ? '<span class="pchip" style="background:#555">Rotates</span>' : pillarChip(p.pillar);
-      const type = sun ? 'Value, invitation or proof' : p.type;
-      const job = ['Answer a real client worry.', 'Your opinion, or your take on the news.', 'Your "Law in 30 Seconds" series.', 'A result, a review or a client message.', 'A collab post with someone on the team.', 'Document your day.', 'Week 1 value, week 2 invitation, week 3 proof, week 4 invitation.'][k];
-      return `<div class="wk7-day"><div class="wk7-d">${DOW[k]}</div>${chip}<div class="wk7-t">${esc(type)}</div><p>${esc(job)}</p>
-        <div class="wk7-ex"><div class="pp-h">Week 1</div>"${esc(p.hook)}"</div>${sun ? '<div class="wk7-rev">+ Weekly review: improve one thing</div>' : ''}</div>`;
-    })
-    .join('')}</div>
-    <div class="mix">${['Connection', 'Value', 'Proof', 'Invitation']
-      .map((n) => {
-        const c = POSTS.filter((p) => p.pillar === n).length;
-        return `<div style="flex:${c};background:${PILLARS[n].color}">${c} ${n}</div>`;
-      })
-      .join('')}</div>
-    <div class="mix-note"><b>30 posts in 30 days.</b> Mostly connection and value. Invitation only twice a month: give publicly, sell privately.</div>`,
-  notes: {
-    say: [
-      'One post a day is the minimum. Here is what each day is for, so you never have to decide.',
-      'Monday value, Tuesday your character, Wednesday your series, Thursday proof, Friday the team, Saturday your day. Sunday alternates, and it is also your review day.',
-      'Over the month that is thirteen connection, ten value, five proof and only two invitation posts.',
-    ],
-  },
-};
-
-const calendar = (() => {
-  const left = 74, top = 112, cw = 130, ch = 116;
-  const cells = POSTS.map((p, k) => {
-    const x = left + (k % 7) * cw;
-    const y = top + Math.floor(k / 7) * ch;
-    const c = PILLARS[p.pillar].color;
-    return `<div class="mc-cell" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px"><div class="mc-day">${p.day}</div><span class="mc-box"></span>
-      <div class="mc-chip" style="background:${c}">${p.pillar.toUpperCase()}</div><div class="mc-title">${esc(p.short)}</div><div class="mc-sub" style="color:${c}">${esc(p.type)}</div>
-      ${isReview(p.day) ? '<div class="mc-rev">+ weekly review</div>' : ''}</div>`;
-  }).join('');
-  const heads = DOW.map((d, c) => `<div class="mc-head" style="left:${left + c * cw}px;width:${cw}px">${d}</div>`).join('');
-  const legend = `<div class="mc-legend">${NAMES.map((n) => `<span><i style="background:${PILLARS[n].color}"></i>${n}</span>`).join('')}<span class="mc-every"><b>Every Sunday:</b> look back at the week and improve one thing</span></div>`;
-  return {
-    type: 'page',
-    title: 'Your Next 30 Days',
-    tag: { label: '1 post a day', color: '#1B2ED0' },
-    html: heads + cells + legend,
-    notes: {
-      say: [
-        'And here is your month, already planned. Thirty posts, one a day, every one tied to a pillar.',
-        'Tick each day off. Every Sunday, look back at the week, and improve one thing.',
-        'The next two pages give you the exact first line for every post.',
-      ],
-    },
-  };
-})();
-
-const postList = (from, to, title) => ({
-  type: 'page',
-  title,
-  html: `<table class="ptab"><thead><tr><th>Day</th><th>Pillar</th><th>Post</th><th>Say this first</th><th></th></tr></thead><tbody>${POSTS.slice(from, to)
-    .map(
-      (p) => `<tr><td><b>${DOW[(p.day - 1) % 7].slice(0, 3)} ${p.day}</b></td><td>${pillarChip(p.pillar)}<div class="ptab-t">${esc(p.type)}</div></td><td><b>${esc(p.short)}</b></td><td>"${esc(p.hook)}"</td><td><i class="ptab-box"></i></td></tr>`
-    )
-    .join('')}</tbody></table>`,
-});
-
 // ---------- worksheet: their own pillars
 const build = {
   type: 'page',
@@ -284,11 +216,19 @@ module.exports = {
     { type: 'shot', kicker: 'Rule 01', text: 'Be different from every other firm.', notes: { say: ['Look at how other lawyers post, then show up completely differently.'] } },
     { type: 'shot', kicker: 'Rule 02', text: "One post a day is the minimum.\nDon't let analysis paralysis stop you.", notes: { say: ['You need the reps on the board. A good post today beats a perfect post next month.'] } },
     { type: 'shot', kicker: 'Rule 03', text: 'Review once a week.\nImprove one thing.', notes: { say: ['Sunday or Monday, whenever you have downtime. Watch your week back, be kind but honest, and improve one little thing. Before you know it, your content is seriously good.'] } },
-    week,
-    calendar,
-    postList(0, 10, 'Your 30 Posts: Days 1-10'),
-    postList(10, 20, 'Your 30 Posts: Days 11-20'),
-    postList(20, 30, 'Your 30 Posts: Days 21-30'),
+    withNotes(pillarWeek, [
+      'One post a day is the minimum. Here is what each day is for, so you never have to decide.',
+      'Monday value, Tuesday your character, Wednesday your series, Thursday proof, Friday the team, Saturday your day. Sunday rotates, and it is also your review day.',
+      'Over the month that is thirteen connection, ten value, five proof and only two invitation posts.',
+    ]),
+    withNotes(monthCalendar, [
+      'And here is your month, already planned. Thirty posts, one a day at 7:30 in the morning, every one tied to a pillar.',
+      'Most are filmed on your monthly shoot day in Module 5. The ones marked "film on the day" you capture as they happen.',
+      'Tick each day off. Every Sunday, look back at the week, and improve one thing. The full script for every post is in your 30-Day Post Plan.',
+    ]),
+    postList(0, 10),
+    postList(10, 20),
+    postList(20, 30),
     build,
     {
       type: 'next',
@@ -297,7 +237,7 @@ module.exports = {
         'Start a "client questions" note on your phone',
         'Save 3 outlier videos from your niche',
         'Put the 30-day calendar on the wall',
-        'Film this week\'s 7 posts in one sitting',
+        'Book your shoot day (Module 5)',
         'Line up a team member for a collab post',
         'Sunday: review the week, improve one thing',
       ],

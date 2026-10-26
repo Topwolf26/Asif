@@ -1,4 +1,9 @@
 const { ink: i, guide: g, cards } = require('../lib');
+const plan = require('../plan');
+const { PILLARS } = require('../pillars');
+const { shotList } = require('../plan-slides');
+
+const SHOOT = plan.filter((p) => p.shoot).length;
 
 const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
@@ -16,7 +21,7 @@ module.exports = {
     { type: 'point', tone: 'problem', n: 3, text: "Flat on Camera", notes: { say: ["The camera flattens your energy, so normal looks bored."] } },
 
     { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
-    { type: 'point', tone: 'idea', n: 1, text: "One Shoot Day = One Month of Content", notes: { say: ["Three to four hours, once a month, twelve to fifteen posts."] } },
+    { type: 'point', tone: 'idea', n: 1, text: "One Shoot Day = One Month of Content", notes: { say: ["Four hours, once a month, twenty-three videos. The other seven you film as they happen."] } },
     { type: 'point', tone: 'idea', n: 2, text: "A $300 Kit Is Enough to Start", notes: { say: ["Your phone, a lav mic, a tripod and a window."] } },
     { type: 'point', tone: 'idea', n: 3, text: "Run the Day Off a Shot List", notes: { say: ["Set up, warm up, film in blocks, grab b-roll, back up."] } },
 
@@ -31,17 +36,25 @@ module.exports = {
       ink:
         i.text(220, 360, 'Shoot', 'purple', 52, { anchor: 'middle' }) +
         i.text(220, 410, 'day', 'purple', 52, { anchor: 'middle' }) +
-        i.text(220, 560, '3-4 hours', 'purple', 34, { anchor: 'middle' }) +
-        [0, 1, 2, 3].map((r) => [1, 3, 6].map((c) => i.dot(560 + c * 66, 232 + r * 92, ['orange', 'blue', 'dkgreen'][(r + c) % 3], 14)).join('')).join('') +
-        i.text(530, 600, '= 12-15 posts', 'dkgreen', 44) +
-        i.text(530, 650, 'you only show up once', 'dkgreen', 32),
+        i.text(220, 560, 'about 4 hours', 'purple', 34, { anchor: 'middle' }) +
+        plan
+          .filter((p) => p.day <= 28)
+          .map((p) => {
+            const x = 560 + ((p.day - 1) % 7) * 66;
+            const y = 232 + Math.floor((p.day - 1) / 7) * 92;
+            return p.shoot ? i.dot(x, y, PILLARS[p.pillar].color, 14) : i.circle(x, y, 15, 15, 'purple', 3.5);
+          })
+          .join('') +
+        i.text(530, 600, `= ${SHOOT} of your 30 posts`, 'dkgreen', 44) +
+        i.text(530, 650, 'circles: film those on the day', 'purple', 32),
       notes: {
         say: [
           'The biggest mistake firms make is trying to film something every week. You get busy, a matter blows up, and content is the first thing that goes.',
-          'Instead: one shoot day, three to four hours, once a month. That gives you twelve to fifteen posts, three a week.',
+          'Instead: one shoot day, about four hours, once a month. That gives you twenty-three of your thirty posts.',
+          'The other seven are the ones you cannot film in a studio: your day, the team in the office, a client testimonial, a screenshot. You grab those as they happen.',
           'You show up once. Everything after that is editing and posting, which Claude helps with in Modules 6 and 7.',
         ],
-        draw: ['Write "Shoot day" in the circle. Dot Tuesday, Thursday and Sunday every week in the calendar.'],
+        draw: ['Write "Shoot day" in the circle. Dot every day in the calendar, and circle the days you film on the day.'],
       },
     },
 
@@ -116,11 +129,11 @@ module.exports = {
         [
           ['9:00', 'Set up, test audio, test light', 'black'],
           ['9:30', 'Warm up: 2 throwaway takes', 'black'],
-          ['9:45', 'Block 1: 6-7 reach videos (TOFU)', 'orange'],
+          ['9:45', 'Block 1: the 10 value videos', 'dkgreen'],
           ['11:00', 'Outfit change + coffee', 'black'],
-          ['11:15', 'Block 2: connect + convert (MOFU/BOFU)', 'blue'],
-          ['12:30', 'B-roll: office, team, desk, walking in', 'purple'],
-          ['1:00', 'Done. Back up the card straight away', 'dkgreen'],
+          ['11:15', 'Block 2: character, team, proof, invitation', 'blue'],
+          ['1:00', 'B-roll: office, team, desk, walking in', 'purple'],
+          ['1:30', 'Done. Back up the card straight away', 'dkgreen'],
         ]
           .map(([t, s, c], k) => i.text(70, 120 + k * 94, t, c, 34) + i.text(240, 120 + k * 94, s, c, 34))
           .join(''),
@@ -128,7 +141,7 @@ module.exports = {
         say: [
           'Here is the run sheet. Set up and test audio first, every time.',
           'Do two throwaway takes to warm up. Your first take is always your worst.',
-          'Film all the reach videos in one block, change outfits so the month does not look like one day, then do connect and convert.',
+          'Film all ten value videos in one block, change outfits so the month does not look like one day, then do your character, team, proof and invitation videos. Short scripts, about six minutes a video.',
           'Grab twenty minutes of b-roll: walking in, the team, the desk, a handshake. Your editor and Claude will thank you.',
           'Back up the card before you leave the room.',
         ],
@@ -174,44 +187,9 @@ module.exports = {
     },
 
     {
-      type: 'sheet',
-      title: 'Shot List',
-      minutes: 10,
-      cells: [
-        { x: 50, y: 70, w: 50, h: 40, label: '#' },
-        { x: 100, y: 70, w: 400, h: 40, label: 'Video' },
-        { x: 500, y: 70, w: 190, h: 40, label: 'Structure' },
-        { x: 690, y: 70, w: 90, h: 40, label: 'T / M / B' },
-        { x: 780, y: 70, w: 150, h: 40, label: 'Outfit / spot' },
-        { x: 930, y: 70, w: 70, h: 40, label: 'Done' },
-        ...Array.from({ length: 13 }, (_, r) => [
-          { x: 50, y: 110 + r * 42, w: 50, h: 42, html: `<div class="num">${r + 1}</div>` },
-          { x: 100, y: 110 + r * 42, w: 400, h: 42 },
-          { x: 500, y: 110 + r * 42, w: 190, h: 42 },
-          { x: 690, y: 110 + r * 42, w: 90, h: 42 },
-          { x: 780, y: 110 + r * 42, w: 150, h: 42 },
-          { x: 930, y: 110 + r * 42, w: 70, h: 42 },
-        ]).flat(),
-      ],
-      ink:
-        [
-          ['Who I am + who I help', 'What I know now', 'M', 'Navy, desk'],
-          ['3 questions every client asks', 'Category', 'T', 'Navy, desk'],
-          ['The 50/50 myth', 'Myth-bust', 'T', 'Navy, desk'],
-          ['Rating advice 0-10', 'Rating', 'T', 'White, shelf'],
-        ]
-          .map(([v, s, f, o], r) => {
-            const y = 140 + r * 42;
-            return (
-              i.text(112, y, v, 'blue', 26) + i.text(510, y, s, 'purple', 24) +
-              i.text(735, y, f, f === 'T' ? 'orange' : 'blue', 28, { anchor: 'middle' }) + i.text(790, y, o, 'black', 22) +
-              i.tick(950, y - 4, 'dkgreen', 0.6)
-            );
-          })
-          .join(''),
+      ...shotList,
       notes: {
-        say: ['Print this or have it on the iPad on shoot day. Tick each one off as you go so nothing gets missed.'],
-        draw: ['Fill in the first four rows as an example.'],
+        say: [`Here are your ${SHOOT} shoot-day videos, straight from your 30-day plan, in order. Print this or have it on the iPad. Tick each one off as you go so nothing gets missed.`],
       },
     },
 
@@ -221,7 +199,7 @@ module.exports = {
         'Book your shoot day (block 4 hours)',
         'Get a lav mic + tripod',
         'Find your spot: window + depth',
-        'Print the shot list with all 13 videos',
+        'Print the shot list (all ' + SHOOT + ' videos)',
         'Film. Back up the footage the same day',
       ],
       notes: { say: ['Takeaway: one shoot day a month, good audio, energy up, keep rolling. Next module, we edit it all with Claude.'] },

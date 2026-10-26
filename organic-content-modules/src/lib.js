@@ -1,6 +1,6 @@
 // Slide engine for the organic content modules.
-// Matches the TAB / Agency Mentor worksheets on Skool: navy cover with a mint
-// glow, "The BIG Problems" / "The OPPORTUNITY" text pages with numbered
+// Matches the TAB / Agency Mentor worksheets on Skool, with our own cover
+// (off-white linen, blue wordmark, title on a blue bar), "The BIG Problems" / "The OPPORTUNITY" text pages with numbered
 // points (flat blue / white linen, like an Instagram text post), grey boards with a blue-square heading and a white framed
 // diagram, timed exercises, a "Next..." page and a dotted Notes page.
 //
@@ -236,23 +236,18 @@ const lines = (t) => esc(t).replace(/\n/g, '<br>');
 
 const S = {
   cover(sl, ctx) {
-    return `<section class="slide cover">
-      <div class="glow"></div>
+    return `<section class="slide cover shot white">
+      <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}</div>
       <div class="cover-text">
-        <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}</div>
-        <div class="cover-title">${esc(sl.title).replace(/\n/g, '<br>')}</div>
+        <div class="cover-kicker">${esc(sl.kicker || ctx.brand.program)}</div>
+        <div class="cover-title">${lines(sl.title)}</div>
       </div>
+      <div class="cover-band"></div>
     </section>`;
   },
 
   end(sl, ctx) {
-    return `<section class="slide cover end">
-      <div class="glow"></div>
-      <div class="cover-text">
-        <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}</div>
-        <div class="cover-title upper">${esc(sl.title || ctx.brand.program)}</div>
-      </div>
-    </section>`;
+    return S.cover({ title: sl.title || ctx.brand.program, kicker: ' ' }, ctx);
   },
 
   board(sl, ctx) {

@@ -22,7 +22,6 @@ const load = (dir) =>
     .map((f) => require(path.join(__dirname, dir, f)));
 const mods = [...load('modules'), ...load('extras')].filter((m) => !only || m.number === Number(only));
 const plan = require('./plan');
-const { POST_TIME } = require('./plan-slides');
 
 const pad = (n) => String(n).padStart(2, '0');
 const slug = (m) => m.file || `Module-${pad(m.number)}-${m.title.replace(/[^A-Za-z0-9]+/g, '-').replace(/-+$/, '')}`;
@@ -58,23 +57,12 @@ function presenterGuide(m) {
   // the plan as a CSV, same columns as our client content calendars + the extras
   const q = (v) => `"${String(v).replace(/"/g, '""')}"`;
   const csv = [
-    ['Post Idea', 'Post Link', 'Scheduled Date to Post', 'Posted/Scheduled', 'Posting Schedule', 'Post Format', 'Funnel', 'Structure', 'Hook', 'Script beats', 'CTA', 'On-screen text', 'Caption', 'Law example', 'Finance example', 'Real example'],
-    ...plan.map((p) => [p.topic, '', `Day ${p.day}`, '', `${p.dow} ${POST_TIME[p.dow]}`, `Video Post (${p.format}, ${p.length})`, p.funnel, p.structure, p.hook, p.beats.map((b, k) => `${k + 1}. ${b}`).join(' '), p.cta, p.onscreen, p.caption, p.law, p.finance, p.example ? `${p.example.who}, ${p.example.views}: ${p.example.url}` : '']),
+    ['Post Idea', 'Post Link', 'Scheduled Date to Post', 'Posted/Scheduled', 'Posting Schedule', 'Post Format', 'Pillar', 'Type', 'Hook', 'Script beats', 'CTA', 'On-screen text', 'Caption', 'Filmed', 'Real example'],
+    ...plan.map((p) => [p.short, '', `Day ${p.day}`, '', `${p.dow} ${p.time}`, `Video Post (${p.format}, ${p.length})`, p.pillar, p.type, p.hook, p.beats.map((b, k) => `${k + 1}. ${b}`).join(' '), p.cta, p.onscreen, p.caption, p.shoot ? 'Shoot day' : 'On the day', p.example ? `${p.example.who}, ${p.example.views}: ${p.example.url}` : '']),
   ]
     .map((r) => r.map(q).join(','))
     .join('\n');
   fs.writeFileSync(path.join(ROOT, '30-Day-Post-Plan.csv'), csv + '\n');
-
-  // the pillars module's 30-day calendar, one post a day
-  const { POSTS } = require('./pillars');
-  const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  const pcsv = [
-    ['Day', 'Weekday', 'Pillar', 'Type', 'Post', 'Say this first', 'Posted'],
-    ...POSTS.map((p) => [`Day ${p.day}`, DAYS[(p.day - 1) % 7], p.pillar, p.type, p.short, p.hook, '']),
-  ]
-    .map((r) => r.map(q).join(','))
-    .join('\n');
-  fs.writeFileSync(path.join(ROOT, '30-Day-Pillar-Calendar.csv'), pcsv + '\n');
 
   // bundled Chromium if it's installed, otherwise the machine's Chrome
   const browser = await chromium.launch().catch(() => chromium.launch({ channel: 'chrome' }));

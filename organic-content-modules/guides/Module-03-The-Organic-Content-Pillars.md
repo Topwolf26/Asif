@@ -140,15 +140,15 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 
 **Say:**
 - One post a day is the minimum. Here is what each day is for, so you never have to decide.
-- Monday value, Tuesday your character, Wednesday your series, Thursday proof, Friday the team, Saturday your day. Sunday alternates, and it is also your review day.
+- Monday value, Tuesday your character, Wednesday your series, Thursday proof, Friday the team, Saturday your day. Sunday rotates, and it is also your review day.
 - Over the month that is thirteen connection, ten value, five proof and only two invitation posts.
 
 ## Slide 23: Your Next 30 Days
 
 **Say:**
-- And here is your month, already planned. Thirty posts, one a day, every one tied to a pillar.
-- Tick each day off. Every Sunday, look back at the week, and improve one thing.
-- The next two pages give you the exact first line for every post.
+- And here is your month, already planned. Thirty posts, one a day at 7:30 in the morning, every one tied to a pillar.
+- Most are filmed on your monthly shoot day in Module 5. The ones marked "film on the day" you capture as they happen.
+- Tick each day off. Every Sunday, look back at the week, and improve one thing. The full script for every post is in your 30-Day Post Plan.
 
 ## Slide 24: Your 30 Posts: Days 1-10
 
@@ -173,7 +173,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 - [ ] Start a "client questions" note on your phone
 - [ ] Save 3 outlier videos from your niche
 - [ ] Put the 30-day calendar on the wall
-- [ ] Film this week's 7 posts in one sitting
+- [ ] Book your shoot day (Module 5)
 - [ ] Line up a team member for a collab post
 - [ ] Sunday: review the week, improve one thing
 

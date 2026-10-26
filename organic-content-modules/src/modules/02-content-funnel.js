@@ -19,7 +19,7 @@ module.exports = {
 
     { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
     { type: 'point', tone: 'idea', n: 1, text: "Give Every Post One Job", notes: { say: ["Reach, connect or convert. One job per post, and the CTA matches it."] } },
-    { type: 'point', tone: 'idea', n: 2, text: "Run the Weekly Mix", notes: { say: ["About half reach, a third connect, the rest convert."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "Run the Weekly Mix", notes: { say: ["About a third reach, the most connect, a quarter convert. One post a day."] } },
     { type: 'point', tone: 'idea', n: 3, text: "Win Your City, Not the Internet", notes: { say: ["400 views from the right people beats 40,000 from the wrong ones."] } },
 
     {
@@ -80,27 +80,27 @@ module.exports = {
 
     {
       type: 'board',
-      title: 'The Weekly Mix',
+      title: 'The Monthly Mix',
       guide:
         g.rect(80, 250, 900, 90, { r: 10 }) +
-        g.line(530, 250, 530, 340) + g.line(800, 250, 800, 340) +
-        g.text(80, 236, '100% of your posts', { size: 13 }),
+        g.line(380, 250, 380, 340) + g.line(770, 250, 770, 340) +
+        g.text(80, 236, '30 posts a month', { size: 13 }),
       ink:
-        i.text(305, 312, '50% Reach', 'orange', 46, { anchor: 'middle' }) +
-        i.text(665, 312, '30% Connect', 'blue', 40, { anchor: 'middle' }) +
-        i.text(890, 312, '20%+ Convert', 'dkgreen', 34, { anchor: 'middle' }) +
-        i.text(80, 440, '3 posts a week = ~13 a month', 'black', 40) +
-        i.text(80, 488, '6 TOFU   ·   3 MOFU   ·   4 BOFU', 'purple', 40) +
+        i.text(230, 312, '10 Reach', 'orange', 44, { anchor: 'middle' }) +
+        i.text(575, 312, '13 Connect', 'blue', 44, { anchor: 'middle' }) +
+        i.text(875, 312, '7 Convert', 'dkgreen', 40, { anchor: 'middle' }) +
+        i.text(80, 440, '1 post a day = 30 a month', 'black', 40) +
+        i.text(80, 488, 'Value = reach · Connection = connect · Proof + Invitation = convert', 'purple', 30) +
         i.text(80, 590, 'All BOFU = salesy, nobody watches', 'red', 32) +
         i.text(80, 630, 'All TOFU = views, but no clients', 'red', 32),
       notes: {
         say: [
-          'Rough split: half your posts are for reach, about a third for connection, and the rest for conversion.',
-          'At three posts a week that is about thirteen posts a month. Six reach, three connect, four convert. That is exactly what the 30-day plan in Module 8 uses.',
+          'One post a day is the minimum, so that is thirty posts a month. About a third for reach, the biggest share for connection, and about a quarter to convert.',
+          'In the Module 3 pillars: value posts reach new people, connection posts make them like you, and proof and invitation posts convert. Ten, thirteen and seven. That is exactly what your 30-day calendar uses.',
           'If you only post "book a consult" content it feels salesy and nobody watches. If you only chase views you get likes from people who will never hire you.',
         ],
         draw: [
-          'Split the bar: 50 / 30 / 20 and label each.',
+          'Split the bar: 10 / 13 / 7 and label each.',
           'Write the monthly maths underneath.',
           'Red: the two ways it goes wrong.',
         ],

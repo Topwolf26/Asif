@@ -31,7 +31,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 ## Slide 7: Opportunity 1: One Shoot Day = One Month of Content
 
 **Say:**
-- Three to four hours, once a month, twelve to fifteen posts.
+- Four hours, once a month, twenty-three videos. The other seven you film as they happen.
 
 ## Slide 8: Opportunity 2: A $300 Kit Is Enough to Start
 
@@ -47,11 +47,12 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 
 **Say:**
 - The biggest mistake firms make is trying to film something every week. You get busy, a matter blows up, and content is the first thing that goes.
-- Instead: one shoot day, three to four hours, once a month. That gives you twelve to fifteen posts, three a week.
+- Instead: one shoot day, about four hours, once a month. That gives you twenty-three of your thirty posts.
+- The other seven are the ones you cannot film in a studio: your day, the team in the office, a client testimonial, a screenshot. You grab those as they happen.
 - You show up once. Everything after that is editing and posting, which Claude helps with in Modules 6 and 7.
 
 **Draw:**
-- Write "Shoot day" in the circle. Dot Tuesday, Thursday and Sunday every week in the calendar.
+- Write "Shoot day" in the circle. Dot every day in the calendar, and circle the days you film on the day.
 
 ## Slide 11: The Set (from above)
 
@@ -79,7 +80,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 **Say:**
 - Here is the run sheet. Set up and test audio first, every time.
 - Do two throwaway takes to warm up. Your first take is always your worst.
-- Film all the reach videos in one block, change outfits so the month does not look like one day, then do connect and convert.
+- Film all ten value videos in one block, change outfits so the month does not look like one day, then do your character, team, proof and invitation videos. Short scripts, about six minutes a video.
 - Grab twenty minutes of b-roll: walking in, the team, the desk, a handshake. Your editor and Claude will thank you.
 - Back up the card before you leave the room.
 
@@ -105,10 +106,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 ## Slide 16: Shot List
 
 **Say:**
-- Print this or have it on the iPad on shoot day. Tick each one off as you go so nothing gets missed.
-
-**Draw:**
-- Fill in the first four rows as an example.
+- Here are your 23 shoot-day videos, straight from your 30-day plan, in order. Print this or have it on the iPad. Tick each one off as you go so nothing gets missed.
 
 ## Slide 17: Next... (takeaways + checklist)
 
@@ -119,7 +117,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 - [ ] Book your shoot day (block 4 hours)
 - [ ] Get a lav mic + tripod
 - [ ] Find your spot: window + depth
-- [ ] Print the shot list with all 13 videos
+- [ ] Print the shot list (all 23 videos)
 - [ ] Film. Back up the footage the same day
 
 ## Slide 18: Notes page

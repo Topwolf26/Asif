@@ -203,7 +203,7 @@ module.exports = {
         i.text(66, 594, 'of a separation."', 'dkgreen', 30) +
         i.tick(560, 590) + i.tick(640, 590) + i.tick(720, 590),
       notes: {
-        say: ['Pause and build one script now using this sheet. Then do the rest of your 13 with Claude using the prompt from the last slide.'],
+        say: ['Pause and build one script now using this sheet. Then do the rest of your shoot-day scripts with Claude using the prompt from the last slide.'],
         draw: ['Fill it in with the 50/50 myth example.'],
       },
     },
@@ -215,7 +215,7 @@ module.exports = {
         'Fill in one Script Builder by hand',
         'Use the Claude prompt for the other 12',
         'Read every script out loud and edit',
-        'Run the compliance check on all 13',
+        'Run the compliance check on every script',
       ],
       notes: { say: ['Takeaway: hook, body, CTA. Three hook layers. One structure per video. Claude drafts, you make it sound like you.'] },
     },
