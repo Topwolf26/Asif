@@ -20,7 +20,7 @@ const load = (dir) =>
     .filter((f) => f.endsWith('.js'))
     .sort()
     .map((f) => require(path.join(__dirname, dir, f)));
-const mods = [...load('modules'), ...load('extras')].filter((m) => !only || m.number === Number(only));
+const mods = [...load('modules'), ...load('extras'), ...load('clients')].filter((m) => !only || m.number === Number(only));
 const plan = require('./plan');
 
 const pad = (n) => String(n).padStart(2, '0');
@@ -51,7 +51,7 @@ function presenterGuide(m) {
 }
 
 (async () => {
-  const dirs = ['dist', 'pdf/blank', 'pdf/filled', 'guides', 'previews'];
+  const dirs = ['dist', 'pdf/blank', 'pdf/filled', 'pdf/clients', 'guides', 'previews'];
   dirs.forEach((d) => fs.mkdirSync(path.join(ROOT, d), { recursive: true }));
 
   // the plan as a CSV, same columns as our client content calendars + the extras
@@ -71,20 +71,22 @@ function presenterGuide(m) {
   for (const m of mods) {
     const name = slug(m);
     if (!m.noGuide) fs.writeFileSync(path.join(ROOT, 'guides', `${name}.md`), presenterGuide(m));
-    for (const filled of [false, true]) {
+    // client plans: one finished PDF (+ CSV) in pdf/clients, no filled copy
+    if (m.csv) fs.writeFileSync(path.join(ROOT, 'pdf/clients', m.csv.file), m.csv.text + '\n');
+    for (const filled of m.client ? [false] : [false, true]) {
       const html = renderModule(m, { brand, filled });
       const htmlPath = path.join(ROOT, 'dist', `${name}${filled ? '-FILLED' : ''}.html`);
       fs.writeFileSync(htmlPath, html);
       await page.goto('file://' + htmlPath);
       await page.evaluate(() => document.fonts.ready);
       await page.pdf({
-        path: path.join(ROOT, 'pdf', filled ? 'filled' : 'blank', `${name}${filled ? ' (FILLED)' : ''}.pdf`),
+        path: m.client ? path.join(ROOT, 'pdf/clients', `${name}.pdf`) : path.join(ROOT, 'pdf', filled ? 'filled' : 'blank', `${name}${filled ? ' (FILLED)' : ''}.pdf`),
         width: '11in',
         height: '7.844in',
         printBackground: true,
         preferCSSPageSize: true,
       });
-      if (wantPng && filled) {
+      if (wantPng && (filled || m.client)) {
         const n = await page.locator('section.slide').count();
         for (let i = 0; i < n; i++) {
           await page.locator('section.slide').nth(i).screenshot({

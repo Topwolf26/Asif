@@ -1,0 +1,18 @@
+/* Magnify Growth × BPAG: BPAG deep green + white, Magnify lime + white.
+   Swap --accent / --square / --heading for BPAG's exact green when we have it. */
+:root {
+  --accent: #14532D;        /* BPAG green: cover bar, text shots, tags */
+  --square: #14532D;
+  --heading: #0F3D22;
+  --lime: #A3E635;          /* Magnify lime */
+  --wordmark: #65A30D;      /* magnify growth wordmark on light pages */
+  --cover-mark: #65A30D;
+  --board: #F1F4EF;
+  --thead: #E2EADF;
+  --problem: #B91C1C;
+}
+.cover-band { background: linear-gradient(var(--lime) 0 7px, var(--accent) 7px); height: 30px; }
+.shot.lime { --shot-bg: var(--lime); --shot-fg: var(--heading); --weave: rgba(255,255,255,0.12); --weave2: rgba(0,0,0,0.05); }
+.shot:not(.white):not(.lime) .shot-kicker { color: var(--lime); opacity: 1; }
+.shot:not(.white):not(.lime) .shot-mark { color: var(--lime); }
+.pp-meta span { background: #E8F0E2; }

@@ -9,6 +9,8 @@
   /* Skool / TAB worksheet look */
   --heading: #0B0D3D;
   --square: #0A1BE6;
+  --accent: #1B2ED0;      /* cover, text shots, tags */
+  --cover-mark: #1B2ED0;  /* wordmark on the cover */
   --problem: #F2353B;
   --idea: #1FC46B;
   --timer: #1FA85A;
@@ -37,12 +39,12 @@ body { font-family: 'Archivo', system-ui, sans-serif; color: var(--ink); -webkit
 /* ---------- cover: off-white linen, blue wordmark, title on a blue bar */
 .cover .cover-wm {
   position: absolute; left: 92px; top: 84px;
-  color: #1B2ED0; font-weight: 900; font-size: 76px; line-height: 0.82; letter-spacing: -2px;
+  color: var(--cover-mark); font-weight: 900; font-size: 76px; line-height: 0.82; letter-spacing: -2px;
 }
-.cover-text { position: absolute; left: 92px; top: 380px; padding-left: 30px; border-left: 12px solid #1B2ED0; }
-.cover-kicker { font-size: 14px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: #1B2ED0; margin-bottom: 14px; }
+.cover-text { position: absolute; left: 92px; top: 380px; padding-left: 30px; border-left: 12px solid var(--accent); }
+.cover-kicker { font-size: 14px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
 .cover-title { color: var(--heading); font-weight: 800; font-size: 56px; line-height: 1.12; max-width: 760px; letter-spacing: 0.5px; }
-.cover-band { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: #1B2ED0; }
+.cover-band { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: var(--accent); }
 
 /* ---------- board */
 .bt {
@@ -81,9 +83,9 @@ body { font-family: 'Archivo', system-ui, sans-serif; color: var(--ink); -webkit
 }
 
 /* ---------- text shots: flat linen-textured page, uppercase text block (blue / white) */
-.shot { --shot-bg: #1B2ED0; --shot-fg: #fff; --weave: rgba(255,255,255,0.045); --weave2: rgba(0,0,0,0.07);
+.shot { --shot-bg: var(--accent); --shot-fg: #fff; --weave: rgba(255,255,255,0.045); --weave2: rgba(0,0,0,0.07);
   background-color: var(--shot-bg); color: var(--shot-fg); }
-.shot.white { --shot-bg: #F7F6F2; --shot-fg: #1B2ED0; --weave: rgba(0,0,0,0.028); --weave2: rgba(0,0,0,0.035); }
+.shot.white { --shot-bg: #F7F6F2; --shot-fg: var(--accent); --weave: rgba(0,0,0,0.028); --weave2: rgba(0,0,0,0.035); }
 .shot::before {
   content: ''; position: absolute; inset: 0;
   background-image:
@@ -289,3 +291,17 @@ body { font-family: 'Archivo', system-ui, sans-serif; color: var(--ink); -webkit
 .ptab.shotlist td:nth-child(3) { width: auto; }
 .ptab.shotlist td:nth-child(5) { width: 220px; }
 .ptab.shotlist td:nth-child(6) { width: 50px; }
+.cover-x { display: block; margin-top: 18px; font-size: 40px; letter-spacing: -0.5px; color: var(--heading); }
+.wm.co { font-size: 15px; line-height: 1; text-align: right; bottom: 14px; }
+.wm-x { display: block; font-size: 11px; margin-top: 3px; color: var(--heading); letter-spacing: 0.5px; }
+.pp-card.note { border-color: var(--problem); border-left-width: 6px; }
+.pp-card.note .pp-h { color: var(--problem); }
+
+/* pillars at a glance (client plans) */
+.pg { position: absolute; left: 74px; top: 90px; width: 908px; height: 610px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
+.pg-c { background: #fff; border: 2px solid var(--line); border-top-width: 8px; padding: 16px 18px; }
+.pg-h { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; font-size: 14px; }
+.pg-h .pchip { font-size: 13px; padding: 5px 10px; }
+.pg-c p { font-size: 15px; line-height: 1.45; color: #222; font-weight: 500; margin-bottom: 8px; }
+.pg-trap b { color: var(--problem); }
+.pg-eg { margin-top: 10px; padding-top: 10px; border-top: 1.5px dashed #C9CBCA; font-size: 14px; line-height: 1.6; font-weight: 700; color: var(--heading); }

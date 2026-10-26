@@ -211,7 +211,9 @@ const guide = {
 // ---------- slide renderers
 
 const wordmark = (brand) =>
-  `<div class="wm">${brand.wordmark.map(esc).join('<br>')}</div>`;
+  brand.partner
+    ? `<div class="wm co">${brand.wordmark.map(esc).join(' ')}<span class="wm-x">× ${esc(brand.partner)}</span></div>`
+    : `<div class="wm">${brand.wordmark.map(esc).join('<br>')}</div>`;
 
 function svgLayer(guideSvg = '', inkSvg = '', filled) {
   return `<svg class="layer" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${guideSvg}${filled ? `<g class="ink">${inkSvg}</g>` : ''}</svg>`;
@@ -237,7 +239,7 @@ const lines = (t) => esc(t).replace(/\n/g, '<br>');
 const S = {
   cover(sl, ctx) {
     return `<section class="slide cover shot white">
-      <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}</div>
+      <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}${ctx.brand.partner ? `<span class="cover-x">× ${esc(ctx.brand.partner)}</span>` : ''}</div>
       <div class="cover-text">
         <div class="cover-kicker">${esc(sl.kicker || ctx.brand.program)}</div>
         <div class="cover-title">${lines(sl.title)}</div>
@@ -269,7 +271,7 @@ const S = {
         ${sl.kicker ? `<div class="shot-kicker">${esc(sl.kicker)}</div>` : ''}
         <div>${lines(sl.text)}</div>
       </div>
-      <div class="shot-mark">${ctx.brand.wordmark.map(esc).join(' ')}.</div>
+      <div class="shot-mark">${ctx.brand.wordmark.map(esc).join(' ')}${ctx.brand.partner ? ` × ${esc(ctx.brand.partner)}` : '.'}</div>
     </section>`;
   },
 
@@ -371,11 +373,14 @@ function cards(items, { x = 50, y = 74, w = 950, h = 600, cols = 3, gap = 14 } =
 
 function renderModule(mod, ctx) {
   seed = 7 + mod.number * 101; // stable jitter per module
+  // client documents can co-brand (brand.partner) and re-skin (theme: a css file in src/themes)
+  ctx = { ...ctx, brand: { ...ctx.brand, ...(mod.brand || {}) } };
   const slides = mod.slides.map((sl) => S[sl.type](sl, ctx)).join('\n');
   return `<!doctype html><html><head><meta charset="utf-8">
   <title>${esc(mod.title)}</title>
   <link rel="stylesheet" href="../src/fonts/fonts.css">
   <link rel="stylesheet" href="../src/styles.css">
+  ${mod.theme ? `<link rel="stylesheet" href="../src/themes/${mod.theme}.css">` : ''}
   </head><body>${slides}</body></html>`;
 }
 
