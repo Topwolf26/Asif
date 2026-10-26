@@ -10,7 +10,17 @@ module.exports = {
   runtime: '12 to 15 min',
   outcome: 'The firm knows the three jobs content does (reach, connect, convert), the weekly mix, and has mapped topic ideas to each stage.',
   slides: [
-    { type: 'cover', kicker: 'Module 2', title: 'The Content\nFunnel' },
+    { type: 'cover', title: 'The Content\nFunnel' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem' },
+    { type: 'point', tone: 'problem', n: 1, text: "Every Post Says 'Book a Consult'", notes: { say: ["Most firm content is a sales pitch. Nobody watches a pitch from someone they don't know yet."] } },
+    { type: 'point', tone: 'problem', n: 2, text: "Viral Videos, No Clients", notes: { say: ["Chasing views gets you likes from people who will never hire you."] } },
+    { type: 'point', tone: 'problem', n: 3, text: "No Plan for What Goes Out When", notes: { say: ["Posting whatever comes to mind means the mix is random and nothing builds."] } },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
+    { type: 'point', tone: 'idea', n: 1, text: "Give Every Post One Job", notes: { say: ["Reach, connect or convert. One job per post, and the CTA matches it."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "Run the Weekly Mix", notes: { say: ["About half reach, a third connect, the rest convert."] } },
+    { type: 'point', tone: 'idea', n: 3, text: "Win Your City, Not the Internet", notes: { say: ["400 views from the right people beats 40,000 from the wrong ones."] } },
 
     {
       type: 'board',
@@ -68,8 +78,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'board',
       title: 'The Weekly Mix',
@@ -108,6 +116,7 @@ module.exports = {
     {
       type: 'sheet',
       title: 'Map Your Funnel',
+      minutes: 10,
       cells: [
         { x: 50, y: 70, w: 316, h: 90, label: 'TOFU: Reach', prompt: 'Get seen. CTA: follow' },
         { x: 366, y: 70, w: 316, h: 90, label: 'MOFU: Connect', prompt: 'Be liked. CTA: follow if...' },
@@ -137,8 +146,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'next',
       checklist: [
@@ -151,6 +158,6 @@ module.exports = {
       notes: { say: ['Takeaway: every post has one job. Mix them, roughly half reach, a third connect, the rest convert.'] },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };

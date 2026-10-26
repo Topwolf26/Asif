@@ -3,13 +3,47 @@
 **Run time:** 15 min (plus 30 min exercise)  
 **Outcome:** The firm has 3 content pillars and a list of 30 video ideas, and knows how to borrow proven structures from outlier videos.
 
-Film it like a TAB module: workbook on the iPad (or screen-share), you on camera, drawing over the faint guides as you talk. The FILLED PDF shows what each board should look like when you're done.
+Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.
 
 ---
 
 ## Slide 1: Cover
 
-## Slide 2: Finding Your Content Pillars
+## Slide 2: Section: The BIG Problems
+
+## Slide 3: Problem 1: No Idea What to Post
+
+**Say:**
+- Most firms stall before the first video because they stare at a blank page.
+
+## Slide 4: Problem 2: Posting About Everything
+
+**Say:**
+- Random topics mean nobody knows what you are the go-to firm for.
+
+## Slide 5: Problem 3: Guessing What Will Work
+
+**Say:**
+- Without a proven structure, every video is a coin toss.
+
+## Slide 6: Section: The OPPORTUNITY
+
+## Slide 7: Opportunity 1: Pick 3 Pillars You Could Talk About for a Year
+
+**Say:**
+- Where your expertise, client questions and opinions overlap.
+
+## Slide 8: Opportunity 2: Turn Every Client Question Into a Video
+
+**Say:**
+- Six idea buckets, thirty ideas in thirty minutes.
+
+## Slide 9: Opportunity 3: Borrow Structures That Already Work
+
+**Say:**
+- Find outliers, copy the shape, never the words.
+
+## Slide 10: Finding Your Content Pillars
 
 **Say:**
 - Your content pillars live where three things overlap: what you know, what clients actually ask you, and what you believe about your industry.
@@ -18,7 +52,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Label each circle, then circle the middle and write PILLARS.
 
-## Slide 3: Pick 3 Pillars
+## Slide 11: Pick 3 Pillars
 
 **Say:**
 - Pick three pillars. Not seven. Three topics you could talk about for a year.
@@ -28,9 +62,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Write your firm on the roof, one pillar topic in each column. Add a second example underneath in orange.
 
-## Slide 4: Notes page
-
-## Slide 5: The Idea Machine
+## Slide 12: The Idea Machine
 
 **Say:**
 - You will never run out of ideas if you pull from these six buckets.
@@ -40,12 +72,12 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Put one or two real examples in each box.
 
-## Slide 6: Statement: "Every question a client has ever asked you is a video."
+## Slide 13: Statement: "Every question a client has ever asked you is a video."
 
 **Say:**
 - Start a note on your phone today. Every time a client asks you something, write it down. That is your content calendar for the year.
 
-## Slide 7: 30 Ideas in 30 Minutes
+## Slide 14: 30 Ideas in 30 Minutes
 
 **Say:**
 - Set a 30-minute timer. Five ideas per bucket. Do not judge them, just write.
@@ -55,7 +87,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Fill the first row as an example.
 
-## Slide 8: The Outlier Method
+## Slide 15: The Outlier Method
 
 **Say:**
 - Viral is not luck. Find a video from a small or mid-sized account that got five times their normal views. That is an outlier.
@@ -66,9 +98,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Label the three boxes, then the red rule underneath.
 
-## Slide 9: Notes page
-
-## Slide 10: Next... (takeaways + checklist)
+## Slide 16: Next... (takeaways + checklist)
 
 **Say:**
 - Takeaway: three pillars, six buckets, thirty ideas. You will never stare at a blank page again.
@@ -80,5 +110,5 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 - [ ] Save 3 outlier videos from your niche
 - [ ] Circle your best 13 ideas for Module 4
 
-## Slide 11: Close
+## Slide 17: Notes page
 

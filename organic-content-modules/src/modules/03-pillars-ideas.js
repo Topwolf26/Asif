@@ -19,7 +19,17 @@ module.exports = {
   runtime: '15 min (plus 30 min exercise)',
   outcome: 'The firm has 3 content pillars and a list of 30 video ideas, and knows how to borrow proven structures from outlier videos.',
   slides: [
-    { type: 'cover', kicker: 'Module 3', title: 'Content Pillars\n& Ideas' },
+    { type: 'cover', title: 'Content Pillars\n& Ideas' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem' },
+    { type: 'point', tone: 'problem', n: 1, text: "No Idea What to Post", notes: { say: ["Most firms stall before the first video because they stare at a blank page."] } },
+    { type: 'point', tone: 'problem', n: 2, text: "Posting About Everything", notes: { say: ["Random topics mean nobody knows what you are the go-to firm for."] } },
+    { type: 'point', tone: 'problem', n: 3, text: "Guessing What Will Work", notes: { say: ["Without a proven structure, every video is a coin toss."] } },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
+    { type: 'point', tone: 'idea', n: 1, text: "Pick 3 Pillars You Could Talk About for a Year", notes: { say: ["Where your expertise, client questions and opinions overlap."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "Turn Every Client Question Into a Video", notes: { say: ["Six idea buckets, thirty ideas in thirty minutes."] } },
+    { type: 'point', tone: 'idea', n: 3, text: "Borrow Structures That Already Work", notes: { say: ["Find outliers, copy the shape, never the words."] } },
 
     {
       type: 'board',
@@ -68,8 +78,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'board',
       title: 'The Idea Machine',
@@ -112,6 +120,7 @@ module.exports = {
     {
       type: 'sheet',
       title: '30 Ideas in 30 Minutes',
+      minutes: 30,
       cells: buckets.flatMap((b, col) => [
         { x: 50 + col * 158.3, y: 70, w: 158.3, h: 64, label: b },
         ...[0, 1, 2, 3, 4].map((r) => ({
@@ -173,8 +182,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'next',
       checklist: [
@@ -187,6 +194,6 @@ module.exports = {
       notes: { say: ['Takeaway: three pillars, six buckets, thirty ideas. You will never stare at a blank page again.'] },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };

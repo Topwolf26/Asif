@@ -1,6 +1,6 @@
 const { ink: i, guide: g } = require('../lib');
 
-const black = { stroke: '#1B1B1B', sw: 3.5 };
+const black = { stroke: '#1B1B1B', sw: 2.5 };
 
 module.exports = {
   number: 1,
@@ -8,7 +8,35 @@ module.exports = {
   runtime: '12 to 15 min',
   outcome: 'The firm owner understands why content is now part of how clients choose a firm, and writes down where they are starting from.',
   slides: [
-    { type: 'cover', kicker: 'Module 1', title: 'Why Organic\nContent Wins' },
+    { type: 'cover', title: 'Why Organic\nContent Wins' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem', notes: { say: ['Three problems almost every firm we work with has before they start posting.'] } },
+    {
+      type: 'point', tone: 'problem', n: 1, text: "Strangers Don't Trust You Yet",
+      notes: { say: ['Most people who could hire you have never heard of you. Even the ones who have do not know what you actually do, or whether they can trust you with something this important.'] },
+    },
+    {
+      type: 'point', tone: 'problem', n: 2, text: 'Referrals Stop When You Slow Down',
+      notes: { say: ['Referrals are great work, but you do not control the tap. One accountant retires or one partner moves on and it dries up. Ads stop the second you stop paying.'] },
+    },
+    {
+      type: 'point', tone: 'problem', n: 3, text: 'They Check You Out and Find Nothing',
+      notes: { say: ['Nobody books cold anymore. They Google you and open your socials first. An empty page, or a last post from 2022, and they quietly go to the next firm.'] },
+    },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea', notes: { say: ['Each of those problems has a matching opportunity, and content is the answer to all three.'] } },
+    {
+      type: 'point', tone: 'idea', n: 1, text: 'Build Trust Before the First Call',
+      notes: { say: ['Content does the know-and-trust work for you, at scale, before anyone picks up the phone.'] },
+    },
+    {
+      type: 'point', tone: 'idea', n: 2, text: 'Own a Channel That Compounds',
+      notes: { say: ['A video you post this month is still building trust in six months. It is the only channel that stacks.'] },
+    },
+    {
+      type: 'point', tone: 'idea', n: 3, text: 'Win the Check-Out Stage',
+      notes: { say: ['When they look you up, they find three to five videos that answer their questions. That is where you win the client.'] },
+    },
 
     {
       type: 'board',
@@ -48,8 +76,6 @@ module.exports = {
         ],
       },
     },
-
-    { type: 'notes' },
 
     {
       type: 'board',
@@ -141,6 +167,7 @@ module.exports = {
     {
       type: 'sheet',
       title: 'Your Starting Point',
+      minutes: 5,
       cells: [
         { x: 50, y: 70, w: 450, h: 190, label: 'Last 10 clients', prompt: 'Where did each of them come from?', dots: true },
         { x: 500, y: 70, w: 200, h: 190, label: 'Referral %', prompt: 'Share of work from referrals' },
@@ -170,8 +197,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'next',
       checklist: [
@@ -189,6 +214,6 @@ module.exports = {
       },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };

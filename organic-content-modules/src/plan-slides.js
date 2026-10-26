@@ -1,19 +1,9 @@
-// Boards shared by Module 8 and the standalone 30-Day Post Plan.
-const { ink: i, guide: g, cards } = require('./lib');
+// Pages shared by Module 8 and the standalone 30-Day Post Plan.
+const { ink: i, guide: g, esc } = require('./lib');
 const plan = require('./plan');
 
 const FUNNEL_INK = { TOFU: 'orange', MOFU: 'blue', BOFU: 'dkgreen' };
-const SHORT = {
-  'What I Know Now': 'Story', 'Category Breakdown': '3 questions', 'Myth-Busting Reframe': 'Myth-bust',
-  'Rating Advice 0-10': 'Rating 0-10', 'Behind the Scenes': 'Behind scenes', 'Red Flag / Green Flag': 'Red/green',
-  'Is It Possible To...?': 'Is it possible', 'Smart vs Dumb': 'Smart/dumb', 'Opinion': 'Opinion',
-  'Tier List': 'Tier list', 'Two People Are Trying To...': 'Two people', 'FAQ': 'Cost FAQ',
-};
 const DOW = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-
-// calendar geometry
-const CX = 70, CY = 120, CW = 130, CH = 108;
-const cell = (day) => [CX + ((day - 1) % 7) * CW, CY + Math.floor((day - 1) / 7) * CH];
 
 const arc = {
   type: 'board',
@@ -37,90 +27,137 @@ const arc = {
   },
 };
 
-const map = {
-  type: 'board',
-  title: 'The 30-Day Map',
-  guide:
-    DOW.map((d, c) => g.text(CX + c * CW + CW / 2, CY - 12, d, { size: 13, anchor: 'middle' })).join('') +
-    Array.from({ length: 30 }, (_, k) => {
-      const [x, y] = cell(k + 1);
-      return g.rect(x + 3, y + 3, CW - 6, CH - 6, { r: 6, fill: '#F3F4F3' }) + g.text(x + 12, y + 24, String(k + 1), { size: 13 });
-    }).join(''),
-  ink:
-    plan.map((p) => {
-      const [x, y] = cell(p.day);
-      return i.dot(x + CW - 22, y + 22, FUNNEL_INK[p.funnel], 10) + i.text(x + 12, y + 62, p.funnel, FUNNEL_INK[p.funnel], 26) + i.text(x + 12, y + 88, SHORT[p.structure] || p.structure, 'black', 20);
-    }).join('') +
-    i.text(cell(1)[0] + 12, cell(1)[1] + 70, 'Schedule', 'purple', 24) + i.text(cell(1)[0] + 12, cell(1)[1] + 94, 'week 1', 'purple', 22) +
-    i.text(cell(29)[0] + 12, cell(29)[1] + 62, 'REVIEW', 'red', 26) + i.text(cell(29)[0] + 12, cell(29)[1] + 88, '+ book shoot', 'red', 20) +
-    i.text(460, 680, '13 posts · 6 TOFU · 3 MOFU · 4 BOFU', 'purple', 30),
-  notes: {
-    say: [
-      'Here is the month. Thirteen posts, every Tuesday, Thursday and Sunday.',
-      'Orange is reach, blue is connect, green is convert. Notice we never put a convert post first; we earn it.',
-      'Day 29 you review what worked and book your next shoot day, so month two is already in motion.',
-    ],
-    draw: ['Dot each post day in its funnel colour. Write REVIEW on day 29.'],
-  },
+
+// ---------- the client-facing plan: everything printed, nothing to fill in but ticks
+
+const FUNNEL = {
+  TOFU: { name: 'Reach', color: '#F29A16' },
+  MOFU: { name: 'Connect', color: '#1E63F0' },
+  BOFU: { name: 'Convert', color: '#16A34A' },
+};
+const POST_TIME = { Tue: '7:30am', Thu: '7:30am', Sun: '7:00pm' };
+const JOB = { plan: '#1B2ED0', post: '#16A34A', engage: '#F29A16', stories: '#A51CC9', log: '#3B3B3B', shoot: '#E5352B' };
+
+// what to do on the days nobody posts
+function dayJob(day) {
+  if (day === 1) return { kind: 'plan', text: 'Kick-off: update your bio, schedule week 1 posts', mins: 30 };
+  if (day === 29) return { kind: 'log', text: 'Day-30 review + book next shoot day', mins: 45 };
+  const dow = DOW[(day - 1) % 7];
+  return {
+    MON: { kind: 'plan', text: "Review last week + schedule this week's 3 posts", mins: 30 },
+    WED: { kind: 'stories', text: '2 behind-the-scenes stories', mins: 10 },
+    FRI: { kind: 'log', text: 'Log numbers in the tracker', mins: 10 },
+    SAT: { kind: 'engage', text: 'Rest. Reply to comments only', mins: 10 },
+  }[dow];
+}
+
+const howItWorks = {
+  type: 'page',
+  title: 'How This Works',
+  html: `<div class="steps">
+    ${[
+      ['Before day 1', 'Shoot day', 'Film all 13 posts in one half-day using the scripts on the post pages (Module 5). One day of filming = one month of content.'],
+      ['Every Monday', 'Review + schedule', 'Claude reviews last week\'s numbers, then you schedule that week\'s 3 posts (Modules 6 and 7). Thirty minutes.'],
+      ['Every day', 'Do the one job', 'The calendar gives every day one job. Most take 15 minutes. Tick it off when it\'s done.'],
+      ['Day 29', 'Review + go again', 'Score your posts on the Day-30 grid, keep what worked, and book next month\'s shoot day.'],
+    ]
+      .map(([when, what, how], k) => `<div class="step"><div class="step-n">${k + 1}</div><div class="step-when">${when}</div><h4>${what}</h4><p>${how}</p></div>`)
+      .join('')}
+  </div>
+  <div class="fine"><b>Client stories:</b> remove names and anything identifying, get the client's OK, and check your local conduct and advertising rules before posting results.</div>`,
 };
 
-const daily = {
-  type: 'board',
-  title: 'Daily Non-Negotiables',
-  guide: [0, 1, 2, 3].map((k) => g.rect(110, 120 + k * 135, 52, 52, { r: 6 }) + g.line(200, 172 + k * 135, 960, 172 + k * 135)).join(''),
-  ink:
-    [
-      ['15 min: reply to every comment + DM', 'red'],
-      ['Comment on 5 local accounts (referral partners!)', 'blue'],
-      ['1-3 stories: behind the scenes, no polish', 'purple'],
-      ['Log any enquiry that mentions your content', 'dkgreen'],
-    ].map(([s, c], k) => i.text(210, 160 + k * 135, s, c, 36) + i.tick(118, 150 + k * 135, 'dkgreen')).join(''),
-  notes: {
-    say: [
-      'Posting is three times a week. These four are every day, and they take about twenty minutes.',
-      'Reply to everything. Comment on five local accounts, especially accountants, brokers and other referral partners. A few casual stories. And log every enquiry that mentions a video.',
-    ],
-    draw: ['Write one habit per line and tick each box.'],
-  },
+const weeklySchedule = (() => {
+  const T0 = 7, T1 = 20, top = 128, hh = 41, left = 140, cw = 120;
+  const y = (t) => top + (t - T0) * hh;
+  const blocks = [
+    [0, 8.5, 0.5, 'plan', 'REVIEW + PLAN', "Claude reviews last week. Schedule this week's 3 posts"],
+    [1, 7.5, 0.25, 'post', 'POST 7:30am', 'Goes live. Reply for 15 min'],
+    [3, 7.5, 0.25, 'post', 'POST 7:30am', 'Goes live. Reply for 15 min'],
+    [6, 19, 0.25, 'post', 'POST 7:00pm', 'Goes live. Reply for 15 min'],
+    ...[0, 1, 2, 3, 4].map((d) => [d, 12.5, 0.25, 'engage', 'ENGAGE', 'Replies + comment on 5 local accounts']),
+    [2, 15, 0.25, 'stories', 'STORIES', '2 behind-the-scenes stories'],
+    [4, 16, 0.17, 'log', 'LOG', 'Numbers into the tracker'],
+  ];
+  const fmt = (t) => `${((Math.floor(t) + 11) % 12) + 1}${t >= 12 ? 'pm' : 'am'}`;
+  const html =
+    `<div class="cal-frame"></div>` +
+    DOW.map((d, c) => `<div class="wk-day" style="left:${left + c * cw}px;width:${cw}px">${d}</div>`).join('') +
+    Array.from({ length: T1 - T0 + 1 }, (_, k) => `<div class="wk-hour" style="top:${y(T0 + k) - 7}px">${fmt(T0 + k)}</div><div class="wk-line" style="top:${y(T0 + k)}px;left:${left}px;width:${cw * 7}px"></div>`).join('') +
+    DOW.map((_, c) => `<div class="wk-vline" style="left:${left + c * cw}px;top:${top - 30}px;height:${y(T1) - top + 30}px"></div>`).join('') +
+    blocks
+      .map(([d, t, len, kind, label, sub]) => `<div class="wk-ev" style="left:${left + d * cw + 3}px;top:${y(t) + 1}px;width:${cw - 6}px;min-height:${Math.max(len * hh, 34)}px;background:${JOB[kind]}"><b>${label}</b><span>${esc(sub)}</span></div>`)
+      .join('') +
+    `<div class="wk-note"><b>About 3 hours a week.</b> Put these blocks in your calendar as recurring events now, the same way you'd block a client meeting. Once a month, add a half-day shoot.</div>`;
+  return { type: 'page', title: 'Your Weekly Content Schedule', html };
+})();
+
+const monthCalendar = (() => {
+  const left = 74, top = 112, cw = 130, ch = 116;
+  const byDay = Object.fromEntries(plan.map((p, k) => [p.day, { ...p, n: k + 1 }]));
+  const cells = Array.from({ length: 30 }, (_, k) => {
+    const day = k + 1;
+    const x = left + (k % 7) * cw;
+    const y = top + Math.floor(k / 7) * ch;
+    const p = byDay[day];
+    let body;
+    if (p) {
+      const f = FUNNEL[p.funnel];
+      body = `<div class="mc-chip" style="background:${f.color}">POST ${p.n} · ${POST_TIME[p.dow]}</div><div class="mc-title">${esc(p.short)}</div><div class="mc-sub" style="color:${f.color}">${p.funnel} · ${f.name}</div>`;
+    } else {
+      const j = dayJob(day);
+      body = `<div class="mc-job" style="border-color:${JOB[j.kind]}">${esc(j.text)}</div><div class="mc-sub">${j.mins} min</div>`;
+    }
+    return `<div class="mc-cell${p ? ' is-post' : ''}" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px"><div class="mc-day">${day}</div><span class="mc-box"></span>${body}</div>`;
+  }).join('');
+  const heads = DOW.map((d, c) => `<div class="mc-head" style="left:${left + c * cw}px;width:${cw}px">${d}</div>`).join('');
+  const legend = `<div class="mc-legend">${Object.entries(FUNNEL)
+    .map(([k, f]) => `<span><i style="background:${f.color}"></i>${k} · ${f.name}</span>`)
+    .join('')}<span class="mc-every"><b>Every day:</b> 15 min replying + comment on 5 local accounts</span></div>`;
+  return { type: 'page', title: 'Your 30 Days', tag: { label: '13 posts · Tue / Thu / Sun', color: '#1B2ED0' }, html: heads + cells + legend };
+})();
+
+const postPage = (p, n) => {
+  const f = FUNNEL[p.funnel];
+  const ex = p.example;
+  return {
+    type: 'page',
+    title: `Post ${n}: ${p.topic}`,
+    small: true,
+    tag: { label: `${p.funnel} · ${f.name}`, color: f.color },
+    html: `<div class="pp-main">
+      <div class="pp-meta"><span>Day ${p.day} · ${p.dow} · ${POST_TIME[p.dow]}</span><span>${esc(p.format)} · ${esc(p.length)}</span><span>Structure: ${esc(p.structure)}</span></div>
+      <div class="pp-sec"><div class="pp-h">1 · Say this first</div><div class="pp-hook">"${esc(p.hook)}"</div></div>
+      <div class="pp-sec"><div class="pp-h">2 · Then cover</div><ol>${p.beats.map((b) => `<li>${esc(b)}</li>`).join('')}</ol></div>
+      <div class="pp-sec"><div class="pp-h">3 · End with</div><div class="pp-cta">${esc(p.cta)}</div></div>
+      <div class="pp-two">
+        <div><div class="pp-h">On-screen text</div><div class="pp-box">${esc(p.onscreen)}</div></div>
+        <div><div class="pp-h">Caption</div><div class="pp-box mono">${esc(p.caption)}</div></div>
+      </div>
+    </div>
+    <div class="pp-side">
+      <div class="pp-card"><div class="pp-h">Make it yours</div><p><b>Law:</b> ${esc(p.law)}</p><p><b>Finance:</b> ${esc(p.finance)}</p></div>
+      ${ex ? `<div class="pp-card ex"><div class="pp-h">Seen it work</div><div class="ex-views">${esc(ex.views)}</div><div class="ex-who">${esc(ex.who)} · ${esc(ex.platform)}</div><p>${esc(ex.hook)}</p><a class="ex-url" href="https://www.${esc(ex.url)}">Watch it before you film yours: ${esc(ex.url)}</a></div>` : ''}
+      <div class="pp-ticks">${['Scripted', 'Filmed', 'Edited', 'Scheduled'].map((t) => `<span><i></i>${t}</span>`).join('')}</div>
+    </div>`,
+  };
 };
 
-const review = {
-  type: 'board',
+const reviewPrinted = {
+  type: 'page',
   title: 'Day 30 Review',
-  guide:
-    g.line(150, 660, 980, 660) + g.arrowHead(980, 660, 'right') +
-    g.line(150, 660, 150, 110) + g.arrowHead(150, 110, 'up') +
-    g.line(565, 120, 565, 650, { dash: '8 8' }) + g.line(160, 385, 970, 385, { dash: '8 8' }) +
-    g.text(980, 690, 'Views', { size: 14, anchor: 'end' }) + g.text(140, 120, 'Enquiries', { size: 14, anchor: 'end' }),
-  ink:
-    i.text(770, 240, 'DOUBLE DOWN', 'dkgreen', 40, { anchor: 'middle' }) + i.text(770, 280, 'film 3 more like it', 'dkgreen', 28, { anchor: 'middle' }) +
-    i.text(355, 240, 'BETTER HOOK', 'blue', 40, { anchor: 'middle' }) + i.text(355, 280, 'same topic, new hook', 'blue', 28, { anchor: 'middle' }) +
-    i.text(770, 520, 'STRONGER CTA', 'orange', 40, { anchor: 'middle' }) + i.text(770, 560, 'people watch, don\'t act', 'orange', 28, { anchor: 'middle' }) +
-    i.text(355, 520, 'KILL IT', 'red', 40, { anchor: 'middle' }) + i.text(355, 560, 'move on', 'red', 28, { anchor: 'middle' }),
-  notes: {
-    say: [
-      'On day 30, put every post on this grid: views along the bottom, enquiries up the side.',
-      'High views and enquiries: double down, film three more like it. Low views but enquiries: great topic, better hook. High views, no enquiries: stronger call to action. Low and low: kill it and move on.',
-      'Paste your numbers into Claude with the weekly review prompt and it will sort them for you.',
-    ],
-    draw: ['Label the four quadrants.'],
-  },
+  minutes: 30,
+  html: `<div class="rv">
+    <div class="rv-y">More enquiries ↑</div><div class="rv-x">More views →</div>
+    ${[
+      ['Better hook', 'Few views, but enquiries came in. Great topic. Re-film it with a stronger first line.', '#1E63F0'],
+      ['Double down', 'Views and enquiries. Film 3 more like it next month.', '#16A34A'],
+      ['Kill it', 'Few views, no enquiries. Drop the topic and move on.', '#E5352B'],
+      ['Stronger CTA', 'Lots of views, no enquiries. People watch but don\'t act. Make the ask clearer.', '#F29A16'],
+    ]
+      .map(([h, t, c]) => `<div class="rv-q"><h4 style="color:${c}">${h}</h4><p>${t}</p><div class="rv-lines"></div></div>`)
+      .join('')}
+  </div>`,
 };
 
-// one detailed page per week for the standalone plan
-const weekPage = (w, title) => ({
-  type: 'board',
-  title,
-  html: cards(
-    plan
-      .filter((p) => p.week === w || (w === 4 && p.week === 5))
-      .map((p) => ({
-        h4: `Day ${p.day} · ${p.dow} · ${p.funnel}`,
-        p: `${p.topic}\n\nStructure: ${p.structure}\nHook: ${p.hook}\nCTA: ${p.cta}`,
-        eg: `Law: ${p.law}\nFinance: ${p.finance}`,
-      })),
-    { x: 50, y: 74, w: 950, h: 590, cols: w === 4 ? 4 : 3 }
-  ),
-});
-
-module.exports = { arc, map, daily, review, weekPage, FUNNEL_INK };
+module.exports = { arc, FUNNEL_INK, FUNNEL, POST_TIME, howItWorks, weeklySchedule, monthCalendar, postPage, reviewPrinted };

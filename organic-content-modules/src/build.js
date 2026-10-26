@@ -22,6 +22,7 @@ const load = (dir) =>
     .map((f) => require(path.join(__dirname, dir, f)));
 const mods = [...load('modules'), ...load('extras')].filter((m) => !only || m.number === Number(only));
 const plan = require('./plan');
+const { POST_TIME } = require('./plan-slides');
 
 const pad = (n) => String(n).padStart(2, '0');
 const slug = (m) => m.file || `Module-${pad(m.number)}-${m.title.replace(/[^A-Za-z0-9]+/g, '-').replace(/-+$/, '')}`;
@@ -29,7 +30,7 @@ const slug = (m) => m.file || `Module-${pad(m.number)}-${m.title.replace(/[^A-Za
 function presenterGuide(m) {
   let md = `# Module ${m.number}: ${m.title}\n\n`;
   md += `**Run time:** ${m.runtime}  \n**Outcome:** ${m.outcome}\n\n`;
-  md += `Film it like a TAB module: workbook on the iPad (or screen-share), you on camera, drawing over the faint guides as you talk. The FILLED PDF shows what each board should look like when you're done.\n\n---\n\n`;
+  md += `Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.\n\n---\n\n`;
   m.slides.forEach((sl, i) => {
     const name =
       sl.type === 'cover' ? 'Cover' :
@@ -37,6 +38,8 @@ function presenterGuide(m) {
       sl.type === 'notes' ? 'Notes page' :
       sl.type === 'next' ? 'Next... (takeaways + checklist)' :
       sl.type === 'statement' ? `Statement: "${sl.text.replace(/\n/g, ' ')}"` :
+      sl.type === 'divider' ? `Section: ${sl.lead || 'The'} ${sl.word}` :
+      sl.type === 'point' ? `${sl.tone === 'problem' ? 'Problem' : 'Opportunity'} ${sl.n}: ${sl.text.replace(/\n/g, ' ')}` :
       sl.title;
     md += `## Slide ${i + 1}: ${name}\n\n`;
     const n = sl.notes || {};
@@ -54,14 +57,15 @@ function presenterGuide(m) {
   // the plan as a CSV, same columns as our client content calendars + the extras
   const q = (v) => `"${String(v).replace(/"/g, '""')}"`;
   const csv = [
-    ['Post Idea', 'Post Link', 'Scheduled Date to Post', 'Posted/Scheduled', 'Posting Schedule', 'Post Format', 'Funnel', 'Structure', 'Hook', 'Law example', 'Finance example', 'CTA'],
-    ...plan.map((p) => [p.topic, '', `Day ${p.day}`, '', p.dow, 'Video Post', p.funnel, p.structure, p.hook, p.law, p.finance, p.cta]),
+    ['Post Idea', 'Post Link', 'Scheduled Date to Post', 'Posted/Scheduled', 'Posting Schedule', 'Post Format', 'Funnel', 'Structure', 'Hook', 'Script beats', 'CTA', 'On-screen text', 'Caption', 'Law example', 'Finance example', 'Real example'],
+    ...plan.map((p) => [p.topic, '', `Day ${p.day}`, '', `${p.dow} ${POST_TIME[p.dow]}`, `Video Post (${p.format}, ${p.length})`, p.funnel, p.structure, p.hook, p.beats.map((b, k) => `${k + 1}. ${b}`).join(' '), p.cta, p.onscreen, p.caption, p.law, p.finance, p.example ? `${p.example.who}, ${p.example.views}: ${p.example.url}` : '']),
   ]
     .map((r) => r.map(q).join(','))
     .join('\n');
   fs.writeFileSync(path.join(ROOT, '30-Day-Post-Plan.csv'), csv + '\n');
 
-  const browser = await chromium.launch();
+  // bundled Chromium if it's installed, otherwise the machine's Chrome
+  const browser = await chromium.launch().catch(() => chromium.launch({ channel: 'chrome' }));
   const page = await browser.newPage({ viewport: { width: 1056, height: 753 } });
 
   for (const m of mods) {

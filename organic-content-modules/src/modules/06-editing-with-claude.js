@@ -20,7 +20,17 @@ module.exports = {
   runtime: '15 to 20 min (plus a live demo)',
   outcome: 'The firm can hand a folder of raw footage to Claude and get back captioned, correctly sized rough cuts the same day, then approve them.',
   slides: [
-    { type: 'cover', kicker: 'Module 6', title: 'Editing\nwith Claude' },
+    { type: 'cover', title: 'Editing\nwith Claude' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem' },
+    { type: 'point', tone: 'problem', n: 1, text: "Two Weeks From Filming to Posting", notes: { say: ["Footage goes to an editor, then revisions, and the content goes stale."] } },
+    { type: 'point', tone: 'problem', n: 2, text: "Editing Is Slow and Expensive", notes: { say: ["Most of an editor's time goes on the boring part: transcripts, selects and cuts."] } },
+    { type: 'point', tone: 'problem', n: 3, text: "Hours of Raw Footage to Sort Through", notes: { say: ["Finding the clean take of every line takes longer than filming it."] } },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
+    { type: 'point', tone: 'idea', n: 1, text: "Claude Does the Boring 80%", notes: { say: ["Transcribe, select, cut, caption, resize and export."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "Same-Day Turnaround", notes: { say: ["Film in the morning, approve the cuts that afternoon."] } },
+    { type: 'point', tone: 'idea', n: 3, text: "Write the Edit Spec Once", notes: { say: ["Captions, colours, names and sizes on one page Claude reads every month."] } },
 
     {
       type: 'board',
@@ -99,8 +109,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'board',
       title: 'The Prompts',
@@ -166,6 +174,7 @@ module.exports = {
     {
       type: 'sheet',
       title: 'Your Edit Spec',
+      minutes: 10,
       cells: [
         { x: 50, y: 70, w: 475, h: 150, label: 'Caption style', prompt: 'Font, size, highlight colour, words per line' },
         { x: 525, y: 70, w: 475, h: 150, label: 'Brand', prompt: 'Colours, logo, end card' },
@@ -189,8 +198,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'next',
       checklist: [
@@ -203,6 +210,6 @@ module.exports = {
       notes: { say: ['Takeaway: Claude edits, you approve. Start with one video, then batch the month.'] },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };

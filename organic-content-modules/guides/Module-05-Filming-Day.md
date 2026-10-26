@@ -3,13 +3,47 @@
 **Run time:** 15 min  
 **Outcome:** The firm can set up a simple set, run a half-day shoot and film a month of content in one sitting.
 
-Film it like a TAB module: workbook on the iPad (or screen-share), you on camera, drawing over the faint guides as you talk. The FILLED PDF shows what each board should look like when you're done.
+Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.
 
 ---
 
 ## Slide 1: Cover
 
-## Slide 2: One Day, One Month
+## Slide 2: Section: The BIG Problems
+
+## Slide 3: Problem 1: Filming Every Week Never Lasts
+
+**Say:**
+- A matter blows up and content is the first thing that goes.
+
+## Slide 4: Problem 2: Bad Audio Kills Good Advice
+
+**Say:**
+- People will watch a slightly soft video. They won't watch one they can't hear.
+
+## Slide 5: Problem 3: Flat on Camera
+
+**Say:**
+- The camera flattens your energy, so normal looks bored.
+
+## Slide 6: Section: The OPPORTUNITY
+
+## Slide 7: Opportunity 1: One Shoot Day = One Month of Content
+
+**Say:**
+- Three to four hours, once a month, twelve to fifteen posts.
+
+## Slide 8: Opportunity 2: A $300 Kit Is Enough to Start
+
+**Say:**
+- Your phone, a lav mic, a tripod and a window.
+
+## Slide 9: Opportunity 3: Run the Day Off a Shot List
+
+**Say:**
+- Set up, warm up, film in blocks, grab b-roll, back up.
+
+## Slide 10: One Day, One Month
 
 **Say:**
 - The biggest mistake firms make is trying to film something every week. You get busy, a matter blows up, and content is the first thing that goes.
@@ -19,7 +53,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Write "Shoot day" in the circle. Dot Tuesday, Thursday and Sunday every week in the calendar.
 
-## Slide 3: The Set (from above)
+## Slide 11: The Set (from above)
 
 **Say:**
 - This is the whole set, from above. You, one to two metres off the wall so you get some depth.
@@ -30,7 +64,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Label each grey shape, then the red rule about audio.
 
-## Slide 4: Gear: Start vs Upgrade
+## Slide 12: Gear: Start vs Upgrade
 
 **Say:**
 - Start with your phone, a wireless lav mic and a window. That is about three hundred dollars and it is genuinely enough.
@@ -40,9 +74,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Circle "Start here" in green. Red line underneath.
 
-## Slide 5: Notes page
-
-## Slide 6: The Shoot Day Run Sheet
+## Slide 13: The Shoot Day Run Sheet
 
 **Say:**
 - Here is the run sheet. Set up and test audio first, every time.
@@ -54,7 +86,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Write the times on the left and the blocks on the right.
 
-## Slide 7: On Camera
+## Slide 14: On Camera
 
 **Say:**
 - Bring twenty percent more energy than feels normal. The camera flattens you.
@@ -65,12 +97,12 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Fill the T-chart: Do on the left in green, Don't on the right in red.
 
-## Slide 8: Statement: "The camera eats energy. Bring 20% more than feels normal."
+## Slide 15: Statement: "The camera eats energy. Bring 20% more than feels normal."
 
 **Say:**
 - If it feels slightly over the top while filming, it will look normal on a phone.
 
-## Slide 9: Shot List
+## Slide 16: Shot List
 
 **Say:**
 - Print this or have it on the iPad on shoot day. Tick each one off as you go so nothing gets missed.
@@ -78,9 +110,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Fill in the first four rows as an example.
 
-## Slide 10: Notes page
-
-## Slide 11: Next... (takeaways + checklist)
+## Slide 17: Next... (takeaways + checklist)
 
 **Say:**
 - Takeaway: one shoot day a month, good audio, energy up, keep rolling. Next module, we edit it all with Claude.
@@ -92,5 +122,5 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 - [ ] Print the shot list with all 13 videos
 - [ ] Film. Back up the footage the same day
 
-## Slide 12: Close
+## Slide 18: Notes page
 

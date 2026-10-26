@@ -3,13 +3,47 @@
 **Run time:** 15 to 18 min  
 **Outcome:** The firm can write a script with all three hook layers, knows the 8 structures that work in legal and finance, and uses Claude to draft scripts in their own voice.
 
-Film it like a TAB module: workbook on the iPad (or screen-share), you on camera, drawing over the faint guides as you talk. The FILLED PDF shows what each board should look like when you're done.
+Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.
 
 ---
 
 ## Slide 1: Cover
 
-## Slide 2: The Anatomy of a Video
+## Slide 2: Section: The BIG Problems
+
+## Slide 3: Problem 1: They Scroll Past in 3 Seconds
+
+**Say:**
+- If the first three seconds don't land, nobody sees the advice.
+
+## Slide 4: Problem 2: It Sounds Like a Brochure
+
+**Say:**
+- Professional content flops when it sounds like a letter of advice.
+
+## Slide 5: Problem 3: Writing Scripts Takes Forever
+
+**Say:**
+- Thirteen scripts from scratch is a week of evenings.
+
+## Slide 6: Section: The OPPORTUNITY
+
+## Slide 7: Opportunity 1: Stack All 3 Hook Layers
+
+**Say:**
+- Written, verbal and visual hooks all pointing at one idea.
+
+## Slide 8: Opportunity 2: One Proven Structure per Video
+
+**Say:**
+- Eight structures that work for firms. Pick one, deliver one idea.
+
+## Slide 9: Opportunity 3: Claude Drafts, You Make It Sound Like You
+
+**Say:**
+- Claude writes the first draft. You read it out loud and make it yours.
+
+## Slide 10: The Anatomy of a Video
 
 **Say:**
 - Every short video has three parts. The hook is the first three seconds, and it decides whether anyone watches the rest.
@@ -19,7 +53,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Label Hook, Body, CTA in the bar. Arrow out of each with its job. Purple rule underneath.
 
-## Slide 3: The 3 Hook Layers
+## Slide 11: The 3 Hook Layers
 
 **Say:**
 - A hook has three layers working at the same time.
@@ -30,7 +64,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Write an example hook at the top of the phone. Label each layer with an arrow.
 
-## Slide 4: Hooks That Work for Firms
+## Slide 12: Hooks That Work for Firms
 
 **Say:**
 - Six hook patterns that work for legal and finance. Steal them.
@@ -39,16 +73,14 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Circle your two favourites.
 
-## Slide 5: Notes page
-
-## Slide 6: 8 Structures That Work for Firms
+## Slide 13: 8 Structures That Work for Firms
 
 **Say:**
 - These eight structures are the backbone of everything we film for our clients.
 - The top row is great for reach. The bottom row is great for followers and leads, because people see how you think.
 - Pick one structure per video, and do not use the same one twice in a row.
 
-## Slide 7: Use Claude to Draft the Script
+## Slide 14: Use Claude to Draft the Script
 
 **Say:**
 - You do not need to write scripts from scratch. Give Claude your firm, your pillars and the real questions clients ask, then pick a topic and a structure.
@@ -58,12 +90,12 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Write the four "then you" steps down the right.
 
-## Slide 8: Statement: "Say it like you would across the desk, not like you would write it in a letter."
+## Slide 15: Statement: "Say it like you would across the desk, not like you would write it in a letter."
 
 **Say:**
 - The number one reason professional content flops is it sounds like a brochure. Talk like you talk to a client.
 
-## Slide 9: Script Builder
+## Slide 16: Script Builder
 
 **Say:**
 - Pause and build one script now using this sheet. Then do the rest of your 13 with Claude using the prompt from the last slide.
@@ -71,9 +103,7 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 **Draw:**
 - Fill it in with the 50/50 myth example.
 
-## Slide 10: Notes page
-
-## Slide 11: Next... (takeaways + checklist)
+## Slide 17: Next... (takeaways + checklist)
 
 **Say:**
 - Takeaway: hook, body, CTA. Three hook layers. One structure per video. Claude drafts, you make it sound like you.
@@ -85,5 +115,5 @@ Film it like a TAB module: workbook on the iPad (or screen-share), you on camera
 - [ ] Read every script out loud and edit
 - [ ] Run the compliance check on all 13
 
-## Slide 12: Close
+## Slide 18: Notes page
 

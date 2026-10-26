@@ -6,7 +6,17 @@ module.exports = {
   runtime: '15 to 18 min',
   outcome: 'The firm can write a script with all three hook layers, knows the 8 structures that work in legal and finance, and uses Claude to draft scripts in their own voice.',
   slides: [
-    { type: 'cover', kicker: 'Module 4', title: 'Hooks\n& Scripts' },
+    { type: 'cover', title: 'Hooks\n& Scripts' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem' },
+    { type: 'point', tone: 'problem', n: 1, text: "They Scroll Past in 3 Seconds", notes: { say: ["If the first three seconds don't land, nobody sees the advice."] } },
+    { type: 'point', tone: 'problem', n: 2, text: "It Sounds Like a Brochure", notes: { say: ["Professional content flops when it sounds like a letter of advice."] } },
+    { type: 'point', tone: 'problem', n: 3, text: "Writing Scripts Takes Forever", notes: { say: ["Thirteen scripts from scratch is a week of evenings."] } },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
+    { type: 'point', tone: 'idea', n: 1, text: "Stack All 3 Hook Layers", notes: { say: ["Written, verbal and visual hooks all pointing at one idea."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "One Proven Structure per Video", notes: { say: ["Eight structures that work for firms. Pick one, deliver one idea."] } },
+    { type: 'point', tone: 'idea', n: 3, text: "Claude Drafts, You Make It Sound Like You", notes: { say: ["Claude writes the first draft. You read it out loud and make it yours."] } },
 
     {
       type: 'board',
@@ -100,8 +110,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'board',
       title: '8 Structures That Work for Firms',
@@ -172,7 +180,8 @@ module.exports = {
     {
       type: 'sheet',
       title: 'Script Builder',
-      tag: { x: 760, y: 26, w: 240, label: 'Structure:' },
+      minutes: 15,
+      tag: { x: 520, y: 22, w: 240, label: 'Structure:' },
       cells: [
         { x: 50, y: 70, w: 316, h: 120, label: 'Written hook', prompt: 'On screen, under 7 words' },
         { x: 366, y: 70, w: 317, h: 120, label: 'Verbal hook', prompt: 'First sentence' },
@@ -182,7 +191,7 @@ module.exports = {
         { x: 525, y: 490, w: 475, h: 170, label: 'Compliance check', prompt: 'General info? No promised outcomes? No client details?' },
       ],
       ink:
-        i.text(850, 64, 'Myth-bust', 'purple', 28) +
+        i.text(610, 60, 'Myth-bust', 'purple', 28) +
         i.text(66, 150, '"50/50 is a myth"', 'red', 32) +
         i.text(382, 140, '"Everyone thinks a split', 'blue', 26) +
         i.text(382, 168, 'is automatically 50/50."', 'blue', 26) +
@@ -199,8 +208,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'next',
       checklist: [
@@ -213,6 +220,6 @@ module.exports = {
       notes: { say: ['Takeaway: hook, body, CTA. Three hook layers. One structure per video. Claude drafts, you make it sound like you.'] },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };

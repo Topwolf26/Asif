@@ -1,6 +1,14 @@
 const { ink: i } = require('../lib');
 const plan = require('../plan');
-const { arc, map, daily, review, weekPage, FUNNEL_INK } = require('../plan-slides');
+const { howItWorks, weeklySchedule, monthCalendar, postPage, reviewPrinted, FUNNEL_INK } = require('../plan-slides');
+
+// the client hand-out: "your next 30 days are planned for you"
+const WEEKS = [
+  [1, 'Week 1 · Days 1-7', 'Introduce.\nLet them meet you.'],
+  [2, 'Week 2 · Days 8-14', "Educate.\nAnswer what they're Googling."],
+  [3, 'Week 3 · Days 15-21', 'Prove it.\nShow the work.'],
+  [4, 'Week 4 · Days 22-30', 'Convert.\nShow them how to work with you.'],
+];
 
 module.exports = {
   number: 30,
@@ -8,14 +16,15 @@ module.exports = {
   title: '30-Day Post Plan',
   noGuide: true,
   slides: [
-    { type: 'cover', kicker: 'Your', title: '30-Day Post Plan' },
-    arc,
-    map,
-    weekPage(1, 'Week 1: Introduce'),
-    weekPage(2, 'Week 2: Educate'),
-    weekPage(3, 'Week 3: Prove'),
-    weekPage(4, 'Week 4: Convert'),
-    daily,
+    { type: 'cover', title: 'Your 30-Day\nPost Plan' },
+    { type: 'shot', text: 'Your next 30 days are planned for you.\nYou just need to take action.' },
+    howItWorks,
+    weeklySchedule,
+    monthCalendar,
+    ...WEEKS.flatMap(([w, kicker, text]) => [
+      { type: 'shot', theme: 'white', kicker, text },
+      ...plan.map((p, k) => [p, k + 1]).filter(([p]) => p.week === w || (w === 4 && p.week === 5)).map(([p, n]) => postPage(p, n)),
+    ]),
     {
       type: 'sheet',
       title: 'Tracker',
@@ -41,7 +50,8 @@ module.exports = {
         i.text(612, 140, '1,240', 'blue', 26) + i.text(712, 140, '41%', 'blue', 26) + i.text(812, 140, '18', 'blue', 26) + i.text(912, 140, '1', FUNNEL_INK.BOFU, 26) +
         i.text(612, 182, '3,900', 'blue', 26) + i.text(712, 182, '52%', 'blue', 26) + i.text(812, 182, '44', 'blue', 26) + i.text(912, 182, '0', 'red', 26),
     },
-    review,
-    { type: 'end' },
+    reviewPrinted,
+    { type: 'shot', text: 'Done beats perfect.\nPost all 13, then judge.' },
+    { type: 'notes' },
   ],
 };

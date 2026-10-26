@@ -1,11 +1,12 @@
 // Slide engine for the organic content modules.
-// Replicates the TAB / Agency Mentor workbook layout: navy cover with a mint
-// glow, grey whiteboard slides with faint guide diagrams, dotted Notes pages,
-// boxed worksheets, a "Next..." page and a closing cover.
+// Matches the TAB / Agency Mentor worksheets on Skool: navy cover with a mint
+// glow, "The BIG Problems" / "The OPPORTUNITY" text pages with numbered
+// points (flat blue / white linen, like an Instagram text post), grey boards with a blue-square heading and a white framed
+// diagram, timed exercises, a "Next..." page and a dotted Notes page.
 //
 // Every slide is 1056 x 753 (11in x 7.84in landscape, same ratio as the
 // TAB PDFs). Two layers per board:
-//   guide - faint grey diagram, always printed (you draw over it on camera)
+//   guide - thin black line diagram, always printed (you draw over it on camera)
 //   ink   - hand-drawn marker annotations, only in the FILLED reference copy
 
 const W = 1056;
@@ -22,9 +23,9 @@ const INK = {
 };
 
 const GUIDE = {
-  line: '#CDD0CF',
-  fill: '#E1E3E2',
-  text: '#B5B8B7',
+  line: '#1B1B1B',
+  fill: '#F3F3F3',
+  text: '#4A4A4A',
 };
 
 const esc = (s) =>
@@ -161,16 +162,16 @@ const ink = {
 
 const guide = {
   rect(x, y, w, h, o = {}) {
-    return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 0}" fill="${o.fill || 'none'}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 3}" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
+    return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r || 0}" fill="${o.fill || 'none'}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 2}" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
   },
   circle(cx, cy, r, o = {}) {
-    return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${o.fill || 'none'}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 3}" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
+    return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${o.fill || 'none'}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 2}" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
   },
   line(x1, y1, x2, y2, o = {}) {
-    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 3}" stroke-linecap="round" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
+    return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 2}" stroke-linecap="round" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
   },
   path(d, o = {}) {
-    return `<path d="${d}" fill="${o.fill || 'none'}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 3}" stroke-linecap="round" stroke-linejoin="round" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
+    return `<path d="${d}" fill="${o.fill || 'none'}" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 2}" stroke-linecap="round" stroke-linejoin="round" ${o.dash ? `stroke-dasharray="${o.dash}"` : ''}/>`;
   },
   text(x, y, str, o = {}) {
     const lines = String(str).split('\n');
@@ -190,7 +191,7 @@ const guide = {
       up: `${x - s},${y + s} ${x},${y} ${x + s},${y + s}`,
       down: `${x - s},${y - s} ${x},${y} ${x + s},${y - s}`,
     }[dir];
-    return `<polyline points="${pts}" fill="none" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 3}" stroke-linecap="round" stroke-linejoin="round"/>`;
+    return `<polyline points="${pts}" fill="none" stroke="${o.stroke || GUIDE.line}" stroke-width="${o.sw || 2}" stroke-linecap="round" stroke-linejoin="round"/>`;
   },
   // the "pill chain" of empty circles from the MRR Opportunity slide
   pills(x, y, n, d = 44, o = {}) {
@@ -216,13 +217,29 @@ function svgLayer(guideSvg = '', inkSvg = '', filled) {
   return `<svg class="layer" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${guideSvg}${filled ? `<g class="ink">${inkSvg}</g>` : ''}</svg>`;
 }
 
+// Module content is laid out on the full 1056 x 753 board. The Skool layout
+// needs room for the bigger heading and the white frame, so the content is
+// scaled into place rather than re-plotting every coordinate.
+const STAGE = {
+  board: 'translate(49px, 32px) scale(0.9)', // into the white frame
+  sheet: 'translate(25px, 23.5px) scale(0.979)', // worksheet cells, almost full size
+};
+const stage = (kind, inner) => `<div class="stage" style="transform:${STAGE[kind]}">${inner}</div>`;
+
+const timerIcon = `<svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="none" stroke="var(--timer)" stroke-width="3"/><path d="M20 10 V20 L26 25" fill="none" stroke="var(--timer)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+
+const heading = (sl) =>
+  (sl.title ? `<div class="bt${sl.small ? ' sm' : ''}">${esc(sl.title)}</div>` : '') +
+  (sl.minutes ? `<div class="timer">${timerIcon}${sl.minutes} Minutes</div>` : '');
+
+const lines = (t) => esc(t).replace(/\n/g, '<br>');
+
 const S = {
   cover(sl, ctx) {
     return `<section class="slide cover">
       <div class="glow"></div>
       <div class="cover-text">
         <div class="cover-wm">${ctx.brand.wordmark.map(esc).join('<br>')}</div>
-        ${sl.kicker ? `<div class="cover-kicker">${esc(sl.kicker)}</div>` : ''}
         <div class="cover-title">${esc(sl.title).replace(/\n/g, '<br>')}</div>
       </div>
     </section>`;
@@ -240,9 +257,48 @@ const S = {
 
   board(sl, ctx) {
     return `<section class="slide board">
-      ${sl.title ? `<div class="bt">${esc(sl.title)}</div>` : ''}
+      ${heading(sl)}
+      <div class="frame"></div>
+      ${stage('board', (sl.html || '') + svgLayer(sl.guide, sl.ink, ctx.filled))}
+      ${wordmark(ctx.brand)}
+    </section>`;
+  },
+
+  // Text pages ("text shots"): flat linen-textured blue or white page,
+  // uppercase text block, small wordmark at the bottom. Blue is the default;
+  // the Opportunity section and anything with theme: 'white' flips it.
+  shot(sl, ctx) {
+    const theme = sl.theme || 'blue';
+    return `<section class="slide shot ${theme}">
+      <div class="shot-text${sl.big ? ' big' : ''}">
+        ${sl.kicker ? `<div class="shot-kicker">${esc(sl.kicker)}</div>` : ''}
+        <div>${lines(sl.text)}</div>
+      </div>
+      <div class="shot-mark">${ctx.brand.wordmark.map(esc).join(' ')}.</div>
+    </section>`;
+  },
+
+  // "The BIG Problems" / "The OPPORTUNITY" section page
+  divider(sl, ctx) {
+    return S.shot({ text: `${sl.lead || 'The'} ${sl.word}`, theme: sl.theme || (sl.tone === 'idea' ? 'white' : 'blue'), big: true }, ctx);
+  },
+
+  // numbered point under a divider
+  point(sl, ctx) {
+    const label = sl.tone === 'idea' ? 'Opportunity' : 'Problem';
+    return S.shot({ text: sl.text, kicker: `${label} ${String(sl.n).padStart(2, '0')}`, theme: sl.theme || (sl.tone === 'idea' ? 'white' : 'blue') }, ctx);
+  },
+
+  statement(sl, ctx) {
+    return S.shot({ text: sl.text, theme: sl.theme || 'blue' }, ctx);
+  },
+
+  // free layout page: blue-square heading, html in page coordinates, no scaling
+  page(sl, ctx) {
+    return `<section class="slide board">
+      ${heading(sl)}
+      ${sl.tag ? `<div class="ptag" style="background:${sl.tag.color}">${esc(sl.tag.label)}</div>` : ''}
       ${sl.html || ''}
-      ${svgLayer(sl.guide, sl.ink, ctx.filled)}
       ${wordmark(ctx.brand)}
     </section>`;
   },
@@ -250,14 +306,6 @@ const S = {
   notes(sl, ctx) {
     return `<section class="slide board">
       <div class="notes"><div class="notes-tab">Notes</div></div>
-      ${wordmark(ctx.brand)}
-    </section>`;
-  },
-
-  statement(sl, ctx) {
-    return `<section class="slide board">
-      <div class="statement">${esc(sl.text).replace(/\n/g, '<br>')}</div>
-      ${svgLayer('', sl.ink, ctx.filled)}
       ${wordmark(ctx.brand)}
     </section>`;
   },
@@ -272,11 +320,10 @@ const S = {
         </div>`
       )
       .join('');
+    const tag = sl.tag ? `<div class="tag" style="left:${sl.tag.x}px;top:${sl.tag.y}px;width:${sl.tag.w}px"><b>${esc(sl.tag.label)}</b></div>` : '';
     return `<section class="slide board">
-      ${sl.title ? `<div class="bt">${esc(sl.title)}</div>` : ''}
-      ${sl.tag ? `<div class="tag" style="left:${sl.tag.x}px;top:${sl.tag.y}px;width:${sl.tag.w}px"><b>${esc(sl.tag.label)}</b></div>` : ''}
-      ${cells}
-      ${svgLayer(sl.guide, sl.ink, ctx.filled)}
+      ${heading(sl)}
+      ${stage('sheet', tag + cells + svgLayer(sl.guide, sl.ink, ctx.filled))}
       ${wordmark(ctx.brand)}
     </section>`;
   },
@@ -289,7 +336,7 @@ const S = {
     let inkSvg = sl.ink || '';
     if (ctx.filled) {
       sl.checklist.forEach((_, i) => {
-        inkSvg += ink.tick(686, 124 + i * 56, 'dkgreen', 0.95);
+        inkSvg += ink.tick(711, 150 + i * 56, 'dkgreen', 0.95);
       });
     }
     return `<section class="slide board">

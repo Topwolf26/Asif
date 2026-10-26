@@ -13,7 +13,17 @@ module.exports = {
   runtime: '15 min',
   outcome: 'The firm can turn one video into posts for every platform, has a weekly rhythm, and uses Claude to write captions, fill the calendar and review the numbers.',
   slides: [
-    { type: 'cover', kicker: 'Module 7', title: 'Posting\nwith Claude' },
+    { type: 'cover', title: 'Posting\nwith Claude' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem' },
+    { type: 'point', tone: 'problem', n: 1, text: "One Video, One Platform", notes: { say: ["Most firms post to Instagram and stop there, leaving the rest of their audience on the table."] } },
+    { type: 'point', tone: 'problem', n: 2, text: "Captions Take as Long as the Video", notes: { say: ["Writing for five platforms by hand is where posting stalls."] } },
+    { type: 'point', tone: 'problem', n: 3, text: "Posting Without Knowing What Works", notes: { say: ["No numbers, no review, so month two looks just like month one."] } },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
+    { type: 'point', tone: 'idea', n: 1, text: "Post Once, Show Up Everywhere", notes: { say: ["The same video goes to six places. Only the caption changes."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "Claude Writes the Captions and the Calendar", notes: { say: ["You approve, the scheduler posts."] } },
+    { type: 'point', tone: 'idea', n: 3, text: "Review Every Monday", notes: { say: ["Last week's numbers into Claude, three changes out."] } },
 
     {
       type: 'board',
@@ -84,8 +94,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'board',
       title: 'The Posting Prompts',
@@ -119,17 +127,19 @@ module.exports = {
       title: 'Your Weekly Rhythm',
       guide: week.map((d, k) => g.rect(60 + k * 136, 120, 124, 520, { r: 10 }) + g.text(122 + k * 136, 150, d, { size: 14, anchor: 'middle' })).join(''),
       ink:
-        i.text(122, 230, 'Claude', 'purple', 28, { anchor: 'middle' }) + i.text(122, 260, 'review', 'purple', 28, { anchor: 'middle' }) +
-        [1, 3, 6].map((k, n) => i.circle(122 + k * 136, 250, 50, 34, ['orange', 'blue', 'dkgreen'][n]) + i.text(122 + k * 136, 262, 'POST', ['orange', 'blue', 'dkgreen'][n], 32, { anchor: 'middle' })).join('') +
-        i.text(666, 380, 'Approve', 'purple', 28, { anchor: 'middle' }) + i.text(666, 410, 'next week', 'purple', 28, { anchor: 'middle' }) +
+        i.text(122, 230, 'Review +', 'purple', 28, { anchor: 'middle' }) + i.text(122, 260, 'schedule', 'purple', 28, { anchor: 'middle' }) + i.text(122, 290, '8:30am', 'purple', 24, { anchor: 'middle' }) +
+        [1, 3, 6].map((k, n) => i.circle(122 + k * 136, 250, 50, 34, ['orange', 'blue', 'dkgreen'][n]) + i.text(122 + k * 136, 262, 'POST', ['orange', 'blue', 'dkgreen'][n], 32, { anchor: 'middle' }) + i.text(122 + k * 136, 320, ['7:30am', '7:30am', '7pm'][n], ['orange', 'blue', 'dkgreen'][n], 26, { anchor: 'middle' })).join('') +
+        i.text(394, 380, '2 stories', 'purple', 28, { anchor: 'middle' }) +
+        i.text(666, 380, 'Log the', 'purple', 28, { anchor: 'middle' }) + i.text(666, 410, 'numbers', 'purple', 28, { anchor: 'middle' }) +
         i.line([[80, 560], [980, 560]], 'red', 5) +
         i.text(530, 610, '15 min a day: reply to every comment + DM', 'red', 32, { anchor: 'middle' }),
       notes: {
         say: [
-          'Your week. Monday, Claude reviews last week. Post Tuesday, Thursday and Sunday. Friday, approve next week\'s captions.',
+          'Your week, the same as the weekly schedule in your 30-Day Post Plan. Monday at 8:30, Claude reviews last week and you schedule this week\'s three posts.',
+          'Posts go out Tuesday and Thursday at 7:30 in the morning and Sunday at 7 at night. Wednesday, two behind-the-scenes stories. Friday, log the numbers in the tracker so Monday\'s review has something to work with.',
           'And fifteen minutes every day replying to comments and DMs. Most of your leads come from that reply, not the post itself.',
         ],
-        draw: ['Mark the post days, Monday review, Friday approval, and the red daily line across the bottom.'],
+        draw: ['Mark the post days and times, Monday review + schedule, Wednesday stories, Friday numbers, and the red daily line across the bottom.'],
       },
     },
 
@@ -163,6 +173,7 @@ module.exports = {
     {
       type: 'sheet',
       title: 'Posting Setup',
+      minutes: 10,
       cells: [
         { x: 50, y: 70, w: 475, h: 140, label: 'Platforms', prompt: 'Where are we posting?' },
         { x: 525, y: 70, w: 475, h: 140, label: 'Scheduler', prompt: 'Meta Business Suite / Buffer / other' },
@@ -177,8 +188,8 @@ module.exports = {
       ink:
         i.text(66, 150, 'Instagram, LinkedIn, Facebook, Google', 'blue', 28) +
         i.text(541, 150, 'Meta Business Suite (free)', 'blue', 30) +
-        i.text(66, 290, 'Tue · Thu · Sun', 'blue', 30) + i.text(66, 324, '6:30pm', 'blue', 28) +
-        i.text(382, 300, 'Principal, Fridays', 'blue', 28) +
+        i.text(66, 290, 'Tue · Thu · Sun', 'blue', 30) + i.text(66, 324, '7:30am (Sun 7pm)', 'blue', 28) +
+        i.text(382, 300, 'Principal, Mondays', 'blue', 28) +
         i.text(699, 300, 'Paralegal, daily', 'blue', 28) +
         i.text(66, 420, 'Follow for more · Follow if you\'re separating · DM "CALL" for a free 15 min chat', 'purple', 26) +
         i.text(66, 522, 'General info only, not legal advice', 'purple', 26) +
@@ -189,8 +200,6 @@ module.exports = {
         draw: ['Fill it in as an example firm.'],
       },
     },
-
-    { type: 'notes' },
 
     {
       type: 'next',
@@ -204,6 +213,6 @@ module.exports = {
       notes: { say: ['Takeaway: one video, every platform. Claude writes, you approve, the scheduler posts, and every Monday you review.'] },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };

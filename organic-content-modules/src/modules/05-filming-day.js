@@ -8,7 +8,17 @@ module.exports = {
   runtime: '15 min',
   outcome: 'The firm can set up a simple set, run a half-day shoot and film a month of content in one sitting.',
   slides: [
-    { type: 'cover', kicker: 'Module 5', title: 'Filming Day' },
+    { type: 'cover', title: 'Filming Day' },
+
+    { type: 'divider', lead: 'The BIG', word: 'Problems', tone: 'problem' },
+    { type: 'point', tone: 'problem', n: 1, text: "Filming Every Week Never Lasts", notes: { say: ["A matter blows up and content is the first thing that goes."] } },
+    { type: 'point', tone: 'problem', n: 2, text: "Bad Audio Kills Good Advice", notes: { say: ["People will watch a slightly soft video. They won't watch one they can't hear."] } },
+    { type: 'point', tone: 'problem', n: 3, text: "Flat on Camera", notes: { say: ["The camera flattens your energy, so normal looks bored."] } },
+
+    { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
+    { type: 'point', tone: 'idea', n: 1, text: "One Shoot Day = One Month of Content", notes: { say: ["Three to four hours, once a month, twelve to fifteen posts."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "A $300 Kit Is Enough to Start", notes: { say: ["Your phone, a lav mic, a tripod and a window."] } },
+    { type: 'point', tone: 'idea', n: 3, text: "Run the Day Off a Shot List", notes: { say: ["Set up, warm up, film in blocks, grab b-roll, back up."] } },
 
     {
       type: 'board',
@@ -96,8 +106,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'board',
       title: 'The Shoot Day Run Sheet',
@@ -168,6 +176,7 @@ module.exports = {
     {
       type: 'sheet',
       title: 'Shot List',
+      minutes: 10,
       cells: [
         { x: 50, y: 70, w: 50, h: 40, label: '#' },
         { x: 100, y: 70, w: 400, h: 40, label: 'Video' },
@@ -206,8 +215,6 @@ module.exports = {
       },
     },
 
-    { type: 'notes' },
-
     {
       type: 'next',
       checklist: [
@@ -220,6 +227,6 @@ module.exports = {
       notes: { say: ['Takeaway: one shoot day a month, good audio, energy up, keep rolling. Next module, we edit it all with Claude.'] },
     },
 
-    { type: 'end' },
+    { type: 'notes' },
   ],
 };
