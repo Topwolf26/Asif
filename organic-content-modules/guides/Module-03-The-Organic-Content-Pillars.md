@@ -38,10 +38,10 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 **Say:**
 - People buy people. Your character is the one thing no other firm can copy.
 
-## Slide 9: Opportunity 3: One Post a Day, Better Every Week
+## Slide 9: Opportunity 3: Once a Week, Building to Once a Day
 
 **Say:**
-- Put the reps on the board, then review once a week and improve one thing.
+- Start with the bare minimum, one post a week, and build to one a day. Review once a week and improve one thing.
 
 ## Slide 10: The Organic Content Pillars
 
@@ -126,47 +126,61 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 **Say:**
 - Look at how other lawyers post, then show up completely differently.
 
-## Slide 20: Text page: "One post a day is the minimum. Don't let analysis paralysis stop you."
+## Slide 20: Text page: "Bare minimum: once a week.  Max play: once a day."
 
 **Say:**
-- You need the reps on the board. A good post today beats a perfect post next month.
+- Don't let analysis paralysis stop you. Start at once a week if you have to, then build up to once a day. A good post this week beats a perfect post next month.
 
 ## Slide 21: Text page: "Review once a week. Improve one thing."
 
 **Say:**
 - Sunday or Monday, whenever you have downtime. Watch your week back, be kind but honest, and improve one little thing. Before you know it, your content is seriously good.
 
-## Slide 22: Your Week of Pillars
+## Slide 22: Start Where You Are
 
 **Say:**
-- One post a day is the minimum. Here is what each day is for, so you never have to decide.
+- Here is the guiding principle. The bare minimum is one post a week: just the Monday post. Never go below that.
+- When that feels easy, go to three a week: Monday, Wednesday and Friday. Max play is one a day, every post in the plan.
+- Start where you are. Moving up a step is the win, not starting at the top.
+
+## Slide 23: Guiding Principles
+
+**Say:**
+- Two limiting beliefs you will hit. First: you will not like how you look on camera at the start. Nobody does. That is fine, and it gets easier every video.
+- Second: you will want to keep editing. Post it anyway, then get feedback.
+- And the two principles: do not let analysis paralysis stop you, and review once a week. Bring what you learn to our weekly call.
+
+## Slide 24: Your Week of Pillars
+
+**Say:**
+- At max play, one post a day, here is what each day is for, so you never have to decide.
 - Monday value, Tuesday your character, Wednesday your series, Thursday proof, Friday the team, Saturday your day. Sunday rotates, and it is also your review day.
 - Over the month that is thirteen connection, ten value, five proof and only two invitation posts.
 
-## Slide 23: Your Next 30 Days
+## Slide 25: Your Next 30 Days
 
 **Say:**
 - And here is your month, already planned. Thirty posts, one a day at 7:30 in the morning, every one tied to a pillar.
 - Most are filmed on your monthly shoot day in Module 5. The ones marked "film on the day" you capture as they happen.
 - Tick each day off. Every Sunday, look back at the week, and improve one thing. The full script for every post is in your 30-Day Post Plan.
 
-## Slide 24: Your 30 Posts: Days 1-10
+## Slide 26: Your 30 Posts: Days 1-10
 
-## Slide 25: Your 30 Posts: Days 11-20
+## Slide 27: Your 30 Posts: Days 11-20
 
-## Slide 26: Your 30 Posts: Days 21-30
+## Slide 28: Your 30 Posts: Days 21-30
 
-## Slide 27: Build Your Pillars
+## Slide 29: Build Your Pillars
 
 **Say:**
 - Pause the video. For each of the twelve slots, write three ideas from your own practice. That is thirty-six ideas.
 - Use the calendar as your first month, then swap in your own ideas from here for month two.
 - Shortcut: give Claude the four pillars, your practice area and the questions clients ask you, and ask for ten ideas per slot. Circle the ones that sound like you.
 
-## Slide 28: Next... (takeaways + checklist)
+## Slide 30: Next... (takeaways + checklist)
 
 **Say:**
-- Takeaway: four pillars, one post a day, and a weekly review. Your first month is already planned.
+- Takeaway: four pillars, at least one post a week building to one a day, and a weekly review. Your first month is already planned.
 
 **Checklist on screen:**
 - [ ] Write your 3 ideas for each of the 12 slots
@@ -177,5 +191,5 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 - [ ] Line up a team member for a collab post
 - [ ] Sunday: review the week, improve one thing
 
-## Slide 29: Notes page
+## Slide 31: Notes page
 

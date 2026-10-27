@@ -92,6 +92,43 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
       <div class="mix-note"><b>30 posts in 30 days.</b> Mostly connection and value. Invitation only twice a month: give publicly, sell privately.</div>`,
   };
 
+  // guiding principle: bare minimum once a week, max play once a day
+  const ladder = (() => {
+    const pick = (dows) => plan.filter((p) => dows.includes(p.dow));
+    const steps = [
+      ['Bare minimum', '1 a week', pick(['Mon']), 'Post the Monday post every week. Never go below this.'],
+      ['Building', '3 a week', pick(['Mon', 'Wed', 'Fri']), 'Monday, Wednesday and Friday. Move up when once a week feels easy.'],
+      ['Max play', '1 a day', plan, 'Every post in this plan. This is where it compounds.'],
+    ];
+    return {
+      type: 'page',
+      title: 'Start Where You Are',
+      html: `<div class="ladder">${steps
+        .map(([name, rate, posts, how], k) => `<div class="lad lad-${k}">
+          <div class="lad-rate">${rate}</div><div class="lad-name">${name}</div>
+          <p>${how}</p>
+          <div class="lad-days">${k === 2 ? 'Days 1 to 30' : `Days ${posts.map((p) => p.day).join(', ')}`}</div>
+          <div class="lad-n"><b>${posts.length}</b> posts this month</div>
+        </div>`)
+        .join('')}</div>
+        <div class="fine"><b>The guiding principle:</b> start with the bare minimum, once a week, then build to once a day. A good post this week beats a perfect post next month.</div>`,
+    };
+  })();
+
+  // the limiting beliefs everyone hits, and the principles that get you past them
+  const principles = {
+    type: 'page',
+    title: 'Guiding Principles',
+    html: `<div class="gp">${[
+      ['Limiting belief', '"I don\'t like how I look on camera."', 'You won\'t love it at the start. Nobody does, and that\'s fine. It gets easier with every video.'],
+      ['Limiting belief', '"It needs one more edit."', 'You\'ll want to tweak it forever. Post it anyway, then get feedback and make the next one better.'],
+      ['Guiding principle', 'Don\'t let analysis paralysis stop you.', 'Bare minimum once a week, max play once a day. A good post this week beats a perfect post next month.'],
+      ['Guiding principle', 'Review once a week.', 'Every Sunday, look back and improve one thing. Then bring it up with us on our weekly call.'],
+    ]
+      .map(([tag, line, how], k) => `<div class="gp-c ${k < 2 ? 'belief' : 'rule'}"><div class="gp-tag">${tag}</div><div class="gp-line">${line}</div><p>${how}</p></div>`)
+      .join('')}</div>`,
+  };
+
   // the month at a glance: one tinted card per day, big day number, the post, its pillar
   const tint = (hex, a) => {
     const n = parseInt(hex.slice(1), 16);
@@ -131,7 +168,7 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
         <div class="wrev-q">${[
           ['Best post this week', 'Which one, and why do you think it worked?'],
           ['What flopped', 'Which one, and was it the hook, the topic or the call to action?'],
-          ['One thing to improve', 'Just one, for next week. Write it down and do it.'],
+          ['One thing to improve', 'Just one, for next week. Write it down, and bring it up on our weekly call.'],
         ]
           .map(([h, p]) => `<div><div class="pp-h">${h}</div><p>${p}</p></div>`)
           .join('')}</div>`,
@@ -207,7 +244,7 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
     </div>`,
   };
 
-  return { pillarChip, howItWorks, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, shotList, reviewPrinted };
+  return { pillarChip, howItWorks, ladder, principles, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, shotList, reviewPrinted };
 }
 
 module.exports = { ...makePages(require('./plan'), require('./pillars').PILLARS), makePages, LAW_TEXT };

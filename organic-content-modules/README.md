@@ -33,7 +33,7 @@ Eight training modules for our firms on organic content, plus a standalone 30-Da
 | 8 | Your 30-Day Post Plan | Walks through the client hand-out: the week of pillars, the weekly schedule, the 30-day calendar, a post page, the Day 30 review, and planning your first week |
 | - | 30-Day Post Plan (standalone) | The client hand-out: "your next 30 days are planned for you." One post a day at 7:30am, built on the Module 3 pillars: a weekly time-blocked schedule, a 30-day calendar, and a page per post (opening line, beats, CTA, on-screen text, caption, and where it fits a real lawyer Short with its views). Plus a tracker and the Day 30 review. |
 
-The plan is 30 posts, one a day: 13 connection, 10 value, 5 proof, 2 invitation (the Module 3 pillars), which is 10 reach, 13 connect, 7 convert in Module 2's funnel. 23 are filmed on the monthly shoot day; 7 are filmed as they happen. The data lives in `src/pillars.js` (calendar) and `src/plan.js` (scripts and examples).
+Guiding principle: bare minimum one post a week (the Monday post), building to three a week, max play one a day. The plan is 30 posts, one a day: 13 connection, 10 value, 5 proof, 2 invitation (the Module 3 pillars), which is 10 reach, 13 connect, 7 convert in Module 2's funnel. 23 are filmed on the monthly shoot day; 7 are filmed as they happen. The data lives in `src/pillars.js` (calendar) and `src/plan.js` (scripts and examples).
 
 ## On Skool
 

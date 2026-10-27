@@ -1,6 +1,6 @@
 const { ink: i, guide: g, esc } = require('../lib');
 const { PILLARS } = require('../pillars');
-const { pillarWeek, monthCalendar, postList } = require('../plan-slides');
+const { ladder, principles, pillarWeek, monthCalendar, postList } = require('../plan-slides');
 
 const withNotes = (slide, say) => ({ ...slide, notes: { say } });
 
@@ -169,7 +169,7 @@ module.exports = {
     { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
     { type: 'point', tone: 'idea', n: 1, text: 'Four Pillars, Endless Ideas', notes: { say: ['Connection, value, proof and invitation. Every post fits one of them.'] } },
     { type: 'point', tone: 'idea', n: 2, text: 'Show the Real You', notes: { say: ['People buy people. Your character is the one thing no other firm can copy.'] } },
-    { type: 'point', tone: 'idea', n: 3, text: 'One Post a Day, Better Every Week', notes: { say: ['Put the reps on the board, then review once a week and improve one thing.'] } },
+    { type: 'point', tone: 'idea', n: 3, text: 'Once a Week, Building to Once a Day', notes: { say: ['Start with the bare minimum, one post a week, and build to one a day. Review once a week and improve one thing.'] } },
 
     wheel,
     ...NAMES.map((n, k) => pillarPage(n, k + 1)),
@@ -214,10 +214,20 @@ module.exports = {
       notes: { say: ['Start a note on your phone today. Every time a client asks you something, write it down. That is your content for the year.'] },
     },
     { type: 'shot', kicker: 'Rule 01', text: 'Be different from every other firm.', notes: { say: ['Look at how other lawyers post, then show up completely differently.'] } },
-    { type: 'shot', kicker: 'Rule 02', text: "One post a day is the minimum.\nDon't let analysis paralysis stop you.", notes: { say: ['You need the reps on the board. A good post today beats a perfect post next month.'] } },
+    { type: 'shot', kicker: 'Rule 02', text: 'Bare minimum:\nonce a week.\n\nMax play:\nonce a day.', notes: { say: ["Don't let analysis paralysis stop you. Start at once a week if you have to, then build up to once a day. A good post this week beats a perfect post next month."] } },
     { type: 'shot', kicker: 'Rule 03', text: 'Review once a week.\nImprove one thing.', notes: { say: ['Sunday or Monday, whenever you have downtime. Watch your week back, be kind but honest, and improve one little thing. Before you know it, your content is seriously good.'] } },
+    withNotes(ladder, [
+      'Here is the guiding principle. The bare minimum is one post a week: just the Monday post. Never go below that.',
+      'When that feels easy, go to three a week: Monday, Wednesday and Friday. Max play is one a day, every post in the plan.',
+      'Start where you are. Moving up a step is the win, not starting at the top.',
+    ]),
+    withNotes(principles, [
+      'Two limiting beliefs you will hit. First: you will not like how you look on camera at the start. Nobody does. That is fine, and it gets easier every video.',
+      'Second: you will want to keep editing. Post it anyway, then get feedback.',
+      'And the two principles: do not let analysis paralysis stop you, and review once a week. Bring what you learn to our weekly call.',
+    ]),
     withNotes(pillarWeek, [
-      'One post a day is the minimum. Here is what each day is for, so you never have to decide.',
+      'At max play, one post a day, here is what each day is for, so you never have to decide.',
       'Monday value, Tuesday your character, Wednesday your series, Thursday proof, Friday the team, Saturday your day. Sunday rotates, and it is also your review day.',
       'Over the month that is thirteen connection, ten value, five proof and only two invitation posts.',
     ]),
@@ -241,7 +251,7 @@ module.exports = {
         'Line up a team member for a collab post',
         'Sunday: review the week, improve one thing',
       ],
-      notes: { say: ['Takeaway: four pillars, one post a day, and a weekly review. Your first month is already planned.'] },
+      notes: { say: ['Takeaway: four pillars, at least one post a week building to one a day, and a weekly review. Your first month is already planned.'] },
     },
     { type: 'notes' },
   ],

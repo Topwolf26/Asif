@@ -19,7 +19,7 @@ module.exports = {
 
     { type: 'divider', word: 'OPPORTUNITY', tone: 'idea' },
     { type: 'point', tone: 'idea', n: 1, text: "Give Every Post One Job", notes: { say: ["Reach, connect or convert. One job per post, and the CTA matches it."] } },
-    { type: 'point', tone: 'idea', n: 2, text: "Run the Weekly Mix", notes: { say: ["About a third reach, the most connect, a quarter convert. One post a day."] } },
+    { type: 'point', tone: 'idea', n: 2, text: "Run the Weekly Mix", notes: { say: ["About a third reach, the most connect, a quarter convert. Bare minimum once a week, max play once a day."] } },
     { type: 'point', tone: 'idea', n: 3, text: "Win Your City, Not the Internet", notes: { say: ["400 views from the right people beats 40,000 from the wrong ones."] } },
 
     {
@@ -95,7 +95,7 @@ module.exports = {
         i.text(80, 630, 'All TOFU = views, but no clients', 'red', 32),
       notes: {
         say: [
-          'One post a day is the minimum, so that is thirty posts a month. About a third for reach, the biggest share for connection, and about a quarter to convert.',
+          'At max play, one post a day, that is thirty posts a month. About a third for reach, the biggest share for connection, and about a quarter to convert.',
           'In the Module 3 pillars: value posts reach new people, connection posts make them like you, and proof and invitation posts convert. Ten, thirteen and seven. That is exactly what your 30-day calendar uses.',
           'If you only post "book a consult" content it feels salesy and nobody watches. If you only chase views you get likes from people who will never hire you.',
         ],

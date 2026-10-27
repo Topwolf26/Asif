@@ -36,7 +36,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 ## Slide 8: Opportunity 2: Run the Weekly Mix
 
 **Say:**
-- About a third reach, the most connect, a quarter convert. One post a day.
+- About a third reach, the most connect, a quarter convert. Bare minimum once a week, max play once a day.
 
 ## Slide 9: Opportunity 3: Win Your City, Not the Internet
 
@@ -65,7 +65,7 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 ## Slide 12: The Monthly Mix
 
 **Say:**
-- One post a day is the minimum, so that is thirty posts a month. About a third for reach, the biggest share for connection, and about a quarter to convert.
+- At max play, one post a day, that is thirty posts a month. About a third for reach, the biggest share for connection, and about a quarter to convert.
 - In the Module 3 pillars: value posts reach new people, connection posts make them like you, and proof and invitation posts convert. Ten, thirteen and seven. That is exactly what your 30-day calendar uses.
 - If you only post "book a consult" content it feels salesy and nobody watches. If you only chase views you get likes from people who will never hire you.
 

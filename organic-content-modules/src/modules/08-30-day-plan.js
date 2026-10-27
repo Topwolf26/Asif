@@ -1,6 +1,6 @@
 const { ink: i } = require('../lib');
 const plan = require('../plan');
-const { howItWorks, weeklySchedule, pillarWeek, monthCalendar, postPage, reviewPrinted } = require('../plan-slides');
+const { howItWorks, ladder, principles, weeklySchedule, pillarWeek, monthCalendar, postPage, reviewPrinted } = require('../plan-slides');
 
 // Module 8 teaches the client hand-out (src/extras/30-day-post-plan.js) page by page
 const withNotes = (slide, say) => ({ ...slide, notes: { say } });
@@ -31,6 +31,14 @@ module.exports = {
       'This is the hand-out you get with this module: the 30-Day Post Plan. Here is how it works.',
       'Before day one you film twenty-three of the posts in one shoot day. The other seven you film as they happen. Every Monday you review last week and schedule this one. One post goes out every day. Every Sunday you improve one thing.',
       "Client stories: always remove names and anything identifying, get the client's OK, and check your conduct and advertising rules.",
+    ]),
+    withNotes(ladder, [
+      'Before the schedule, the guiding principle: bare minimum one post a week, max play one a day.',
+      'If thirty posts feels like a lot, start with the Monday post each week, then Monday, Wednesday and Friday, then every day.',
+    ]),
+    withNotes(principles, [
+      'Two limiting beliefs you will hit: not liking how you look on camera, and wanting one more edit. Both are normal. Post anyway, then get feedback.',
+      'No analysis paralysis, and review once a week. Bring it up with us on our weekly call.',
     ]),
     withNotes(weeklySchedule, [
       'Here is your week, the same way I block mine. Monday morning, thirty minutes: Claude reviews last week, then you schedule the three posts.',

@@ -357,3 +357,27 @@ body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); -webkit-p
 .wrev-q .pp-h { color: var(--problem); }
 .wrev-q p { font-size: 13px; color: #444; line-height: 1.4; }
 .ptab.wrev td:nth-child(4) { width: 90px; }
+
+/* start where you are: three steps, rising */
+.ladder { position: absolute; left: 74px; top: 96px; width: 908px; height: 500px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: end; }
+.lad { background: #fff; border: 2px solid var(--line); border-top: 10px solid var(--accent); padding: 16px 18px; display: flex; flex-direction: column; }
+.lad-0 { height: 330px; border-top-color: #9CA3AF; }
+.lad-1 { height: 415px; border-top-color: var(--wordmark); }
+.lad-2 { height: 500px; }
+.lad-rate { font-family: var(--serif); font-size: 40px; font-weight: 600; color: var(--heading); line-height: 1; }
+.lad-name { margin-top: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #666; }
+.lad p { margin-top: 14px; font-size: 15px; line-height: 1.45; color: #333; flex: 1; }
+.lad-n { font-size: 13px; color: #555; border-top: 1.5px dashed #C9CBCA; padding-top: 10px; }
+.lad-n b { font-family: var(--serif); font-size: 22px; color: var(--heading); margin-right: 4px; }
+.lad-days { font-size: 12.5px; font-weight: 700; color: var(--heading); line-height: 1.5; margin-bottom: 10px; }
+.ladder + .fine { top: 612px; }
+
+/* guiding principles: limiting beliefs + the rules that beat them */
+.gp { position: absolute; left: 74px; top: 92px; width: 908px; height: 600px; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
+.gp-c { background: #fff; border: 2px solid var(--line); border-left-width: 8px; padding: 20px 24px; display: flex; flex-direction: column; }
+.gp-c.belief { border-left-color: var(--problem); }
+.gp-c.rule { border-left-color: var(--accent); }
+.gp-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: #777; }
+.gp-c.belief .gp-tag { color: var(--problem); }
+.gp-line { margin-top: 14px; font-family: var(--serif); font-size: 28px; font-weight: 600; line-height: 1.2; color: var(--heading); }
+.gp-c p { margin-top: 18px; font-size: 17px; line-height: 1.5; color: #333; }

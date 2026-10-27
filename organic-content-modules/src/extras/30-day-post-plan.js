@@ -1,5 +1,5 @@
 const plan = require('../plan');
-const { howItWorks, weeklySchedule, monthCalendar, weekReview, postPage, reviewPrinted } = require('../plan-slides');
+const { howItWorks, ladder, principles, weeklySchedule, monthCalendar, weekReview, postPage, reviewPrinted } = require('../plan-slides');
 
 // the client hand-out: "your next 30 days are planned for you", one post a day
 const WEEKS = [
@@ -18,6 +18,9 @@ module.exports = {
     { type: 'cover', title: 'Your 30-Day\nPost Plan' },
     { type: 'shot', text: 'Your next 30 days are planned for you.\nYou just need to take action.' },
     howItWorks,
+    { type: 'shot', text: 'Bare minimum:\nonce a week.\n\nMax play:\nonce a day.' },
+    ladder,
+    principles,
     weeklySchedule,
     monthCalendar,
     ...WEEKS.flatMap(([w, kicker, text]) => [
