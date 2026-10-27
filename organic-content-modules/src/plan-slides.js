@@ -6,7 +6,7 @@
 const { esc } = require('./lib');
 
 const DOW = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
-const JOB = { plan: 'var(--accent)', engage: '#F29A16', stories: '#A51CC9', log: '#3B3B3B' };
+const JOB = { plan: 'var(--accent)', engage: '#F29A16', stories: '#A51CC9' };
 const GREY = '#555';
 const isReview = (day) => day % 7 === 0;
 
@@ -53,7 +53,6 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
       ...T.extraBlocks,
       ...[0, 1, 2, 3, 4].map((d) => [d, 12.5, 0.25, JOB.engage, 'ENGAGE', 'Replies + comment on 5 local accounts']),
       [2, 15, 0.25, JOB.stories, 'STORIES', '2 behind-the-scenes stories'],
-      [4, 16, 0.17, JOB.log, 'LOG', 'Numbers into the tracker'],
       [6, 16, 0.25, '#E5352B', 'REVIEW', 'Look back. Improve one thing'],
     ];
     const fmt = (t) => `${((Math.floor(t) + 11) % 12) + 1}${t >= 12 ? 'pm' : 'am'}`;
@@ -119,15 +118,15 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
     return { type: 'page', title: 'Your Next 30 Days', tag: { label: '1 post a day · 7:30am', color: 'var(--accent)' }, html: heads + cells + legend };
   })();
 
-  // Sunday review at the end of each week: the week's numbers, then three honest questions
+  // Sunday review at the end of each week: tick off the week, then three honest questions
   const weekReview = (w) => {
     const days = plan.filter((p) => p.day > (w - 1) * 7 && p.day <= w * 7);
     return {
       type: 'page',
       title: `Week ${w} Review · Sunday`,
       minutes: 15,
-      html: `<table class="ptab wrev"><thead><tr><th>Day</th><th>Post</th><th>Pillar</th><th>Views</th><th>Follows</th><th>DMs</th><th>Enquiries</th></tr></thead><tbody>${days
-        .map((p) => `<tr><td><b>${p.dow} ${p.day}</b></td><td>${esc(p.short)}</td><td>${pillarChip(p.pillar)}</td><td></td><td></td><td></td><td></td></tr>`)
+      html: `<table class="ptab wrev"><thead><tr><th>Day</th><th>Post</th><th>Pillar</th><th>Posted</th></tr></thead><tbody>${days
+        .map((p) => `<tr><td><b>${p.dow} ${p.day}</b></td><td>${esc(p.short)}</td><td>${pillarChip(p.pillar)}</td><td><i class="ptab-box"></i></td></tr>`)
         .join('')}</tbody></table>
         <div class="wrev-q">${[
           ['Best post this week', 'Which one, and why do you think it worked?'],
@@ -182,16 +181,6 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
     };
   };
 
-  // the tracker, fifteen days to a page
-  const tracker = (from, to) => ({
-    type: 'page',
-    title: `Tracker: Days ${from + 1}-${to}`,
-    html: `<table class="ptab trk"><thead><tr><th>Day</th><th>Post</th><th>Pillar</th><th>Views</th><th>3s hold %</th><th>Follows</th><th>DMs</th><th>Enquiries</th></tr></thead><tbody>${plan
-      .slice(from, to)
-      .map((p) => `<tr><td><b>${p.dow} ${p.day}</b></td><td>${esc(p.short)}</td><td>${pillarChip(p.pillar)}</td><td></td><td></td><td></td><td></td><td></td></tr>`)
-      .join('')}</tbody></table>`,
-  });
-
   // shoot-day shot list (Module 5): every talking-head post in the month
   const shotList = {
     type: 'page',
@@ -218,7 +207,7 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
     </div>`,
   };
 
-  return { pillarChip, howItWorks, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, tracker, shotList, reviewPrinted };
+  return { pillarChip, howItWorks, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, shotList, reviewPrinted };
 }
 
 module.exports = { ...makePages(require('./plan'), require('./pillars').PILLARS), makePages, LAW_TEXT };

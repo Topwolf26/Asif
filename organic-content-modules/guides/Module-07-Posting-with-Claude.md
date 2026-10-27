@@ -82,11 +82,11 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 
 **Say:**
 - Your week, the same as the weekly schedule in your 30-Day Post Plan. Monday at 8:30, Claude reviews last week and you schedule this week's seven posts.
-- One post goes out every day at 7:30 in the morning. Wednesday, two behind-the-scenes stories. Friday, log the numbers in the tracker. Sunday, look back at the week and improve one thing, so Monday's review has something to work with.
+- One post goes out every day at 7:30 in the morning. Wednesday, two behind-the-scenes stories. Sunday, look back at the week and improve one thing, so Monday's review has something to work with.
 - And fifteen minutes every day replying to comments and DMs. Most of your leads come from that reply, not the post itself.
 
 **Draw:**
-- POST every day at 7:30, Monday review + schedule, Wednesday stories, Friday numbers, Sunday look back, and the red daily line across the bottom.
+- POST every day at 7:30, Monday review + schedule, Wednesday stories, Sunday look back, and the red daily line across the bottom.
 
 ## Slide 15: The Scorecard
 

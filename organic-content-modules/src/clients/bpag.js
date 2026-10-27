@@ -142,7 +142,7 @@ const pages = makePages(plan, PILLARS, {
   ...LAW_TEXT,
   how: (shoot, total) => [
     ['Twice a week', 'Batch film', `Film the ${shoot} talking-head posts in batches: 3 at a time, Monday and Thursday mornings at the office. The other ${total - shoot} you film as they happen.`],
-    ['Every Monday', 'Plan the week', 'Check last week\'s numbers, then edit and schedule the week\'s 7 posts. Thirty minutes.'],
+    ['Every Monday', 'Plan the week', 'Look over last week\'s results, then edit and schedule the week\'s 7 posts. Thirty minutes.'],
     ['Every day', 'One post, 7:30am', 'One post goes out every morning. Reply to comments for 15 minutes after it goes live. Tick it off.'],
     ['Every Sunday', 'Improve one thing', 'Look back at the week, be honest, and improve one thing. On day 30, score every post on the review page.'],
   ],
@@ -151,7 +151,7 @@ const pages = makePages(plan, PILLARS, {
   weekNote: '<b>About 3½ hours a week.</b> Put these blocks in your calendar as recurring events now, like a client meeting. Batch filming on Monday and Thursday mornings covers the talking-head posts.',
   filmLabel: ['Batch film', 'Film on the day'],
   calNote: '<b>Film on the day</b> = not in a batch session.',
-  planBlock: ['PLAN', "Check last week's numbers. Schedule the week's 7 posts"],
+  planBlock: ['PLAN', "Look over last week. Schedule the week's 7 posts"],
   extraBlocks: [
     [0, 10, 0.5, BATCH, 'BATCH FILM', '3 videos at the office'],
     [3, 10, 0.5, BATCH, 'BATCH FILM', '3 videos at the office'],
@@ -227,8 +227,6 @@ module.exports = {
       { type: 'shot', theme: 'white', kicker, text },
       ...plan.filter((p) => p.week === w).flatMap((p) => (p.day === w * 7 ? [pages.postPage(p), pages.weekReview(w)] : [pages.postPage(p)])),
     ]),
-    pages.tracker(0, 15),
-    pages.tracker(15, 30),
     pages.reviewPrinted,
     { type: 'shot', theme: 'lime', text: 'Done beats perfect.\nPost all 30, then judge.' },
     { type: 'notes' },

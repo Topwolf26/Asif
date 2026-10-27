@@ -35,7 +35,7 @@ module.exports = {
     withNotes(weeklySchedule, [
       'Here is your week, the same way I block mine. Monday morning, thirty minutes: Claude reviews last week, then you schedule the three posts.',
       'A post goes out every morning at 7:30. Block fifteen minutes after it to reply, because the first hour matters.',
-      'Fifteen minutes at lunch every weekday to reply and comment on five local accounts. Stories on Wednesday, numbers on Friday, a look back on Sunday. About four hours a week.',
+      'Fifteen minutes at lunch every weekday to reply and comment on five local accounts. Stories on Wednesday, a look back on Sunday. About four hours a week.',
       'Put these in your calendar as recurring events now, like a client meeting.',
     ]),
     withNotes(monthCalendar, [

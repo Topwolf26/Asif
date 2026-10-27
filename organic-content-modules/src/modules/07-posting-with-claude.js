@@ -130,17 +130,16 @@ module.exports = {
         [0, 1, 2, 3, 4, 5, 6].map((k) => i.circle(122 + k * 136, 220, 48, 30, 'dkgreen') + i.text(122 + k * 136, 231, 'POST', 'dkgreen', 30, { anchor: 'middle' }) + i.text(122 + k * 136, 284, '7:30am', 'dkgreen', 24, { anchor: 'middle' })).join('') +
         i.text(122, 360, 'Review +', 'purple', 28, { anchor: 'middle' }) + i.text(122, 390, 'schedule', 'purple', 28, { anchor: 'middle' }) +
         i.text(394, 360, '2 stories', 'purple', 28, { anchor: 'middle' }) +
-        i.text(666, 360, 'Log the', 'purple', 28, { anchor: 'middle' }) + i.text(666, 390, 'numbers', 'purple', 28, { anchor: 'middle' }) +
         i.text(938, 360, 'Look back,', 'red', 28, { anchor: 'middle' }) + i.text(938, 390, 'fix 1 thing', 'red', 28, { anchor: 'middle' }) +
         i.line([[80, 560], [980, 560]], 'red', 5) +
         i.text(530, 610, '15 min a day: reply to every comment + DM', 'red', 32, { anchor: 'middle' }),
       notes: {
         say: [
           'Your week, the same as the weekly schedule in your 30-Day Post Plan. Monday at 8:30, Claude reviews last week and you schedule this week\'s seven posts.',
-          'One post goes out every day at 7:30 in the morning. Wednesday, two behind-the-scenes stories. Friday, log the numbers in the tracker. Sunday, look back at the week and improve one thing, so Monday\'s review has something to work with.',
+          'One post goes out every day at 7:30 in the morning. Wednesday, two behind-the-scenes stories. Sunday, look back at the week and improve one thing, so Monday\'s review has something to work with.',
           'And fifteen minutes every day replying to comments and DMs. Most of your leads come from that reply, not the post itself.',
         ],
-        draw: ['POST every day at 7:30, Monday review + schedule, Wednesday stories, Friday numbers, Sunday look back, and the red daily line across the bottom.'],
+        draw: ['POST every day at 7:30, Monday review + schedule, Wednesday stories, Sunday look back, and the red daily line across the bottom.'],
       },
     },
 
