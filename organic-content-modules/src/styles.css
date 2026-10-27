@@ -336,3 +336,23 @@ body { font-family: 'Inter', system-ui, sans-serif; color: var(--ink); -webkit-p
 .pp-card.slim .pchip { margin-right: 4px; }
 .pp-card.note p { font-size: 13px; line-height: 1.4; }
 .pp-card.note { padding: 10px 14px; }
+
+/* month calendar, readable version: tinted card per day */
+.cal-cell { position: absolute; border-left: 5px solid; border-radius: 3px; padding: 7px 9px 6px; display: flex; flex-direction: column; }
+.cal-top { display: flex; align-items: center; gap: 6px; }
+.cal-day { font-family: var(--serif); font-size: 22px; font-weight: 600; color: var(--heading); line-height: 1; }
+.cal-rev { background: var(--problem); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 3px 6px; border-radius: 3px; }
+.cal-cell .mc-box { position: static; margin-left: auto; background: #fff; }
+.cal-title { margin-top: 8px; font-size: 13.5px; font-weight: 700; line-height: 1.25; color: #1B1B1B; flex: 1; }
+.cal-foot { font-size: 10px; letter-spacing: 0.6px; text-transform: uppercase; color: #666; font-weight: 600; }
+.mc-legend i.rev { background: var(--problem); }
+
+/* weekly Sunday review */
+.ptab.wrev td { height: 38px; font-size: 13.5px; }
+.ptab.wrev td:nth-child(n+4) { width: 96px; }
+.ptab.wrev td:nth-child(3) { width: 130px; }
+.ptab.wrev td:nth-child(2) { width: auto; }
+.wrev-q { position: absolute; left: 74px; top: 438px; width: 908px; height: 262px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.wrev-q > div { background: #fff; border: 2px solid var(--line); padding: 12px 14px; background-image: radial-gradient(var(--dot) 1.2px, transparent 1.3px); background-size: 14px 14px; background-position: 0 70px; }
+.wrev-q .pp-h { color: var(--problem); }
+.wrev-q p { font-size: 13px; color: #444; line-height: 1.4; }

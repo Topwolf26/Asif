@@ -1,5 +1,5 @@
 const plan = require('../plan');
-const { howItWorks, weeklySchedule, monthCalendar, postPage, tracker, reviewPrinted } = require('../plan-slides');
+const { howItWorks, weeklySchedule, monthCalendar, weekReview, postPage, tracker, reviewPrinted } = require('../plan-slides');
 
 // the client hand-out: "your next 30 days are planned for you", one post a day
 const WEEKS = [
@@ -22,7 +22,7 @@ module.exports = {
     monthCalendar,
     ...WEEKS.flatMap(([w, kicker, text]) => [
       { type: 'shot', theme: 'white', kicker, text },
-      ...plan.filter((p) => p.week === w).map(postPage),
+      ...plan.filter((p) => p.week === w).flatMap((p) => (p.day === w * 7 ? [postPage(p), weekReview(w)] : [postPage(p)])),
     ]),
     tracker(0, 15),
     tracker(15, 30),

@@ -1,4 +1,4 @@
-// Magnify Growth × BPAG: Nicole's 30-day post plan. One post a day on the
+// Magnify Growth × BPAG: the 30-day post plan. One post a day on the
 // four pillars, for an accounting firm with a lot of farming clients.
 // Filmed on an iPhone with a simple mic (or wired headphones).
 // Build: node src/build.js 40  ->  pdf/clients/
@@ -6,7 +6,7 @@ const { esc } = require('../lib');
 const { makePages, LAW_TEXT } = require('../plan-slides');
 
 const PILLARS = {
-  Connection: { color: '#0E7490', ask: 'Do I like you? Do you get farming and business like I do?', trap: 'Disconnect: only tax tips, so they never meet Nicole or the team.' },
+  Connection: { color: '#0E7490', ask: 'Do I like you? Do you get farming and business like I do?', trap: 'Disconnect: only tax tips, so they never meet you or the team.' },
   Value: { color: '#4D7C0F', ask: 'Is this helpful? Do I understand my tax better now?', trap: 'Lecturing: jargon, too much detail, five rules in one video.' },
   Proof: { color: '#B45309', ask: 'Are you legit? Who have you actually helped?', trap: 'Disbelief: smart talk, but no sign of real clients or results.' },
   Invitation: { color: '#7C2D12', ask: 'How do I get started with BPAG?', trap: 'Selling: a pitch in every post. Give publicly, sell privately.' },
@@ -150,7 +150,7 @@ const pages = makePages(plan, PILLARS, {
   weekJobs: ['A pain point or challenge your clients face.', 'Your opinion, or your take on this week\'s tax news.', 'Your "Farm Tax in 30 Seconds" series.', 'A result, a review or a client message.', 'A collab post with someone on the team.', 'Document your day: the office, a farm visit.', 'Week 1 value, week 2 invitation, week 3 proof, week 4 invitation.'],
   weekNote: '<b>About 3½ hours a week.</b> Put these blocks in your calendar as recurring events now, like a client meeting. Batch filming on Monday and Thursday mornings covers the talking-head posts.',
   filmLabel: ['Batch film', 'Film on the day'],
-  calNote: '<b>Every day:</b> post at 7:30am. <b>Film on the day</b> = not in a batch session.',
+  calNote: '<b>Film on the day</b> = not in a batch session.',
   planBlock: ['PLAN', "Check last week's numbers. Schedule the week's 7 posts"],
   extraBlocks: [
     [0, 10, 0.5, BATCH, 'BATCH FILM', '3 videos at the office'],
@@ -216,7 +216,7 @@ module.exports = {
   },
   slides: [
     { type: 'cover', kicker: 'Exclusive · Prepared for BPAG only', title: 'Your 30-Day\nPost Plan' },
-    { type: 'shot', text: 'Nicole, your next 30 days are planned.\nYou just need to press record.' },
+    { type: 'shot', text: 'Your next 30 days are planned.\nYou just need to press record.' },
     pages.howItWorks,
     setup,
     pillarsAtAGlance,
@@ -225,7 +225,7 @@ module.exports = {
     pages.monthCalendar,
     ...WEEKS.flatMap(([w, kicker, text]) => [
       { type: 'shot', theme: 'white', kicker, text },
-      ...plan.filter((p) => p.week === w).map(pages.postPage),
+      ...plan.filter((p) => p.week === w).flatMap((p) => (p.day === w * 7 ? [pages.postPage(p), pages.weekReview(w)] : [pages.postPage(p)])),
     ]),
     pages.tracker(0, 15),
     pages.tracker(15, 30),

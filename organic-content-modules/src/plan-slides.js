@@ -22,7 +22,7 @@ const LAW_TEXT = {
   weekJobs: ['Answer a real client worry.', 'Your opinion, or your take on the news.', 'Your "Law in 30 Seconds" series.', 'A result, a review or a client message.', 'A collab post with someone on the team.', 'Document your day.', 'Week 1 value, week 2 invitation, week 3 proof, week 4 invitation.'],
   weekNote: '<b>About 4 hours a week.</b> Put these blocks in your calendar as recurring events now, the same way you\'d block a client meeting. Once a month, add a half-day shoot.',
   filmLabel: ['Film on shoot day', 'Film on the day'],
-  calNote: '<b>Every day:</b> post at 7:30am. <b>Film on the day</b> = not on the shoot day.',
+  calNote: '<b>Film on the day</b> = not on the shoot day.',
   planBlock: ['REVIEW + PLAN', "Claude reviews last week. Schedule the week's 7 posts"],
   extraBlocks: [],
 };
@@ -93,24 +93,52 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
       <div class="mix-note"><b>30 posts in 30 days.</b> Mostly connection and value. Invitation only twice a month: give publicly, sell privately.</div>`,
   };
 
+  // the month at a glance: one tinted card per day, big day number, the post, its pillar
+  const tint = (hex, a) => {
+    const n = parseInt(hex.slice(1), 16);
+    return `rgba(${n >> 16}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
+  };
   const monthCalendar = (() => {
-    const left = 74, top = 112, cw = 130, ch = 116;
+    const left = 74, top = 110, cw = 130, ch = 116, gap = 5;
     const cells = plan
       .map((p, k) => {
         const x = left + (k % 7) * cw;
         const y = top + Math.floor(k / 7) * ch;
         const c = PILLARS[p.pillar].color;
-        return `<div class="mc-cell" style="left:${x}px;top:${y}px;width:${cw}px;height:${ch}px"><div class="mc-day">${p.day}</div><span class="mc-box"></span>
-        <div class="mc-chip" style="background:${c}">${p.pillar.toUpperCase()}</div><div class="mc-title">${esc(p.short)}</div><div class="mc-sub" style="color:${c}">${esc(p.type)}</div>
-        ${p.shoot ? '' : `<div class="mc-film">${T.filmLabel[1]}</div>`}${isReview(p.day) ? '<div class="mc-rev">+ weekly review</div>' : ''}</div>`;
+        return `<div class="cal-cell" style="left:${x}px;top:${y}px;width:${cw - gap}px;height:${ch - gap}px;background:${tint(c, 0.1)};border-left-color:${c}">
+          <div class="cal-top"><span class="cal-day">${p.day}</span>${isReview(p.day) ? '<span class="cal-rev">Review</span>' : ''}<span class="mc-box"></span></div>
+          <div class="cal-title">${esc(p.short)}</div>
+          <div class="cal-foot"><b style="color:${c}">${p.pillar}</b>${p.shoot ? '' : ` · ${T.filmLabel[1].toLowerCase()}`}</div>
+        </div>`;
       })
       .join('');
-    const heads = DOW.map((d, c) => `<div class="mc-head" style="left:${left + c * cw}px;width:${cw}px">${d}</div>`).join('');
+    const heads = DOW.map((d, c) => `<div class="mc-head" style="left:${left + c * cw}px;width:${cw - gap}px">${d}</div>`).join('');
     const legend = `<div class="mc-legend">${Object.keys(PILLARS)
       .map((n) => `<span><i style="background:${PILLARS[n].color}"></i>${n}</span>`)
-      .join('')}<span class="mc-every">${T.calNote}</span></div>`;
+      .join('')}<span><i class="rev"></i>Sunday review</span><span class="mc-every">${T.calNote}</span></div>`;
     return { type: 'page', title: 'Your Next 30 Days', tag: { label: '1 post a day · 7:30am', color: 'var(--accent)' }, html: heads + cells + legend };
   })();
+
+  // Sunday review at the end of each week: the week's numbers, then three honest questions
+  const weekReview = (w) => {
+    const days = plan.filter((p) => p.day > (w - 1) * 7 && p.day <= w * 7);
+    return {
+      type: 'page',
+      title: `Week ${w} Review · Sunday`,
+      minutes: 15,
+      html: `<table class="ptab wrev"><thead><tr><th>Day</th><th>Post</th><th>Pillar</th><th>Views</th><th>Follows</th><th>DMs</th><th>Enquiries</th></tr></thead><tbody>${days
+        .map((p) => `<tr><td><b>${p.dow} ${p.day}</b></td><td>${esc(p.short)}</td><td>${pillarChip(p.pillar)}</td><td></td><td></td><td></td><td></td></tr>`)
+        .join('')}</tbody></table>
+        <div class="wrev-q">${[
+          ['Best post this week', 'Which one, and why do you think it worked?'],
+          ['What flopped', 'Which one, and was it the hook, the topic or the call to action?'],
+          ['One thing to improve', 'Just one, for next week. Write it down and do it.'],
+        ]
+          .map(([h, p]) => `<div><div class="pp-h">${h}</div><p>${p}</p></div>`)
+          .join('')}</div>`,
+    };
+  };
+
 
   // the 30 opening lines, ten to a page
   const postList = (from, to) => ({
@@ -190,7 +218,7 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
     </div>`,
   };
 
-  return { pillarChip, howItWorks, weeklySchedule, pillarWeek, monthCalendar, postList, postPage, tracker, shotList, reviewPrinted };
+  return { pillarChip, howItWorks, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, tracker, shotList, reviewPrinted };
 }
 
 module.exports = { ...makePages(require('./plan'), require('./pillars').PILLARS), makePages, LAW_TEXT };
