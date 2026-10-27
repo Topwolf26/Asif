@@ -2,3 +2,5 @@ dist/
 previews/
 Organic-Content-Modules.zip
 node_modules/
+skool/**/*.pdf
+skool/**/*.csv

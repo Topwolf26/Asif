@@ -8,7 +8,7 @@ module.exports = {
   number: 2,
   title: 'The Content Funnel',
   runtime: '12 to 15 min',
-  outcome: 'The firm knows the three jobs content does (reach, connect, convert), the weekly mix, and has mapped topic ideas to each stage.',
+  outcome: 'The firm knows the three jobs content does (reach, connect, convert), the monthly mix, and has mapped topic ideas to each stage.',
   slides: [
     { type: 'cover', title: 'The Content\nFunnel' },
 

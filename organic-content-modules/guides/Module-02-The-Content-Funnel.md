@@ -1,7 +1,7 @@
 # Module 2: The Content Funnel
 
 **Run time:** 12 to 15 min  
-**Outcome:** The firm knows the three jobs content does (reach, connect, convert), the weekly mix, and has mapped topic ideas to each stage.
+**Outcome:** The firm knows the three jobs content does (reach, connect, convert), the monthly mix, and has mapped topic ideas to each stage.
 
 Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.
 

@@ -1,7 +1,7 @@
 # Module 8: Your 30-Day Post Plan
 
 **Run time:** 12 to 15 min  
-**Outcome:** The firm has its next 30 days planned: one post a day built on the Module 3 pillars, a weekly schedule, a script for every post, and a way to review and plan month two.
+**Outcome:** The firm has its next 30 days planned: 30 posts built on the Module 3 pillars (once a week at minimum, building to once a day), a weekly schedule, a script for every post, and a way to review and plan month two.
 
 Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.
 

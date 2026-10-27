@@ -46,6 +46,8 @@ Set it up like the TAB classroom: each lesson is the video plus a Resources list
 
 The "Seen it work" view counts on the post pages were read from YouTube on 26 Oct 2026. Re-check them before quoting them to a client (`src/plan.js`, `EXAMPLES`).
 
+Run `npm run skool` after a build to create `skool/`: the files to attach, already named for Skool ("[Lesson] Wrksht"), in one folder per section, plus `skool/SKOOL-SETUP.md` with the course, section and lesson titles and descriptions to paste.
+
 ## Filming it
 
 1. Open `pdf/blank/Module-0X-....pdf` on the iPad.

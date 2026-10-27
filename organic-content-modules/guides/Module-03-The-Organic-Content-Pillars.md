@@ -1,7 +1,7 @@
 # Module 3: The Organic Content Pillars
 
 **Run time:** 15 to 20 min  
-**Outcome:** The firm knows the four content pillars, has them built out with post ideas for a law firm, knows how to borrow proven structures from outlier videos, and has its next 30 days planned with one post a day.
+**Outcome:** The firm knows the four content pillars, has them built out with post ideas for a law firm, knows how to borrow proven structures from outlier videos, and has its next 30 days planned: once a week at minimum, building to once a day.
 
 Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you on camera, drawing over the boards as you talk. Run the Problems, then the Opportunity, then teach each board. The FILLED PDF shows what each board should look like when you're done.
 

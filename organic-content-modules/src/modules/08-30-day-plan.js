@@ -9,7 +9,7 @@ module.exports = {
   number: 8,
   title: 'Your 30-Day Post Plan',
   runtime: '12 to 15 min',
-  outcome: 'The firm has its next 30 days planned: one post a day built on the Module 3 pillars, a weekly schedule, a script for every post, and a way to review and plan month two.',
+  outcome: 'The firm has its next 30 days planned: 30 posts built on the Module 3 pillars (once a week at minimum, building to once a day), a weekly schedule, a script for every post, and a way to review and plan month two.',
   slides: [
     { type: 'cover', title: 'Your 30-Day\nPost Plan' },
 

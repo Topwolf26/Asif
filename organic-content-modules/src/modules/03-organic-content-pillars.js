@@ -157,7 +157,7 @@ module.exports = {
   number: 3,
   title: 'The Organic Content Pillars',
   runtime: '15 to 20 min',
-  outcome: 'The firm knows the four content pillars, has them built out with post ideas for a law firm, knows how to borrow proven structures from outlier videos, and has its next 30 days planned with one post a day.',
+  outcome: 'The firm knows the four content pillars, has them built out with post ideas for a law firm, knows how to borrow proven structures from outlier videos, and has its next 30 days planned: once a week at minimum, building to once a day.',
   slides: [
     { type: 'cover', title: 'The Organic\nContent Pillars' },
 
