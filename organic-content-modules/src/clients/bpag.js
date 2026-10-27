@@ -6,10 +6,53 @@ const { esc } = require('../lib');
 const { makePages, LAW_TEXT } = require('../plan-slides');
 
 const PILLARS = {
-  Connection: { color: '#0E7490', ask: 'Do I like you? Do you get farming and business like I do?', trap: 'Disconnect: only tax tips, so they never meet you or the team.' },
-  Value: { color: '#4D7C0F', ask: 'Is this helpful? Do I understand my tax better now?', trap: 'Lecturing: jargon, too much detail, five rules in one video.' },
-  Proof: { color: '#B45309', ask: 'Are you legit? Who have you actually helped?', trap: 'Disbelief: smart talk, but no sign of real clients or results.' },
-  Invitation: { color: '#7C2D12', ask: 'How do I get started with BPAG?', trap: 'Selling: a pitch in every post. Give publicly, sell privately.' },
+  Connection: {
+    color: '#0E7490',
+    ask: 'Do I like you? Do you get farming and business like I do?',
+    trap: 'Disconnect: only tax tips, so they never meet you or the team.',
+    why: 'People choose an accountant they trust, not just one who knows the rules.',
+    types: [
+      { name: 'Character', what: 'Your opinions and what you stand for: how you think about tax, farming and business.', ideas: ['Why you became an accountant', 'Your take on this week\'s tax news', 'An unpopular opinion about accountants'], hook: 'Unpopular opinion: your accountant should talk to you more than once a year.' },
+      { name: 'Day', what: 'Show what you already do: farm visits, the office, tax season, field days.', ideas: ['On the farm with a client', 'A Tuesday at BPAG', 'Your stand at the field day'], hook: 'Not every accountant works from a desk. Come with me to a client\'s farm.' },
+      { name: 'Team', what: 'Put faces to the firm. Collab posts with the people clients will actually deal with.', ideas: ['Meet [team member]', 'Ask our bookkeeper', 'Two accountants, one question'], hook: 'This is [name]. If your BAS keeps you up at night, she\'s who you want.' },
+    ],
+    example: ['The_Westy_Lifestyle, accountant (US)', '366K views', '"A Day In The Life As A 25 Year Old Accountant", working through tax returns.', 'youtube.com/shorts/XQCIuAnWQwM'],
+  },
+  Value: {
+    color: '#4D7C0F',
+    ask: 'Is this helpful? Do I understand my tax better now?',
+    trap: 'Lecturing: jargon, too much detail, five rules in one video.',
+    why: 'One idea per video. The better you know it, the simpler you can say it.',
+    types: [
+      { name: 'Pain points', what: 'The worries that keep farmers and business owners up at night, answered honestly.', ideas: ['The good-season tax bill', 'The new $3 million super tax', 'A tax bill you can\'t pay yet'], hook: 'The tax bill that catches farmers out isn\'t after a bad year. It\'s after a good one.' },
+      { name: 'Challenges / obstacles', what: 'Name the exact situation they\'re in, then show the way through it.', ideas: ['Payday Super: what changed', 'Tough season? 3 things to do now', 'Outgrown your business structure?'], hook: 'Tough season? Here are 3 things to do with your accountant now, not in June.' },
+      { name: 'Simplifying concepts', what: 'Take a rule people find confusing and say it in plain English.', ideas: ['A "Farm Tax in 30 Seconds" series', 'Farm management deposits', 'The tax deduction myth'], hook: 'Farm Tax in 30 Seconds: what a farm management deposit actually is.' },
+    ],
+    example: ['Jasmine DiLucci, tax attorney + CPA (US)', '3.5M views', '"How Taxes Change when you Make More Money": one idea, in plain English.', 'youtube.com/shorts/UGKkWz44xN0'],
+  },
+  Proof: {
+    color: '#B45309',
+    ask: 'Are you legit? Who have you actually helped?',
+    trap: 'Disbelief: smart talk, but no sign of real clients or results.',
+    why: 'Knowing tax isn\'t enough. Show the farmers and businesses you\'ve helped.',
+    types: [
+      { name: 'Testimonial', what: 'A client on camera, in their own words, with their written OK.', ideas: ['Ask happy clients after tax season', '20 seconds: what it\'s like working with BPAG', 'Read a Google review out on camera'], hook: 'Don\'t take it from me. Here\'s what [client] said.' },
+      { name: 'Case study', what: 'Start with the result, then how you got there. Details changed.', ideas: ['A farming family, 12 months on', 'Handing the farm on', 'From shoebox to sorted'], hook: 'A farming family came to us with [problem]. Twelve months later, [result].' },
+      { name: 'Screenshots', what: 'The thank-you emails and texts you already get. Names blurred, with permission.', ideas: ['This message made our week', 'Review of the month', 'A client\'s before and after, no details'], hook: 'This message made our whole week.' },
+    ],
+    example: ['Karlton Dennis, tax strategist (US)', '368K views', 'A 24-year-old client who saved $160,000 in tax: the result first, then how.', 'youtube.com/shorts/Wfed_Mj9w08'],
+  },
+  Invitation: {
+    color: '#7C2D12',
+    ask: 'How do I get started with BPAG?',
+    trap: 'Selling: a pitch in every post. Give publicly, sell privately.',
+    why: 'Invite them in. It should feel like an open door, not a sales call.',
+    types: [
+      { name: 'Resource', what: 'A free checklist or guide people get by commenting a keyword.', ideas: ['Farm tax planning checklist (comment FARM)', 'A Payday Super checklist', 'A "before you buy that ute" guide'], hook: 'I made a tax planning checklist for farmers. Comment FARM and I\'ll send it.' },
+      { name: 'Events', what: 'Meet people in person: an info night, a field day stand, a coffee catch-up.', ideas: ['Free farm tax and succession night', 'Your stand at the field day', 'Coffee\'s on us, [town], Friday 8am'], hook: 'We\'re running a free farm tax and succession night in [town]. Comment SEAT.' },
+      { name: 'Workshops', what: 'A low-cost, deeper session for people who\'ve followed you for a while.', ideas: ['Succession planning 101 (2 hours)', 'Tax planning before 30 June', 'Bookkeeping basics for farm businesses'], hook: 'Want to go deeper? We\'re running a 2-hour succession workshop on [date].' },
+    ],
+  },
 };
 
 const TH = 'Talking head, iPhone';
@@ -314,6 +357,8 @@ module.exports = {
     pages.ladder,
     pages.principles,
     setup,
+    pages.wheelPage,
+    ...Object.keys(PILLARS).map((name, k) => pages.pillarPage(name, k + 1)),
     pillarsAtAGlance,
     pages.weeklySchedule,
     pages.pillarWeek,

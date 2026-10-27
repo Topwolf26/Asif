@@ -129,6 +129,85 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
       .join('')}</div>`,
   };
 
+  // the content matrix: the four pillars, their three post types, and
+  // what people are asking (green) vs the trap (red) in each quarter
+  const wheelPage = (() => {
+    if (!Object.values(PILLARS).every((x) => x.types)) return null;
+    const C = (n) => PILLARS[n].color;
+    const types = (n) => PILLARS[n].types.map((t) => t.name);
+    const line = (x1, y1, x2, y2, extra = '') => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="#2A2A2A" stroke-width="1.6" stroke-linecap="round" ${extra}/>`;
+    // long labels wrap onto two lines at the space nearest the middle
+    const wrap = (str) => {
+      if (str.length <= 13) return [str];
+      if (str.includes(' / ')) return [str.slice(0, str.indexOf(' / ') + 2), str.slice(str.indexOf(' / ') + 3)];
+      const spaces = [...str].map((c, i) => (c === ' ' ? i : -1)).filter((i) => i > 0);
+      const cut = spaces.sort((a, b) => Math.abs(a - str.length / 2) - Math.abs(b - str.length / 2))[0];
+      return cut ? [str.slice(0, cut), str.slice(cut + 1)] : [str];
+    };
+    const txt = (x, y, str, o = {}) => {
+      const rows = o.serif || o.italic ? [str] : wrap(str);
+      const size = o.size || 17;
+      const y0 = y - ((rows.length - 1) * size * 1.15) / 2;
+      return `<text x="${x}" y="${y0}" text-anchor="${o.a || 'middle'}" font-family="${o.serif ? 'Fraunces' : 'Inter'}" font-size="${size}" font-weight="${o.w || 500}" ${o.italic ? 'font-style="italic"' : ''} fill="${o.fill || '#2A2A2A'}" ${o.rot ? `transform="rotate(${o.rot} ${x} ${y})"` : ''}>${rows.map((r, k) => `<tspan x="${x}" dy="${k ? size * 1.15 : 0}">${esc(r)}</tspan>`).join('')}</text>`;
+    };
+    const [cT, vT, pT, iT] = ['Connection', 'Value', 'Proof', 'Invitation'].map(types);
+    const svg = `<svg viewBox="120 92 880 616" width="908" height="600" preserveAspectRatio="xMidYMid meet">
+      ${line(347, 230, 710, 570)}${line(710, 230, 347, 570)}
+      ${line(528, 222, 528, 580, 'stroke-dasharray="6 6" stroke-width="1.2"')}${line(348, 400, 708, 400, 'stroke-dasharray="6 6" stroke-width="1.2"')}
+      <path d="M390,195 Q528,129 665,195 M390,605 Q528,671 665,605 M319,262 Q201,400 319,537 M740,262 Q856,400 740,537" fill="none" stroke="#2A2A2A" stroke-width="1.6"/>
+      ${line(458, 167, 453, 117)}${line(590, 167, 595, 117)}${line(460, 632, 455, 682)}${line(593, 632, 598, 682)}
+      ${line(273, 330, 213, 325)}${line(268, 452, 208, 457)}${line(785, 330, 835, 319)}${line(793, 450, 845, 456)}
+      ${txt(528, 212, 'Connection', { serif: 1, size: 32, w: 600, fill: C('Connection') })}
+      ${txt(528, 600, 'Invitation', { serif: 1, size: 32, w: 600, fill: C('Invitation') })}
+      ${txt(296, 400, 'Proof', { serif: 1, size: 32, w: 600, fill: C('Proof'), rot: -90 })}
+      ${txt(760, 400, 'Value', { serif: 1, size: 32, w: 600, fill: C('Value'), rot: 90 })}
+      ${txt(446, 150, cT[0], { a: 'end' })}${txt(524, 144, cT[1])}${txt(604, 150, cT[2], { a: 'start' })}
+      ${txt(446, 668, iT[0], { a: 'end' })}${txt(526, 684, iT[1])}${txt(606, 668, iT[2], { a: 'start' })}
+      ${txt(262, 300, pT[2], { a: 'end' })}${txt(250, 405, pT[1], { a: 'end' })}${txt(262, 512, pT[0], { a: 'end' })}
+      ${txt(800, 300, vT[0], { a: 'start' })}${txt(858, 405, vT[1], { a: 'start' })}${txt(800, 512, vT[2], { a: 'start' })}
+      ${txt(474, 284, 'Like?', { italic: 1, fill: '#15803D' })}${txt(588, 284, 'Disconnect?', { italic: 1, fill: '#B91C1C' })}
+      ${txt(640, 370, 'Helpful', { italic: 1, fill: '#15803D', rot: -42 })}${txt(640, 446, 'Lecturing', { italic: 1, fill: '#B91C1C', rot: 42 })}
+      ${txt(476, 528, 'Start...', { italic: 1, fill: '#15803D' })}${txt(586, 528, 'Selling', { italic: 1, fill: '#B91C1C' })}
+      ${txt(418, 446, 'Legit?', { italic: 1, fill: '#15803D', rot: -42 })}${txt(418, 370, 'Disbelief?', { italic: 1, fill: '#B91C1C', rot: 42 })}
+    </svg>`;
+    return {
+      type: 'page',
+      cls: 'sheet-post',
+      html: `<div class="sp-head"><div class="sp-kicker">The content matrix</div><h2>The Four Content Pillars</h2></div>
+        <div class="wheel">${svg}</div>
+        <div class="wheel-key">Every post fits one of four pillars, and each pillar has three kinds of post. In each quarter: <i style="color:#15803D">what people are asking</i>, and <i style="color:#B91C1C">the trap to avoid</i>.</div>`,
+    };
+  })();
+
+  // one clean page per pillar: what it is, the three kinds of post, examples
+  const pillarPage = (name, n) => {
+    const pl = PILLARS[name];
+    const ex = pl.example;
+    return {
+      type: 'page',
+      cls: 'sheet-post',
+      html: `<div class="sp-head"><div class="sp-kicker">Pillar ${n} of 4</div><h2 style="color:${pl.color}">${name}</h2></div>
+        <div class="pv-ask"><span>They're asking</span>${esc(pl.ask)}</div>
+        <div class="pv-trap"><span>The trap</span>${esc(pl.trap)}</div>
+        <div class="pv-cols">${pl.types
+          .map(
+            (t) => `<div class="pv-col">
+            <h3 style="color:${pl.color}">${esc(t.name)}</h3>
+            <p>${esc(t.what)}</p>
+            <div class="sp-label">Post ideas</div>
+            <ul>${t.ideas.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>
+            <div class="sp-label">Say it like this</div>
+            <p class="pv-hook">“${esc(t.hook)}”</p>
+          </div>`
+          )
+          .join('')}</div>
+        <div class="pv-foot">
+          <div class="pv-why">${esc(pl.why)}</div>
+          ${ex ? `<div class="pv-ex"><div class="sp-label">Seen it work</div><span class="sp-views">${esc(ex[1])}</span> ${esc(ex[0])}. ${esc(ex[2])} <a href="https://www.${esc(ex[3])}">${esc(ex[3])}</a></div>` : ''}
+        </div>`,
+    };
+  };
+
   // the month at a glance: one tinted card per day, big day number, the post, its pillar
   const tint = (hex, a) => {
     const n = parseInt(hex.slice(1), 16);
@@ -245,7 +324,7 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
     </div>`,
   };
 
-  return { pillarChip, howItWorks, ladder, principles, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, shotList, reviewPrinted };
+  return { pillarChip, howItWorks, ladder, principles, wheelPage, pillarPage, weeklySchedule, pillarWeek, monthCalendar, weekReview, postList, postPage, shotList, reviewPrinted };
 }
 
 module.exports = { ...makePages(require('./plan'), require('./pillars').PILLARS), makePages, LAW_TEXT };
