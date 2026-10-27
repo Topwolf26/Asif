@@ -188,33 +188,34 @@ function makePages(plan, PILLARS, T = LAW_TEXT) {
       .join('')}</tbody></table>`,
   });
 
-  // one page per post: exactly what to say and post
+  // one page per post: the script to read out, and the notes around it
+  const DAYNAME = { Mon: 'Monday', Tue: 'Tuesday', Wed: 'Wednesday', Thu: 'Thursday', Fri: 'Friday', Sat: 'Saturday', Sun: 'Sunday' };
   const postPage = (p) => {
     const pl = PILLARS[p.pillar];
     const ex = p.example;
+    const notes = [
+      ['On screen', esc(p.onscreen)],
+      ['Caption', esc(p.caption)],
+      ['Filming', `${esc(p.format)}, ${esc(p.length)}. ${p.shoot ? T.filmLabel[0] : T.filmLabel[1]}.`],
+      p.note && ['Before you film', esc(p.note), 'warn'],
+      ex && ['Seen it work', `<span class="sp-views">${esc(ex.views)}</span> ${esc(ex.who)}. ${esc(ex.hook)} <a href="https://www.${esc(ex.url)}">${esc(ex.url)}</a>`],
+    ].filter(Boolean);
     return {
       type: 'page',
-      title: `Day ${p.day}: ${p.short}`,
-      small: true,
-      tag: { label: `${p.pillar} · ${p.type}`, color: pl.color },
-      html: `<div class="pp-main">
-        <div class="pp-meta"><span>${p.dow} · ${p.time}</span><span>${esc(p.format)} · ${esc(p.length)}</span><span>${p.shoot ? T.filmLabel[0] : T.filmLabel[1]}</span></div>
-        <div class="pp-sec"><div class="pp-h">1 · Say this first</div><div class="pp-hook">"${esc(p.hook)}"</div></div>
-        <div class="pp-sec"><div class="pp-h">2 · Then cover</div><ol>${p.beats.map((b) => `<li>${esc(b)}</li>`).join('')}</ol></div>
-        <div class="pp-sec"><div class="pp-h">3 · End with</div><div class="pp-cta">${esc(p.cta)}</div></div>
-        <div class="pp-two">
-          <div><div class="pp-h">On-screen text</div><div class="pp-box">${esc(p.onscreen)}</div></div>
-          <div><div class="pp-h">Caption</div><div class="pp-box mono">${esc(p.caption)}</div></div>
+      cls: 'sheet-post',
+      html: `<div class="sp-head">
+          <div class="sp-kicker">Day ${p.day} · ${DAYNAME[p.dow]}, ${p.time} · <span style="color:${pl.color}">${p.pillar}, ${esc(p.type.toLowerCase())}</span></div>
+          <h2>${esc(p.short)}</h2>
         </div>
-      </div>
-      <div class="pp-side">
-        ${p.note ? `<div class="pp-card note"><div class="pp-h">Before you film</div><p>${esc(p.note)}</p></div>` : ''}
-        ${p.note && ex
-          ? `<div class="pp-card slim"><div class="pp-h">The pillar</div>${pillarChip(p.pillar)} <b>${esc(p.type)}.</b> Don't: ${esc(pl.trap.split(':')[0])}.</div>`
-          : `<div class="pp-card"><div class="pp-h">The pillar</div>${pillarChip(p.pillar)}<p style="margin-top:8px"><b>${esc(p.type)}.</b> They're asking: ${esc(pl.ask)}</p><p><b>Don't:</b> ${esc(pl.trap.split(':')[0])}.</p></div>`}
-        ${ex ? `<div class="pp-card ex"><div class="pp-h">Seen it work</div><div class="ex-views">${esc(ex.views)}</div><div class="ex-who">${esc(ex.who)} · ${esc(ex.platform)}</div><p>${esc(ex.hook)}</p><a class="ex-url" href="https://www.${esc(ex.url)}">Watch it before you film yours: ${esc(ex.url)}</a></div>` : ''}
-        <div class="pp-ticks">${['Scripted', 'Filmed', 'Edited', 'Scheduled'].map((t) => `<span><i></i>${t}</span>`).join('')}</div>
-      </div>`,
+        <div class="sp-script">
+          <p class="sp-hook">“${esc(p.hook)}”</p>
+          ${p.script.map((line) => `<p>${esc(line)}</p>`).join('')}
+          <p class="sp-close">${esc(p.cta)}</p>
+        </div>
+        <div class="sp-side">
+          ${notes.map(([label, body, cls]) => `<div class="sp-item ${cls || ''}"><div class="sp-label">${label}</div>${body}</div>`).join('')}
+        </div>
+        <div class="sp-ticks">${['Scripted', 'Filmed', 'Edited', 'Posted'].map((t) => `<span><i></i>${t}</span>`).join('')}</div>`,
     };
   };
 

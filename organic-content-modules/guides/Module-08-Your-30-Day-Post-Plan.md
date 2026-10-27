@@ -87,9 +87,9 @@ Film it like a TAB module on Skool: workbook on the iPad (or screen-share), you 
 
 **Say:**
 - Every one of the thirty posts gets a page like this.
-- What to say first, the three points to cover, how to end, the on-screen text and a caption you can paste.
-- The blue box is a real lawyer video in the same format, with the views it got. Watch it before you film yours.
-- Tick it through scripted, filmed, edited, scheduled.
+- The whole script, word for word, then the on-screen text and a caption you can paste.
+- Where there is one, you also get a real lawyer video in the same format, with the views it got. Watch it before you film yours.
+- Tick it through scripted, filmed, edited, posted.
 
 ## Slide 17: Day 30 Review
 

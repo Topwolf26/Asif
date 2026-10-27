@@ -15,4 +15,3 @@
 .shot.lime { --shot-bg: var(--lime); --shot-fg: var(--heading); --weave: rgba(255,255,255,0.12); --weave2: rgba(0,0,0,0.05); }
 .shot:not(.white):not(.lime) .shot-kicker { color: var(--lime); opacity: 1; }
 .shot:not(.white):not(.lime) .shot-mark { color: var(--lime); }
-.pp-meta span { background: #E8F0E2; }

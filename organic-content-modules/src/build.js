@@ -57,8 +57,8 @@ function presenterGuide(m) {
   // the plan as a CSV, same columns as our client content calendars + the extras
   const q = (v) => `"${String(v).replace(/"/g, '""')}"`;
   const csv = [
-    ['Post Idea', 'Post Link', 'Scheduled Date to Post', 'Posted/Scheduled', 'Posting Schedule', 'Post Format', 'Pillar', 'Type', 'Hook', 'Script beats', 'CTA', 'On-screen text', 'Caption', 'Filmed', 'Real example'],
-    ...plan.map((p) => [p.short, '', `Day ${p.day}`, '', `${p.dow} ${p.time}`, `Video Post (${p.format}, ${p.length})`, p.pillar, p.type, p.hook, p.beats.map((b, k) => `${k + 1}. ${b}`).join(' '), p.cta, p.onscreen, p.caption, p.shoot ? 'Shoot day' : 'On the day', p.example ? `${p.example.who}, ${p.example.views}: ${p.example.url}` : '']),
+    ['Post Idea', 'Post Link', 'Scheduled Date to Post', 'Posted/Scheduled', 'Posting Schedule', 'Post Format', 'Pillar', 'Type', 'Hook', 'Script', 'Close', 'On-screen text', 'Caption', 'Filmed', 'Real example'],
+    ...plan.map((p) => [p.short, '', `Day ${p.day}`, '', `${p.dow} ${p.time}`, `Video Post (${p.format}, ${p.length})`, p.pillar, p.type, p.hook, p.script.join(' '), p.cta, p.onscreen, p.caption, p.shoot ? 'Shoot day' : 'On the day', p.example ? `${p.example.who}, ${p.example.views}: ${p.example.url}` : '']),
   ]
     .map((r) => r.map(q).join(','))
     .join('\n');

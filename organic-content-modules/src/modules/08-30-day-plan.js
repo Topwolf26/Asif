@@ -53,9 +53,9 @@ module.exports = {
     ]),
     withNotes({ ...postPage(plan[1]), title: 'Every Post, Planned' }, [
       'Every one of the thirty posts gets a page like this.',
-      'What to say first, the three points to cover, how to end, the on-screen text and a caption you can paste.',
-      'The blue box is a real lawyer video in the same format, with the views it got. Watch it before you film yours.',
-      'Tick it through scripted, filmed, edited, scheduled.',
+      'The whole script, word for word, then the on-screen text and a caption you can paste.',
+      'Where there is one, you also get a real lawyer video in the same format, with the views it got. Watch it before you film yours.',
+      'Tick it through scripted, filmed, edited, posted.',
     ]),
     withNotes(reviewPrinted, [
       'On day 30, put every post on this grid: views along the bottom, enquiries up the side.',

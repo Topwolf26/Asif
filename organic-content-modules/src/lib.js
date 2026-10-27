@@ -292,7 +292,7 @@ const S = {
 
   // free layout page: blue-square heading, html in page coordinates, no scaling
   page(sl, ctx) {
-    return `<section class="slide board">
+    return `<section class="slide board ${sl.cls || ''}">
       ${heading(sl)}
       ${sl.tag ? `<div class="ptag" style="background:${sl.tag.color}">${esc(sl.tag.label)}</div>` : ''}
       ${sl.html || ''}
