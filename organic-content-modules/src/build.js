@@ -73,7 +73,7 @@ function presenterGuide(m) {
     if (!m.noGuide) fs.writeFileSync(path.join(ROOT, 'guides', `${name}.md`), presenterGuide(m));
     // client plans: one finished PDF (+ CSV) in pdf/clients, no filled copy
     if (m.csv) fs.writeFileSync(path.join(ROOT, 'pdf/clients', m.csv.file), m.csv.text + '\n');
-    for (const filled of m.client ? [false] : [false, true]) {
+    for (const filled of m.client ? [!!m.filled] : [false, true]) {
       const html = renderModule(m, { brand, filled });
       const htmlPath = path.join(ROOT, 'dist', `${name}${filled ? '-FILLED' : ''}.html`);
       fs.writeFileSync(htmlPath, html);
